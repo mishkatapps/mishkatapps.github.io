@@ -52,6 +52,7 @@ h2{font-family:Amiri,serif;font-weight:700;font-size:clamp(32px,5vw,42px);color:
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;text-decoration:none;border-radius:999px;padding:11px 20px;font-weight:800;font-size:15.5px;border:1px solid var(--gold);color:var(--gold);background:transparent;cursor:pointer;font-family:inherit}
 .btn.gold{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#14202a;border:0}
 .btn:hover{filter:brightness(1.08)}
+.ver{display:block;width:max-content;margin-top:4px;font-size:13px;font-weight:700;color:#14202a;background:linear-gradient(135deg,var(--gold),var(--gold2));border-radius:999px;padding:1px 12px;direction:rtl}
 .how{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
 .how div{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:18px}
 .how b{color:var(--gold);font-size:19px;display:block;margin-bottom:4px}
@@ -124,10 +125,10 @@ footer{text-align:center;color:var(--mut);font-size:14px;padding:30px 20px calc(
 <section id="apps"><div class="wrap">
 <h2>تطبيقاتنا</h2><p class="sub">حمّل التطبيق الذي تريده، أو افتحه مباشرة في المتصفح</p>
 <div class="apps">
- <article class="app"><div class="h"><img src="img/quran-icon.png" alt=""><div><h3>المصحف الشريف</h3><small>برواية حفص عن عاصم</small></div></div>
+ <article class="app"><div class="h"><img src="img/quran-icon.png" alt=""><div><h3>المصحف الشريف</h3><small>برواية حفص عن عاصم</small><span class="ver" id="verQuran">الإصدار …</span></div></div>
   <ul><li>114 سورة و6236 آية بالرسم العثماني</li><li>خمسة خطوط للمصحف، وتكبير الخط</li><li>عرض صفحات أو تمرير متصل، ووضع ليلي ونهاري</li><li>فهرس السور والأجزاء، وبحث وعلامات حفظ</li><li>مواقيت الصلاة مع عدّاد للصلاة القادمة</li></ul>
   <div class="btns"><a class="btn gold" href="https://mohammadelshennawy-bit.github.io/Quran-app/download.html" data-ev="dl-quran">⬇ تحميل وتثبيت</a><a class="btn" href="https://mohammadelshennawy-bit.github.io/Quran-app/" data-ev="open-quran">افتح في المتصفح ↗</a></div></article>
- <article class="app"><div class="h"><img src="img/rawd-icon.png" alt=""><div><h3>روض الذكر</h3><small>الأذكار والأدعية مشكولةً</small></div></div>
+ <article class="app"><div class="h"><img src="img/rawd-icon.png" alt=""><div><h3>روض الذكر</h3><small>الأذكار والأدعية مشكولةً</small><span class="ver" id="verRawd">الإصدار …</span></div></div>
   <ul><li>347 ذكرًا ودعاءً في 16 بابًا حسب الغرض</li><li>من «حصن المسلم» وجوامع دعاء النبي <span style="font-family:Amiri,serif">ﷺ</span></li><li>عدّاد لكل ذكر، مع الفضل والتخريج</li><li>سبحة إلكترونية بأعداد تحددها بنفسك</li><li>مواقيت الصلاة لمدينتك أو موقعك الحالي</li></ul>
   <div class="btns"><a class="btn gold" href="https://mohammadelshennawy-bit.github.io/rawd-azkar/download.html" data-ev="dl-rawd">⬇ تحميل وتثبيت</a><a class="btn" href="https://mohammadelshennawy-bit.github.io/rawd-azkar/" data-ev="open-rawd">افتح في المتصفح ↗</a></div></article>
 </div>
@@ -185,8 +186,10 @@ footer{text-align:center;color:var(--mut);font-size:14px;padding:30px 20px calc(
   if(c){['stSite','stAll','stQuran','stRawd'].forEach(function(k){if(c[k]!=null)set(k,c[k])})}
   var out=Object.assign({},c||{});
   var gc=function(path){return fetch('https://mishkat.goatcounter.com/counter/'+encodeURIComponent(path)+'.json').then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(j){return +String(j.count).replace(/[^0-9]/g,'')})};
-  var gh=function(repo){return fetch('https://api.github.com/repos/mohammadelshennawy-bit/'+repo+'/releases?per_page=100').then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(a){var n=0;a.forEach(function(x){(x.assets||[]).forEach(function(s){if(/\.apk$/i.test(s.name))n+=s.download_count})});return n})};
-  var jobs=[['stSite',gc('/site/home')],['stAll',gc('TOTAL')],['stQuran',gh('Quran-app')],['stRawd',gh('rawd-azkar')]];
+  var setVer=function(id,v){var e=document.getElementById(id);if(e&&v)e.textContent='الإصدار '+String(v).replace(/^v/i,'')};
+  if(c){setVer('verQuran',c.verQuran);setVer('verRawd',c.verRawd)}
+  var gh=function(repo,vk){return fetch('https://api.github.com/repos/mohammadelshennawy-bit/'+repo+'/releases?per_page=100').then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(a){var n=0,latest=null;a.forEach(function(x){if(!latest&&!x.draft&&!x.prerelease)latest=x.tag_name;(x.assets||[]).forEach(function(s){if(/\.apk$/i.test(s.name))n+=s.download_count})});if(latest){out[vk]=latest;setVer(vk,latest)}return n})};
+  var jobs=[['stSite',gc('/site/home')],['stAll',gc('TOTAL')],['stQuran',gh('Quran-app','verQuran')],['stRawd',gh('rawd-azkar','verRawd')]];
   Promise.all(jobs.map(function(j){return j[1].then(function(v){out[j[0]]=v;set(j[0],v)}).catch(function(){})})).then(function(){
     try{localStorage.setItem(C,JSON.stringify(out))}catch(e){}
     document.getElementById('stUpd').textContent='آخر تحديث: '+new Date().toLocaleString('ar-EG-u-nu-latn',{dateStyle:'medium',timeStyle:'short'});
