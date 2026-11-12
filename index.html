@@ -69,12 +69,37 @@ h2{font-family:Amiri,serif;font-weight:700;font-size:clamp(32px,5vw,42px);color:
 footer{text-align:center;color:var(--mut);font-size:14px;padding:30px 20px calc(30px + env(safe-area-inset-bottom));border-top:1px solid var(--line);margin-top:30px}
 .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#0B1D3F;color:var(--gold);border:1px solid var(--gold);padding:8px 18px;border-radius:999px;opacity:0;transition:opacity .3s;pointer-events:none}
 .toast.on{opacity:1}
-@media(max-width:640px){.links a:not(.cta){display:none}nav .wrap{height:56px}.brand{font-size:24px}}
+.today{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px;align-items:stretch}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:26px;padding:22px 22px 18px;display:flex;flex-direction:column}
+.panel h3{margin:0 0 10px;font-family:Amiri,serif;color:var(--gold);font-size:28px;display:flex;align-items:center;gap:8px}
+.dod .lbl{align-self:flex-start;font-size:13.5px;color:var(--gold);border:1px solid var(--line);border-radius:999px;padding:2px 12px;margin-bottom:10px}
+.dod .txt{font-family:Amiri,serif;font-size:clamp(22px,3vw,27px);line-height:2;color:#f6e7bd;text-align:center;flex:1;display:flex;align-items:center;justify-content:center;white-space:pre-line}
+.dod .src{color:var(--mut);font-size:13.5px;text-align:center;margin-top:8px}
+.dod .btns{justify-content:center}
+.pnext{display:flex;align-items:center;justify-content:space-between;gap:12px;background:rgba(233,207,140,.08);border:1px solid var(--line);border-radius:18px;padding:12px 16px}
+.pnext small{color:var(--mut);font-size:13.5px;display:block}
+.pnext b{font-family:Amiri,serif;font-size:30px;color:var(--gold);line-height:1.2}
+.pnext .at{font-size:20px;font-weight:800;margin-inline-start:8px}
+.pnext .cd{font-family:Arial,sans-serif;font-weight:800;font-size:clamp(24px,4vw,30px);color:var(--gold);direction:ltr;letter-spacing:1px}
+.pdate{color:var(--mut);font-size:13.5px;margin:8px 2px 4px;text-align:center}
+.plist{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px}
+.pt{background:rgba(255,255,255,.04);border:1px solid rgba(212,175,95,.22);border-radius:14px;padding:8px 6px;text-align:center;line-height:1.5}
+.pt .i{display:block;font-size:20px}.pt b{display:block;font-size:15px}.pt .t{font-weight:800;font-size:16px;color:var(--gold)}
+.pt.next{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#14202a;border-color:transparent}.pt.next .t{color:#14202a}
+.pt.cur{border-color:var(--gold)}
+.pctl{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.pctl select,.pctl button{flex:1;min-width:120px;background:rgba(5,13,36,.6);color:var(--ink);border:1px solid var(--line);border-radius:12px;padding:8px 10px;font:inherit;font-size:14px;cursor:pointer}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:18px;text-align:center}
+.stat .ic{font-size:28px}.stat .n{font-family:Arial,sans-serif;font-weight:800;font-size:clamp(32px,5vw,42px);color:var(--gold);line-height:1.3;direction:ltr}
+.stat .l{font-size:15px}.stat small{display:block;color:var(--mut);font-size:12.5px}
+.upd{text-align:center;color:var(--mut);font-size:13px;margin-top:14px}
+@media(max-width:640px){.plist{grid-template-columns:repeat(2,1fr)}.links a:not(.cta){display:none}nav .wrap{height:56px}.brand{font-size:24px}}
 </style>
 </head>
 <body>
 <nav><div class="wrap"><a class="brand" href="#top"><img src="img/mishkat.svg" alt="">مشكاة</a>
-<div class="links"><a href="#apps">التطبيقات</a><a href="#install">التثبيت</a><a href="media.html">الإعلانات</a><a href="#about">عن مشكاة</a><a class="cta" href="support.html">♡ ادعمنا</a></div></div></nav>
+<div class="links"><a href="#today">المواقيت</a><a href="#apps">التطبيقات</a><a href="#install">التثبيت</a><a href="media.html">الإعلانات</a><a href="#about">عن مشكاة</a><a class="cta" href="support.html">♡ ادعمنا</a></div></div></nav>
 
 <header class="hero" id="top"><div class="wrap">
 <img src="img/mishkat.svg" alt="شعار مشكاة">
@@ -84,6 +109,17 @@ footer{text-align:center;color:var(--mut);font-size:14px;padding:30px 20px calc(
 <div class="ayah">﴿مَثَلُ نُورِهِ كَمِشْكَاةٍ فِيهَا مِصْبَاحٌ﴾ <small>[النور: 35]</small></div>
 <div class="badges"><span>📱 أندرويد</span><span>🍎 آيفون وآيباد</span><span>💻 ويندوز وماك</span><span>📴 دون إنترنت</span><span>🚫 بلا إعلانات</span></div>
 </div></header>
+
+<section id="today"><div class="wrap">
+<div class="today">
+ <article class="panel dod"><h3>✦ ذكر اليوم</h3><span class="lbl" id="dodCat"></span><div class="txt" id="dodTxt"></div><div class="src" id="dodSrc"></div>
+  <div class="btns"><button class="btn" id="dodCopy">⧉ نسخ</button><button class="btn" id="dodShare">↗ مشاركة</button><a class="btn gold" href="https://mohammadelshennawy-bit.github.io/rawd-azkar/" data-ev="open-rawd-dod">المزيد في روض الذكر</a></div></article>
+ <article class="panel"><h3>🕌 مواقيت الصلاة</h3>
+  <div class="pnext"><div><small>الصلاة القادمة · <span id="prCity"></span></small><b id="prNext"></b><span class="at" id="prAt"></span></div><div style="text-align:center"><small>متبقٍّ</small><div class="cd" id="prCd">--:--:--</div></div></div>
+  <div class="pdate" id="prDate"></div>
+  <div class="plist" id="prList"></div>
+  <div class="pctl"><select id="prCitySel" aria-label="المدينة"></select><select id="prMethod" aria-label="طريقة الحساب"></select><button id="prGeo">📍 موقعي</button></div></article>
+</div></div></section>
 
 <section id="apps"><div class="wrap">
 <h2>تطبيقاتنا</h2><p class="sub">حمّل التطبيق الذي تريده، أو افتحه مباشرة في المتصفح</p>
@@ -105,6 +141,16 @@ footer{text-align:center;color:var(--mut);font-size:14px;padding:30px 20px calc(
  <div><b>ويندوز وماك</b><p>افتح الرابط في Edge أو Chrome ← أيقونة التثبيت في شريط العنوان.</p></div>
 </div></div></section>
 
+<section id="stats"><div class="wrap">
+<h2>مشكاة بالأرقام</h2><p class="sub">عدّادات حيّة لمتابعة الموقع والتطبيقات</p>
+<div class="stats">
+ <div class="stat"><div class="ic">👁️</div><div class="n" id="stSite">—</div><div class="l">زيارات موقع مشكاة</div></div>
+ <div class="stat"><div class="ic">📊</div><div class="n" id="stAll">—</div><div class="l">إجمالي الزيارات والاستخدام</div><small>الموقع والتطبيقان معًا</small></div>
+ <div class="stat"><div class="ic">📖</div><div class="n" id="stQuran">—</div><div class="l">تحميلات المصحف الشريف</div><small>نسخة أندرويد (APK)</small></div>
+ <div class="stat"><div class="ic">📿</div><div class="n" id="stRawd">—</div><div class="l">تحميلات روض الذكر</div><small>نسخة أندرويد (APK)</small></div>
+</div>
+<p class="upd" id="stUpd"></p></div></section>
+
 <section id="supportcta"><div class="wrap" style="text-align:center">
 <h2>ادعم مشكاة</h2><p class="sub">ساهم في تطوير تطبيقات مشكاة المجانية وإبقائها بلا إعلانات</p>
 <a class="btn gold" href="support.html" style="font-size:18px;padding:13px 34px">♡ ادعم مشكاة</a></div></section>
@@ -120,6 +166,33 @@ footer{text-align:center;color:var(--mut);font-size:14px;padding:30px 20px calc(
 
 <footer>© مشكاة · MISHKAT APPS — برمجيات نافعة للهاتف والحاسب</footer>
 <div class="toast" id="toast"></div>
+<script src="js/prayer.js"></script>
+<script src="js/dhikr.js"></script>
+<script>
+(function(){ // ذكر اليوم — نفس اختيار تطبيق روض الذكر
+  var P=window.MK_DHIKR||[];if(!P.length)return;var d=new Date(),it=P[(d.getFullYear()*372+d.getMonth()*31+d.getDate())%P.length];
+  var txt=String(it.t).replace(/[ \t]+\n/g,'\n').replace(/\n\s*\n+/g,'\n').trim();
+  document.getElementById('dodCat').textContent=it.c;document.getElementById('dodTxt').textContent=txt;document.getElementById('dodSrc').textContent=it.s||'';
+  var share=txt+'\n\n'+(it.s||'')+'\n— من موقع مشكاة: https://mishkatapps.github.io/';
+  function toast(m){var t=document.getElementById('toast');t.textContent=m;t.classList.add('on');setTimeout(function(){t.classList.remove('on')},1800)}
+  document.getElementById('dodCopy').onclick=async function(){try{await navigator.clipboard.writeText(share);toast('تم النسخ')}catch(e){}};
+  document.getElementById('dodShare').onclick=async function(){if(navigator.share){try{await navigator.share({title:'ذكر اليوم',text:share})}catch(e){}}else{try{await navigator.clipboard.writeText(share);toast('تم النسخ — الصقه حيث تشاء')}catch(e){}}};
+})();
+(function(){ // العدّادات
+  var fmt=function(n){return n==null?'—':Number(n).toLocaleString('en-US')};
+  var set=function(id,v){var e=document.getElementById(id);if(e)e.textContent=fmt(v)};
+  var C='mk-stats',c=null;try{c=JSON.parse(localStorage.getItem(C)||'null')}catch(e){}
+  if(c){['stSite','stAll','stQuran','stRawd'].forEach(function(k){if(c[k]!=null)set(k,c[k])})}
+  var out=Object.assign({},c||{});
+  var gc=function(path){return fetch('https://mishkat.goatcounter.com/counter/'+encodeURIComponent(path)+'.json').then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(j){return +String(j.count).replace(/[^0-9]/g,'')})};
+  var gh=function(repo){return fetch('https://api.github.com/repos/mohammadelshennawy-bit/'+repo+'/releases?per_page=100').then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(a){var n=0;a.forEach(function(x){(x.assets||[]).forEach(function(s){if(/\.apk$/i.test(s.name))n+=s.download_count})});return n})};
+  var jobs=[['stSite',gc('/site/home')],['stAll',gc('TOTAL')],['stQuran',gh('Quran-app')],['stRawd',gh('rawd-azkar')]];
+  Promise.all(jobs.map(function(j){return j[1].then(function(v){out[j[0]]=v;set(j[0],v)}).catch(function(){})})).then(function(){
+    try{localStorage.setItem(C,JSON.stringify(out))}catch(e){}
+    document.getElementById('stUpd').textContent='آخر تحديث: '+new Date().toLocaleString('ar-EG-u-nu-latn',{dateStyle:'medium',timeStyle:'short'});
+  });
+})();
+</script>
 <script>
 var cb=document.getElementById('copy');if(cb)cb.onclick=async function(){var t='moshen2026@instapay';try{await navigator.clipboard.writeText(t)}catch(e){var a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();try{document.execCommand('copy')}catch(_){}a.remove()}var o=document.getElementById('toast');o.textContent='تم نسخ عنوان InstaPay';o.classList.add('on');setTimeout(function(){o.classList.remove('on')},1800)};
 (function(){try{var GC='https://mishkat.goatcounter.com/count';function send(p,t,ev){var i=new Image();i.src=GC+'?p='+encodeURIComponent(p)+'&t='+encodeURIComponent(t)+(ev?'&e=true':'')+'&rnd='+Math.random().toString(36).slice(2)}
