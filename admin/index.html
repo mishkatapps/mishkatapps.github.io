@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>لوحة مدير مشكاة</title>
+<link rel="icon" type="image/png" href="../img/favicon.png">
+<script src="https://accounts.google.com/gsi/client" async></script>
+<meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&family=Amiri:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0B1D3F;--navy2:#13295a;--gold:#D9B15C;--gold2:#f2d083;--olive:#0F4C4A;--ivory:#F7F1E3;--ink:#1d2433;--mut:#64748b;--line:#e6dcc4;--card:#fff}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;font-family:Tajawal,Tahoma,sans-serif;background:var(--ivory);color:var(--ink);font-size:15px}
+a{color:var(--olive)}
+header{background:linear-gradient(120deg,var(--navy),var(--navy2) 60%,var(--olive));color:#fff;padding:14px 20px;display:flex;align-items:center;gap:14px;position:sticky;top:0;z-index:5;box-shadow:0 4px 18px rgba(11,29,63,.25)}
+header img{width:44px;height:44px}
+header h1{margin:0;font-family:Amiri,serif;color:var(--gold2);font-size:26px;line-height:1.1}
+header small{display:block;color:#cfd8e8;font-size:12.5px}
+header .sp{flex:1}
+.btn{border:0;border-radius:999px;padding:8px 16px;font:700 14px Tajawal,sans-serif;cursor:pointer;background:linear-gradient(135deg,var(--gold2),var(--gold));color:var(--navy);display:inline-flex;align-items:center;gap:6px;text-decoration:none}
+.btn.ghost{background:transparent;border:1px solid var(--line);color:var(--ink)}
+header .btn.ghost{color:#fff;border-color:rgba(255,255,255,.35)}
+.btn.sm{padding:5px 12px;font-size:13px}
+.btn:disabled{opacity:.5}
+.tabs{display:flex;gap:8px;padding:14px 20px 0;max-width:1180px;margin:0 auto}
+.tab{flex:0 0 auto;border:1px solid var(--line);background:#fff;border-radius:14px 14px 0 0;padding:10px 18px;font:700 15px Tajawal;cursor:pointer;color:var(--mut);border-bottom:0}
+.tab.on{background:var(--navy);color:var(--gold2);border-color:var(--navy)}
+.badge{display:inline-block;min-width:22px;padding:0 7px;border-radius:999px;background:var(--gold);color:var(--navy);font-size:12px;margin-inline-start:6px;text-align:center}
+.tab.on .badge{background:var(--gold2)}
+main{max-width:1180px;margin:0 auto;padding:0 20px 40px}
+.panel{background:#fff;border:1px solid var(--line);border-radius:0 18px 18px 18px;padding:18px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:16px}
+.kpi{border-radius:16px;padding:14px;color:#fff;position:relative;overflow:hidden}
+.kpi b{display:block;font-size:30px;font-weight:800;line-height:1.2;font-family:Arial,sans-serif}
+.kpi span{font-size:13px;opacity:.92}
+.k1{background:linear-gradient(135deg,#1e3a8a,#2563eb)}.k2{background:linear-gradient(135deg,#a16207,#d9b15c)}.k3{background:linear-gradient(135deg,#0f4c4a,#14b8a6)}
+.k4{background:linear-gradient(135deg,#9a3412,#f97316)}.k5{background:linear-gradient(135deg,#6b21a8,#a855f7)}
+.grid2{display:grid;grid-template-columns:1.3fr 1fr;gap:14px;margin-bottom:16px}
+@media(max-width:820px){.grid2{grid-template-columns:1fr}}
+.box{border:1px solid var(--line);border-radius:16px;padding:14px;background:#fffdf7}
+.box h3{margin:0 0 10px;font-size:16px;color:var(--navy)}
+.bar{display:flex;align-items:center;gap:10px;margin:6px 0;font-size:14px}
+.bar .lbl{width:84px;color:#b7791f;letter-spacing:1px;direction:ltr;text-align:right}
+.bar .tr{flex:1;height:12px;border-radius:8px;background:#f1ead8;overflow:hidden}
+.bar .tr i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));border-radius:8px}
+.bar .n{width:70px;text-align:left;color:var(--mut);font-size:13px}
+.apps{display:flex;flex-direction:column;gap:10px}
+.app{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;border-radius:12px;background:#fff;border:1px solid var(--line)}
+.app b{color:var(--navy)}.app .st{color:#b7791f;font-weight:800}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 14px;align-items:center}
+.filters select,.filters input[type=search],.mailbar input{border:1px solid var(--line);border-radius:12px;padding:8px 12px;font:15px Tajawal;background:#fff;min-width:130px}
+.filters input[type=search]{flex:1;min-width:200px}
+.filters label{display:flex;gap:6px;align-items:center;font-size:14px;color:var(--mut)}
+.cards{display:flex;flex-direction:column;gap:10px}
+.rc{border:1px solid var(--line);border-radius:16px;padding:12px 14px;background:#fff;border-inline-start:5px solid var(--gold)}
+.rc.s-جديد{border-inline-start-color:#2563eb;background:#f8fbff}
+.rc.s-نُفّذ{border-inline-start-color:#16a34a}
+.rc .top{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.stars{color:#f2b630;font-size:19px;letter-spacing:1px;direction:ltr}
+.stars .off{color:#e2dccb}
+.chip{display:inline-block;border-radius:999px;padding:1px 10px;font-size:12.5px;background:#f1ead8;color:#6b5a2e}
+.chip.app{background:var(--navy);color:var(--gold2)}
+.rc .when{color:var(--mut);font-size:13px;margin-inline-start:auto}
+.rc .txt{margin:8px 0 4px;font-size:15.5px;line-height:1.8;white-space:pre-wrap;unicode-bidi:plaintext;text-align:start}
+.rc .txt.empty{color:var(--mut);font-size:13.5px}
+.rc .meta{display:flex;flex-wrap:wrap;gap:12px;align-items:center;font-size:13px;color:var(--mut)}
+.rc select{border:1px solid var(--line);border-radius:10px;padding:4px 8px;font:13px Tajawal;background:#fff}
+.empty-st{text-align:center;color:var(--mut);padding:40px 10px}
+.mailwrap{display:grid;grid-template-columns:minmax(300px,1fr) 1.4fr;gap:14px}
+@media(max-width:900px){.mailwrap{grid-template-columns:1fr}}
+.mailbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.mailbar input{flex:1;min-width:200px}
+.qchips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.qchips button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:4px 12px;font:13px Tajawal;cursor:pointer}
+.qchips button.on{background:var(--navy);color:var(--gold2);border-color:var(--navy)}
+.ml{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff;max-height:70vh;overflow-y:auto}
+.mi{padding:10px 12px;border-bottom:1px solid #f1ead8;cursor:pointer}
+.mi:hover{background:#fffaf0}.mi.on{background:#fff4d6}
+.mi.unread .s,.mi.unread .f{font-weight:800;color:var(--navy)}
+.mi .r1{display:flex;gap:8px;align-items:center}.mi .f{flex:1;font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mi .d{font-size:12px;color:var(--mut);white-space:nowrap}
+.mi .s{font-size:14.5px;margin:2px 0;unicode-bidi:plaintext;text-align:start}.mi .p{unicode-bidi:plaintext;text-align:start;font-size:12.5px;color:var(--mut);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.dot{width:9px;height:9px;border-radius:50%;background:#2563eb;flex-shrink:0}
+.reader{border:1px solid var(--line);border-radius:14px;background:#fff;padding:14px;min-height:300px;max-height:70vh;overflow-y:auto}
+.reader h2{margin:0 0 8px;font-size:19px;color:var(--navy)}
+.msg{border-top:1px dashed var(--line);padding:10px 0}
+.msg .h{font-size:13px;color:var(--mut);margin-bottom:6px}.msg .h b{color:var(--ink)}
+.msg .b{white-space:pre-wrap;line-height:1.8;font-size:14.5px;unicode-bidi:plaintext}
+.ra{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+.reply textarea{width:100%;min-height:110px;border:1px solid var(--line);border-radius:12px;padding:10px;font:15px Tajawal;resize:vertical;unicode-bidi:plaintext}
+.loading{display:flex;align-items:center;justify-content:center;gap:10px;color:var(--mut);padding:30px}
+.spin{width:22px;height:22px;border:3px solid #eee;border-top-color:var(--gold);border-radius:50%;animation:sp 1s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(80px);opacity:0;pointer-events:none;background:var(--navy);color:var(--gold2);padding:10px 20px;border-radius:999px;transition:.3s;z-index:9;font-weight:700}
+.toast.on{transform:translateX(-50%);opacity:1}
+.err{background:#fef2f2;border:1px solid #fecaca;color:#b91c1c;border-radius:12px;padding:12px;margin:10px 0}
+@media(max-width:640px){
+  body{overflow-x:hidden}
+  header{flex-wrap:wrap;padding:10px 12px;gap:8px}
+  header img{width:36px;height:36px}
+  header h1{font-size:21px}
+  header .sp{flex-basis:100%;height:0}
+  header .btn{flex:1;justify-content:center}
+  .tabs{padding:10px 10px 0}.tab{flex:1;padding:9px 8px;font-size:14px}
+  main{padding:0 10px 30px}.panel{padding:12px;border-radius:0 0 16px 16px}
+  .kpis{grid-template-columns:1fr 1fr}.kpi b{font-size:24px}
+  .filters select{flex:1 1 45%;min-width:0}.filters input[type=search]{min-width:0;flex-basis:100%}
+  .rc .when{margin-inline-start:0}
+}
+footer{text-align:center;color:var(--mut);font-size:12.5px;padding:16px}
+#gate{position:fixed;inset:0;z-index:20;background:radial-gradient(circle at 50% 30%,var(--navy2),var(--navy) 70%);display:flex;align-items:center;justify-content:center;padding:20px}
+#gate .box{background:var(--ivory);border-radius:24px;padding:34px 28px;max-width:420px;width:100%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.35);border-top:6px solid var(--gold)}
+#gate img{width:84px;height:84px}
+#gate h2{font-family:Amiri,serif;color:var(--navy);font-size:30px;margin:8px 0 4px}
+#gate p{color:var(--mut);margin:0 0 20px;line-height:1.8}
+#gbtn{display:flex;justify-content:center;min-height:44px}
+#gmsg{margin-top:16px;color:#b42318;font-weight:700;min-height:1.4em;line-height:1.7}
+#gate .back{display:inline-block;margin-top:14px;font-size:13.5px}
+</style>
+</head>
+<body>
+<div id="gate"><div class="box">
+  <img src="../img/mishkat.svg" alt="">
+  <h2>لوحة مدير مشكاة</h2>
+  <p>هذه الصفحة خاصة بإدارة مشكاة.<br>سجّل الدخول بحساب Google المصرّح له.</p>
+  <div id="gbtn"></div>
+  <div id="gmsg"></div>
+  <a class="back" href="../">→ العودة إلى موقع مشكاة</a>
+</div></div>
+<header>
+  <img src="../img/mishkat.svg" alt="">
+  <div><h1>لوحة مدير مشكاة</h1><small id="who">جارٍ التحميل…</small></div>
+  <div class="sp"></div>
+  <a class="btn ghost sm" href="https://docs.google.com/spreadsheets/d/1t2q_Na_HOV3_JnFcBnZFS0NqK4VVqd48TALSQioKHXY/edit" target="_blank">📊 الجدول</a>
+  <a class="btn ghost sm" href="https://mail.google.com/mail/u/?authuser=mishkatapps@gmail.com" target="_blank">✉️ Gmail</a>
+  <button class="btn sm" id="refresh">↻ تحديث</button>
+  <button class="btn ghost sm" id="logout">⎋ خروج</button>
+</header>
+
+<div class="tabs">
+  <button class="tab on" data-tab="r">⭐ التقييمات <span class="badge" id="bR">…</span></button>
+  <button class="tab" data-tab="m">✉️ البريد <span class="badge" id="bM">…</span></button>
+</div>
+
+<main>
+  <section class="panel" id="pR">
+    <div id="rBody"><div class="loading"><div class="spin"></div>جارٍ تحميل التقييمات…</div></div>
+  </section>
+  <section class="panel" id="pM" hidden>
+    <div class="mailbar"><input type="search" id="mq" placeholder="ابحث في البريد (مثل: from:someone أو كلمة)"><button class="btn sm" id="mGo">بحث</button></div>
+    <div class="qchips" id="qchips">
+      <button class="on" data-q="in:inbox">الوارد</button>
+      <button data-q="in:inbox is:unread">غير المقروء</button>
+      <button data-q="is:starred">المميّز بنجمة</button>
+      <button data-q="has:attachment">بها مرفقات</button>
+      <button data-q="in:sent">المُرسَل</button>
+      <button data-q="مشكاة">فيها «مشكاة»</button>
+    </div>
+    <div class="mailwrap">
+      <div><div class="ml" id="ml"><div class="loading"><div class="spin"></div>جارٍ تحميل البريد…</div></div>
+        <div style="text-align:center;margin-top:8px"><button class="btn ghost sm" id="more" hidden>عرض المزيد</button></div></div>
+      <div class="reader" id="reader"><div class="empty-st">اختر رسالة لقراءتها</div></div>
+    </div>
+  </section>
+</main>
+<footer>مشكاة — برمجيات نافعة للهاتف والحاسب · هذه الصفحة خاصة بإدارة مشكاة</footer>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ===== الإعداد: ضع القيمتين بعد إنشائهما (انظر الدليل) ===== */
+const CFG = {
+  clientId: '200800644587-0lv1tg6vu6maqivu47ffe3irajg2dhs1.apps.googleusercontent.com',   // Client ID من Google Cloud
+  api: 'https://script.google.com/macros/s/AKfycbxmM4j32c71KzTYoTA5CtAvpy4Hfe4DT5Gl1McbqOLAqZn7tFPSDdnVR9vcD63nUQ1W/exec'                                       // رابط Web app من Apps Script (ينتهي بـ /exec)
+};
+const $ = s => document.querySelector(s);
+const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+/* ---------- تسجيل الدخول بحساب Google ---------- */
+const TK = 'mk-admin-token';
+let TOKEN = '', started = false;
+const jwtExp = t => { try { return JSON.parse(atob(t.split('.')[1].replace(/-/g, '+').replace(/_/g, '/'))).exp * 1000; } catch (e) { return 0; } };
+function gate(msg) { $('#gate').hidden = false; $('#gmsg').textContent = msg || ''; }
+function signedIn(t) {
+  TOKEN = t; try { sessionStorage.setItem(TK, t); } catch (e) {}
+  $('#gate').hidden = true; $('#gmsg').textContent = '';
+  if (!started) { started = true; loadRatings(); loadUnreadOnly(); } else { loadRatings(); if (M.loaded) loadMail(); }
+}
+function initGoogle() {
+  if (!/apps\.googleusercontent\.com$/.test(CFG.clientId) || /ضع/.test(CFG.clientId + CFG.api)) { gate('لم يُضبط الإعداد بعد: ضع Client ID ورابط Apps Script في أعلى الشيفرة.'); return; }
+  if (!window.google || !google.accounts) { setTimeout(initGoogle, 200); return; }
+  google.accounts.id.initialize({ client_id: CFG.clientId, callback: r => signedIn(r.credential), auto_select: true, cancel_on_tap_outside: false });
+  google.accounts.id.renderButton($('#gbtn'), { theme: 'filled_blue', size: 'large', shape: 'pill', text: 'signin_with', locale: 'ar' });
+  let saved = ''; try { saved = sessionStorage.getItem(TK) || ''; } catch (e) {}
+  if (saved && jwtExp(saved) - Date.now() > 120000) signedIn(saved); else { gate(); google.accounts.id.prompt(); }
+}
+$('#logout').onclick = () => { TOKEN = ''; try { sessionStorage.removeItem(TK); } catch (e) {} if (window.google && google.accounts) google.accounts.id.disableAutoSelect(); gate('تم تسجيل الخروج.'); };
+
+/* ---------- الاتصال بالخادم ---------- */
+async function run(fn, ...args) {
+  if (!TOKEN || jwtExp(TOKEN) - Date.now() < 60000) { gate('انتهت الجلسة، سجّل الدخول من جديد.'); if (window.google && google.accounts) google.accounts.id.prompt(); throw new Error('انتهت الجلسة'); }
+  const r = await fetch(CFG.api, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ token: TOKEN, fn, args }) });
+  const d = await r.json();
+  if (!d.ok) { if (d.auth) { TOKEN = ''; try { sessionStorage.removeItem(TK); } catch (e) {} gate(d.error); } throw new Error(d.error); }
+  if (d.user && $('#who').dataset.u !== d.user) { $('#who').dataset.u = d.user; }
+  return d.data;
+}
+function toast(m) { const t = $('#toast'); t.textContent = m; t.classList.add('on'); clearTimeout(toast.t); toast.t = setTimeout(() => t.classList.remove('on'), 2200); }
+const fmtDate = s => { if (!s) return ''; const d = new Date(s); if (isNaN(d)) return s;
+  const diff = (Date.now() - d) / 1000;
+  if (diff < 60) return 'الآن'; if (diff < 3600) return 'منذ ' + Math.floor(diff / 60) + ' دقيقة'; if (diff < 86400) return 'منذ ' + Math.floor(diff / 3600) + ' ساعة';
+  if (diff < 7 * 86400) return 'منذ ' + Math.floor(diff / 86400) + ' يوم';
+  return d.toLocaleDateString('ar-EG-u-nu-latn', { day: 'numeric', month: 'short', year: 'numeric' }); };
+const starsHtml = n => `<span class="stars">${'★'.repeat(n)}<span class="off">${'★'.repeat(5 - n)}</span></span>`;
+const STATUSES = ['جديد', 'تمت القراءة', 'قيد التنفيذ', 'نُفّذ', 'مؤجّل'];
+
+/* ---------- التبويبات ---------- */
+document.querySelectorAll('.tab').forEach(b => b.onclick = () => {
+  document.querySelectorAll('.tab').forEach(x => x.classList.toggle('on', x === b));
+  $('#pR').hidden = b.dataset.tab !== 'r'; $('#pM').hidden = b.dataset.tab !== 'm';
+  if (b.dataset.tab === 'm' && !M.loaded) loadMail();
+});
+$('#refresh').onclick = () => { loadRatings(); if (!$('#pM').hidden || M.loaded) loadMail(); };
+
+/* ---------- التقييمات ---------- */
+let R = [], F = { app: '', stars: '', status: '', text: false, q: '' };
+async function loadRatings() {
+  $('#rBody').innerHTML = '<div class="loading"><div class="spin"></div>جارٍ تحميل التقييمات…</div>';
+  try { const d = await run('getRatings'); R = d.rows; $('#who').textContent = ($('#who').dataset.u || d.me) + ' · آخر تحديث ' + new Date().toLocaleTimeString('ar-EG-u-nu-latn', { hour: 'numeric', minute: '2-digit' }); renderRatings(); }
+  catch (e) { $('#rBody').innerHTML = `<div class="err">تعذّر قراءة الجدول: ${esc(e.message || e)}<br>تأكد أن الجدول مشارك مع حساب mishkatapps@gmail.com.</div>`; }
+}
+function renderRatings() {
+  const rated = R.filter(r => r.stars), n = rated.length, avg = n ? rated.reduce((a, r) => a + r.stars, 0) / n : 0;
+  const week = R.filter(r => Date.now() - new Date(r.date) < 7 * 864e5).length, sug = R.filter(r => r.text.trim()).length, fresh = R.filter(r => r.status === 'جديد').length;
+  $('#bR').textContent = fresh ? fresh + ' جديد' : R.length;
+  const dist = [5, 4, 3, 2, 1].map(s => [s, rated.filter(r => r.stars === s).length]);
+  const apps = [...new Set(R.map(r => r.app).filter(Boolean))];
+  $('#rBody').innerHTML = `
+    <div class="kpis">
+      <div class="kpi k1"><b>${R.length}</b><span>إجمالي التقييمات</span></div>
+      <div class="kpi k2"><b>${n ? avg.toFixed(2) : '—'}</b><span>متوسط التقييم من 5 ${n ? '· ' + '★'.repeat(Math.round(avg)) : ''}</span></div>
+      <div class="kpi k3"><b>${sug}</b><span>اقتراحات مكتوبة</span></div>
+      <div class="kpi k4"><b>${fresh}</b><span>بانتظار المتابعة (جديد)</span></div>
+      <div class="kpi k5"><b>${week}</b><span>خلال آخر 7 أيام</span></div>
+    </div>
+    <div class="grid2">
+      <div class="box"><h3>توزيع النجوم</h3>${dist.map(([s, c]) => `<div class="bar"><span class="lbl">${'★'.repeat(s)}</span><span class="tr"><i style="width:${n ? c / n * 100 : 0}%"></i></span><span class="n">${c} · ${n ? Math.round(c / n * 100) : 0}%</span></div>`).join('')}</div>
+      <div class="box"><h3>حسب التطبيق</h3><div class="apps">${apps.length ? apps.map(a => { const L = R.filter(r => r.app === a && r.stars); const av = L.length ? L.reduce((x, r) => x + r.stars, 0) / L.length : 0;
+        return `<div class="app"><b>${esc(a)}</b><span>${R.filter(r => r.app === a).length} تقييم · <span class="st">${L.length ? av.toFixed(1) + ' ★' : '—'}</span></span></div>`; }).join('') : '<div class="empty-st" style="padding:10px">لا توجد بيانات بعد</div>'}</div></div>
+    </div>
+    <div class="filters">
+      <select id="fApp"><option value="">كل التطبيقات</option>${apps.map(a => `<option ${F.app === a ? 'selected' : ''}>${esc(a)}</option>`).join('')}</select>
+      <select id="fSt"><option value="">كل النجوم</option>${[5, 4, 3, 2, 1].map(s => `<option value="${s}" ${F.stars == s ? 'selected' : ''}>${'★'.repeat(s)}</option>`).join('')}</select>
+      <select id="fStatus"><option value="">كل الحالات</option>${STATUSES.map(s => `<option ${F.status === s ? 'selected' : ''}>${s}</option>`).join('')}</select>
+      <label><input type="checkbox" id="fTxt" ${F.text ? 'checked' : ''}> فيها اقتراح مكتوب</label>
+      <input type="search" id="fQ" placeholder="بحث في النص والاسم…" value="${esc(F.q)}">
+      <button class="btn ghost sm" id="csv">⬇ تصدير CSV</button>
+    </div>
+    <div class="cards" id="cards"></div>`;
+  const bind = (id, k, ev = 'onchange', v = e => e.target.value) => $(id)[ev] = e => { F[k] = v(e); drawCards(); };
+  bind('#fApp', 'app'); bind('#fSt', 'stars'); bind('#fStatus', 'status'); bind('#fTxt', 'text', 'onchange', e => e.target.checked); bind('#fQ', 'q', 'oninput');
+  $('#csv').onclick = exportCsv;
+  drawCards();
+}
+function filtered() {
+  const q = F.q.trim().toLowerCase();
+  return R.filter(r => (!F.app || r.app === F.app) && (!F.stars || r.stars == F.stars) && (!F.status || r.status === F.status) && (!F.text || r.text.trim())
+    && (!q || (r.text + ' ' + r.name + ' ' + r.contact).toLowerCase().includes(q)));
+}
+function contactLink(c) {
+  if (!c) return '';
+  if (/@/.test(c)) return `<a href="mailto:${esc(c)}">✉️ ${esc(c)}</a>`;
+  const d = c.replace(/[^\d+]/g, ''); if (d.length >= 8) return `<a href="https://wa.me/${d.replace(/^\+/, '').replace(/^0(?=1)/, '20')}" target="_blank">📱 ${esc(c)}</a>`;
+  return esc(c);
+}
+function drawCards() {
+  const L = filtered();
+  $('#cards').innerHTML = L.length ? L.map(r => `<div class="rc s-${esc(r.status)}">
+      <div class="top">${r.stars ? starsHtml(r.stars) : '<span class="chip">بدون نجوم</span>'}<span class="chip app">${esc(r.app)} ${esc(r.ver)}</span>
+        <span class="chip">${esc(r.platform)}</span>${r.lang && r.lang !== 'ar' ? `<span class="chip">${esc(r.lang.toUpperCase())}</span>` : ''}<span class="when" title="${esc(r.date)}">${fmtDate(r.date)}</span></div>
+      <div class="txt ${r.text.trim() ? '' : 'empty'}">${r.text.trim() ? esc(r.text) : 'لم يكتب اقتراحًا'}</div>
+      <div class="meta">${r.name ? `<span>👤 ${esc(r.name)}</span>` : ''}${r.contact ? `<span>${contactLink(r.contact)}</span>` : ''}
+        <span style="margin-inline-start:auto">الحالة: <select data-row="${r.row}">${STATUSES.map(s => `<option ${r.status === s ? 'selected' : ''}>${s}</option>`).join('')}</select></span></div>
+    </div>`).join('') : `<div class="empty-st">${R.length ? 'لا توجد نتائج مطابقة للتصفية' : 'لم تصل تقييمات بعد — ستظهر هنا فور إرسالها من التطبيق'}</div>`;
+  document.querySelectorAll('#cards select[data-row]').forEach(s => s.onchange = async () => {
+    const row = +s.dataset.row, v = s.value; s.disabled = true;
+    try { await run('setStatus', row, v); const r = R.find(x => x.row === row); if (r) r.status = v; toast('حُفظت الحالة: ' + v); renderRatings(); }
+    catch (e) { toast('تعذّر الحفظ'); s.disabled = false; }
+  });
+}
+function exportCsv() {
+  const head = ['التاريخ', 'التطبيق', 'الإصدار', 'المنصة', 'اللغة', 'النجوم', 'الاقتراح', 'الاسم', 'التواصل', 'الحالة'];
+  const rows = filtered().map(r => [r.date, r.app, r.ver, r.platform, r.lang, r.stars, r.text, r.name, r.contact, r.status]);
+  const csv = '﻿' + [head, ...rows].map(a => a.map(v => '"' + String(v).replace(/"/g, '""') + '"').join(',')).join('\n');
+  const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv' })); a.download = 'mishkat-ratings.csv'; a.click();
+}
+
+/* ---------- البريد ---------- */
+const M = { q: 'in:inbox', start: 0, list: [], loaded: false, cur: null };
+async function loadMail(append) {
+  if (!append) { M.start = 0; M.list = []; $('#ml').innerHTML = '<div class="loading"><div class="spin"></div>جارٍ تحميل البريد…</div>'; }
+  try {
+    const d = await run('getMail', M.q, M.start); M.loaded = true;
+    M.list = M.list.concat(d.list); M.start += d.list.length; $('#bM').textContent = d.unread ? d.unread + ' غير مقروء' : '✓';
+    $('#more').hidden = !d.more; drawMail();
+  } catch (e) { $('#ml').innerHTML = `<div class="err">تعذّر قراءة البريد: ${esc(e.message || e)}</div>`; }
+}
+const shortFrom = f => String(f).replace(/<.*>/, '').replace(/"/g, '').trim() || f;
+function drawMail() {
+  $('#ml').innerHTML = M.list.length ? M.list.map(t => `<div class="mi ${t.unread ? 'unread' : ''} ${M.cur === t.id ? 'on' : ''}" data-id="${t.id}">
+      <div class="r1">${t.unread ? '<span class="dot"></span>' : ''}<span class="f">${esc(shortFrom(t.from))}${t.count > 1 ? ` <small>(${t.count})</small>` : ''}</span>${t.starred ? '⭐' : ''}<span class="d">${fmtDate(t.date)}</span></div>
+      <div class="s">${esc(t.subject)}</div><div class="p">${esc(t.snippet)}</div></div>`).join('') : '<div class="empty-st">لا توجد رسائل</div>';
+  document.querySelectorAll('.mi').forEach(el => el.onclick = () => openThread(el.dataset.id));
+}
+async function openThread(id) {
+  M.cur = id; drawMail();
+  $('#reader').innerHTML = '<div class="loading"><div class="spin"></div>جارٍ فتح الرسالة…</div>';
+  try {
+    const t = await run('getThread', id), item = M.list.find(x => x.id === id);
+    $('#reader').innerHTML = `<h2>${esc(t.subject)}</h2>
+      <div class="ra"><a class="btn ghost sm" target="_blank" href="https://mail.google.com/mail/u/?authuser=mishkatapps@gmail.com#all/${esc(id)}">فتح في Gmail ↗</a>
+        <button class="btn ghost sm" id="tRead">${item && item.unread ? '✓ تعليم كمقروء' : '● تعليم كغير مقروء'}</button>
+        <button class="btn sm" id="tReply">↩ رد</button></div>
+      ${t.messages.map(m => `<div class="msg"><div class="h"><b>${esc(shortFrom(m.from))}</b> &lt;${esc((m.from.match(/<(.*)>/) || [, m.from])[1])}&gt; · ${esc(m.date)}</div>
+        <div class="b">${esc(m.body)}</div>${m.attachments.length ? `<div class="h">📎 ${m.attachments.map(esc).join(' · ')}</div>` : ''}</div>`).join('')}
+      <div class="reply" id="replyBox" hidden><textarea id="replyTxt" placeholder="اكتب ردك هنا… يُرسَل من mishkatapps@gmail.com"></textarea>
+        <div class="ra"><button class="btn sm" id="replySend">إرسال الرد</button><button class="btn ghost sm" id="replyCancel">إلغاء</button></div></div>`;
+    $('#tRead').onclick = async () => { const read = item ? item.unread : true; await run('markThread', id, read); if (item) item.unread = !read; drawMail(); openThread(id); loadUnreadOnly(); toast(read ? 'عُلّمت كمقروءة' : 'عُلّمت كغير مقروءة'); };
+    $('#tReply').onclick = () => { $('#replyBox').hidden = false; $('#replyTxt').focus(); };
+    $('#replyCancel').onclick = () => { $('#replyBox').hidden = true; };
+    $('#replySend').onclick = async () => { const v = $('#replyTxt').value.trim(); if (!v) return toast('اكتب الرد أولًا');
+      if (!confirm('إرسال الرد من mishkatapps@gmail.com؟')) return;
+      $('#replySend').disabled = true; try { await run('replyThread', id, v); toast('أُرسل الرد ✓'); openThread(id); } catch (e) { toast('تعذّر الإرسال'); $('#replySend').disabled = false; } };
+    if (item && item.unread) { await run('markThread', id, true); item.unread = false; drawMail(); loadUnreadOnly(); }
+  } catch (e) { $('#reader').innerHTML = `<div class="err">تعذّر فتح الرسالة: ${esc(e.message || e)}</div>`; }
+}
+async function loadUnreadOnly() { try { const d = await run('getMail', 'in:inbox is:unread', 0); $('#bM').textContent = d.unread ? d.unread + ' غير مقروء' : '✓'; } catch (e) {} }
+$('#mGo').onclick = () => { M.q = $('#mq').value.trim() || 'in:inbox'; document.querySelectorAll('#qchips button').forEach(b => b.classList.remove('on')); loadMail(); };
+$('#mq').onkeydown = e => { if (e.key === 'Enter') $('#mGo').click(); };
+document.querySelectorAll('#qchips button').forEach(b => b.onclick = () => { document.querySelectorAll('#qchips button').forEach(x => x.classList.toggle('on', x === b)); M.q = b.dataset.q; $('#mq').value = ''; loadMail(); });
+$('#more').onclick = () => loadMail(true);
+
+initGoogle();
+</script>
+</body>
+</html>
