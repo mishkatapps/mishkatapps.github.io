@@ -1,6 +1,18 @@
 /* مواقيت الصلاة — نفس محرك تطبيق «روض الذكر» */
 (function () {
 const pad = n => String(n).padStart(2, '0');
+const EN = !!window.MK_EN, T_ = (a, e) => EN ? e : a;
+const CITY_EN = { cairo:'Cairo', giza:'Giza', alex:'Alexandria', mansoura:'Mansoura', tanta:'Tanta', zagazig:'Zagazig', benha:'Benha', shebin:'Shebin El-Kom',
+  damanhour:'Damanhour', kafr:'Kafr El-Sheikh', damietta:'Damietta', portsaid:'Port Said', ismailia:'Ismailia', suez:'Suez', fayoum:'Fayoum', benisuef:'Beni Suef',
+  minya:'Minya', assiut:'Assiut', sohag:'Sohag', qena:'Qena', luxor:'Luxor', aswan:'Aswan', hurghada:'Hurghada', sharm:'Sharm El-Sheikh', arish:'Arish',
+  matrouh:'Marsa Matrouh', makkah:'Makkah', madinah:'Madinah', riyadh:'Riyadh', jeddah:'Jeddah', dammam:'Dammam', dubai:'Dubai', abudhabi:'Abu Dhabi',
+  doha:'Doha', kuwait:'Kuwait City', manama:'Manama', muscat:'Muscat', amman:'Amman', quds:'Jerusalem (al-Quds)', gaza:'Gaza', beirut:'Beirut',
+  damascus:'Damascus', baghdad:'Baghdad', khartoum:'Khartoum', tripoli:'Tripoli', tunis:'Tunis', algiers:'Algiers', rabat:'Rabat', casablanca:'Casablanca',
+  sanaa:"Sana'a", istanbul:'Istanbul', london:'London' };
+const METHOD_EN = { egypt:'Egyptian General Authority of Survey', umm:'Umm al-Qura (Makkah)', mwl:'Muslim World League', karachi:'University of Islamic Sciences, Karachi',
+  isna:'North America (ISNA)', dubai:'Dubai', kuwait:'Kuwait', qatar:'Qatar', turkey:'Diyanet (Turkey)' };
+const PNAME_EN = { fajr:'Fajr', sunrise:'Sunrise', dhuhr:'Dhuhr', asr:'Asr', maghrib:'Maghrib', isha:'Isha' };
+const LOC_T = EN ? 'en-GB' : 'ar-EG-u-nu-latn';
 const KEY = 'mk-pray';
 let S = { pray: { city: 'cairo', method: 'egypt', asr: 1, h24: false, lat: null, lng: null, tz: null, label: '' } };
 try { Object.assign(S.pray, JSON.parse(localStorage.getItem(KEY) || '{}')); } catch (e) {}
@@ -33,6 +45,7 @@ const CITIES = [
   ['casablanca','الدار البيضاء',33.5731,-7.5898,'Africa/Casablanca','mwl'],['sanaa','صنعاء',15.3694,44.191,'Asia/Aden','mwl'],
   ['istanbul','إسطنبول',41.0082,28.9784,'Europe/Istanbul','turkey'],['london','لندن',51.5074,-0.1278,'Europe/London','mwl']
 ];
+if (EN) CITIES.forEach(c => { if (CITY_EN[c[0]]) c[1] = CITY_EN[c[0]]; });
 const CITY = Object.fromEntries(CITIES.map(c => [c[0], { id: c[0], name: c[1], lat: c[2], lng: c[3], tz: c[4], method: c[5] }]));
 const METHODS = {
   egypt: ['الهيئة المصرية العامة للمساحة', 19.5, 17.5], umm: ['أم القرى (مكة)', 18.5, '90'],
@@ -41,6 +54,7 @@ const METHODS = {
   qatar: ['قطر', 18, '90'], turkey: ['رئاسة الشؤون الدينية التركية', 18, 17]
 };
 const PNAMES = [['fajr','الفجر'],['sunrise','الشروق'],['dhuhr','الظهر'],['asr','العصر'],['maghrib','المغرب'],['isha','العشاء']];
+if (EN) { PNAMES.forEach(p => p[1] = PNAME_EN[p[0]]); Object.keys(METHODS).forEach(k => METHODS[k][0] = METHOD_EN[k] || METHODS[k][0]); }
 const dtr = d => d * Math.PI / 180, rtd = r => r * 180 / Math.PI;
 const sin = d => Math.sin(dtr(d)), cos = d => Math.cos(dtr(d)), tan = d => Math.tan(dtr(d));
 const asin = x => rtd(Math.asin(x)), acos = x => rtd(Math.acos(Math.max(-1, Math.min(1, x)))), atan2 = (y, x) => rtd(Math.atan2(y, x)), acot = x => rtd(Math.atan(1 / x));
@@ -66,7 +80,7 @@ function ymdIn(tz, date) {
 }
 function prayLoc() {
   const P = S.pray;
-  if (P.city === 'custom' && P.lat != null) return { name: P.label || 'موقعي', lat: P.lat, lng: P.lng, tz: P.tz || Intl.DateTimeFormat().resolvedOptions().timeZone };
+  if (P.city === 'custom' && P.lat != null) return { name: EN ? 'My location' : (P.label || 'موقعي'), lat: P.lat, lng: P.lng, tz: P.tz || Intl.DateTimeFormat().resolvedOptions().timeZone };
   return CITY[P.city] || CITY.cairo;
 }
 function prayerTimes(y, m, d, loc) {
@@ -94,7 +108,7 @@ function prayerTimes(y, m, d, loc) {
 }
 function fmtTime(date, loc) {
   const o = { hour: 'numeric', minute: '2-digit', hour12: !S.pray.h24, timeZone: loc.tz, numberingSystem: 'latn' };
-  try { return new Intl.DateTimeFormat('ar-EG-u-nu-latn', o).format(date); }
+  try { return new Intl.DateTimeFormat(LOC_T, o).format(date); }
   catch (e) { return pad(date.getHours()) + ':' + pad(date.getMinutes()); }
 }
 function nextPrayer() {
@@ -104,7 +118,7 @@ function nextPrayer() {
   for (const [k, n] of PNAMES) { if (k === 'sunrise') continue; if (T[k] > now) return { key: k, name: n, at: T[k], T, loc }; }
   const tm = new Date(Date.UTC(y, m - 1, d) + 36 * 3600e3); const [y2, m2, d2] = ymdIn(loc.tz, tm);
   const T2 = prayerTimes(y2, m2, d2, loc);
-  return { key: 'fajr', name: 'الفجر', at: T2.fajr, T, loc, tomorrow: true };
+  return { key: 'fajr', name: PNAMES[0][1], at: T2.fajr, T, loc, tomorrow: true };
 }
 function countdown(ms) { const s = Math.max(0, Math.floor(ms / 1000)); return pad(Math.floor(s / 3600)) + ':' + pad(Math.floor(s % 3600 / 60)) + ':' + pad(s % 60); }
 const $ = id => document.getElementById(id);
@@ -114,7 +128,7 @@ function render() {
   let cur = null; for (const [k] of PNAMES) if (k !== 'sunrise' && T[k] <= now) cur = k;
   $('prNext').textContent = np.name; $('prAt').textContent = fmtTime(np.at, loc);
   $('prCity').textContent = loc.name;
-  $('prDate').textContent = (() => { try { return new Intl.DateTimeFormat('ar-EG-u-nu-latn', { weekday: 'long', day: 'numeric', month: 'long', timeZone: loc.tz }).format(now) + ' · ' + new Intl.DateTimeFormat('ar-SA-u-ca-islamic-umalqura-nu-latn', { day: 'numeric', month: 'long', year: 'numeric', timeZone: loc.tz }).format(now); } catch (e) { return ''; } })();
+  $('prDate').textContent = T_('طريقة الحساب: ', 'Calculation method: ') + (METHODS[S.pray.method] || METHODS.egypt)[0];
   $('prList').innerHTML = PNAMES.map(([k, n]) => `<div class="pt ${k === np.key && !np.tomorrow ? 'next' : ''} ${k === cur ? 'cur' : ''}"><span class="i">${ICON[k]}</span><b>${n}</b><span class="t">${fmtTime(T[k], loc)}</span></div>`).join('');
   tick();
 }
@@ -122,19 +136,19 @@ function tick() { const np = nextPrayer(); $('prCd').textContent = countdown(np.
 function init() {
   if (!$('prList')) return;
   const sel = $('prCitySel'), ms = $('prMethod');
-  sel.innerHTML = CITIES.map(c => `<option value="${c[0]}">${c[1]}</option>`).join('') + (S.pray.city === 'custom' ? `<option value="custom">${S.pray.label || 'موقعي'}</option>` : '');
+  sel.innerHTML = CITIES.map(c => `<option value="${c[0]}">${c[1]}</option>`).join('') + (S.pray.city === 'custom' ? `<option value="custom">${EN ? 'My location' : (S.pray.label || 'موقعي')}</option>` : '');
   sel.value = S.pray.city;
   ms.innerHTML = Object.entries(METHODS).map(([k, v]) => `<option value="${k}">${v[0]}</option>`).join(''); ms.value = S.pray.method;
   sel.onchange = () => { if (sel.value !== 'custom') { S.pray.city = sel.value; S.pray.method = CITY[sel.value].method; ms.value = S.pray.method; } save(); render(); };
   ms.onchange = () => { S.pray.method = ms.value; save(); render(); };
   $('prGeo').onclick = () => {
     if (!navigator.geolocation) return;
-    $('prGeo').textContent = '… جارٍ التحديد';
+    $('prGeo').textContent = T_('… جارٍ التحديد', 'Locating…');
     navigator.geolocation.getCurrentPosition(p => {
       Object.assign(S.pray, { city: 'custom', lat: +p.coords.latitude.toFixed(4), lng: +p.coords.longitude.toFixed(4), tz: Intl.DateTimeFormat().resolvedOptions().timeZone,
         label: `موقعي (${p.coords.latitude.toFixed(2)}, ${p.coords.longitude.toFixed(2)})` });
-      save(); $('prGeo').textContent = '📍 موقعي'; init();
-    }, () => { $('prGeo').textContent = '📍 موقعي'; alert('تعذّر تحديد الموقع — اختر المدينة من القائمة'); }, { timeout: 10000 });
+      save(); $('prGeo').textContent = T_('📍 موقعي', '📍 My location'); init();
+    }, () => { $('prGeo').textContent = T_('📍 موقعي', '📍 My location'); alert(T_('تعذّر تحديد الموقع — اختر المدينة من القائمة', 'Could not get your location — please choose a city from the list.')); }, { timeout: 10000 });
   };
   render(); clearInterval(init._t); init._t = setInterval(tick, 1000);
 }

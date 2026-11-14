@@ -6,6 +6,8 @@
 <title>مشكاة — برمجيات نافعة للهاتف والحاسب</title>
 <meta name="description" content="مشكاة: برمجيات نافعة للهاتف والحاسب — سهلة الاستخدام وتحترم خصوصية المستخدم. من إصداراتها: المصحف الشريف وروض الذكر.">
 <meta name="theme-color" content="#081433">
+<meta name="mk-title-en" content="Mishkat — Useful Software for Phone and Computer">
+<script src="js/i18n.js"></script>
 <meta property="og:title" content="مشكاة — برمجيات نافعة للهاتف والحاسب">
 <meta property="og:description" content="برمجيات نافعة للهاتف والحاسب، سهلة الاستخدام وتحترم خصوصيتك. من إصداراتها: المصحف الشريف وروض الذكر.">
 <meta property="og:image" content="https://mishkatapps.github.io/img/share.png">
@@ -95,89 +97,97 @@ footer{text-align:center;color:var(--mut);font-size:14px;padding:30px 20px calc(
 .stat .ic{font-size:28px}.stat .n{font-family:Arial,sans-serif;font-weight:800;font-size:clamp(32px,5vw,42px);color:var(--gold);line-height:1.3;direction:ltr}
 .stat .l{font-size:15px}.stat small{display:block;color:var(--mut);font-size:12.5px}
 .upd{text-align:center;color:var(--mut);font-size:13px;margin-top:14px}
-@media(max-width:640px){.plist{grid-template-columns:repeat(2,1fr)}.links a:not(.cta){display:none}nav .wrap{height:56px}.brand{font-size:24px}}
+@media(max-width:640px){.plist{grid-template-columns:repeat(2,1fr)}}
 </style>
+<link rel="stylesheet" href="css/site.css">
 </head>
 <body>
-<nav><div class="wrap"><a class="brand" href="#top"><img src="img/mishkat.svg" alt="">مشكاة</a>
-<div class="links"><a href="#today">المواقيت</a><a href="#apps">التطبيقات</a><a href="#install">التثبيت</a><a href="media.html">الإعلانات</a><a href="#about">عن مشكاة</a><a class="cta" href="support.html">♡ ادعمنا</a></div></div></nav>
+<nav><div class="wrap"><a class="brand" href="#top"><img src="img/mishkat.svg" alt=""><span data-en="Mishkat">مشكاة</span></a>
+<div class="links"><a href="#today" data-en="Today">اليوم والمواقيت</a><a href="#apps" data-en="Apps">التطبيقات</a><a href="#install" data-en="Install">التثبيت</a><a href="media.html" data-en="Ads &amp; Video">الإعلانات</a><a href="#stats" data-en="Numbers">بالأرقام</a><a href="#about" data-en="About">عن مشكاة</a><a class="cta" href="support.html" data-en="♡ Support us">♡ ادعمنا</a></div></div></nav>
 
 <header class="hero" id="top"><div class="wrap">
-<img src="img/mishkat.svg" alt="شعار مشكاة">
-<h1>مشكاة</h1>
+<img src="img/mishkat.svg" alt="شعار مشكاة" data-en-alt="Mishkat logo">
+<h1 data-en="Mishkat">مشكاة</h1>
 <div class="en">MISHKAT APPS</div>
-<p class="lead">برمجيات نافعة للهاتف والحاسب — سهلة الاستخدام، متقنة، وتحترم خصوصيتك.</p>
-<div class="ayah">﴿مَثَلُ نُورِهِ كَمِشْكَاةٍ فِيهَا مِصْبَاحٌ﴾ <small>[النور: 35]</small></div>
-<div class="badges"><span>📱 أندرويد</span><span>🍎 آيفون وآيباد</span><span>💻 ويندوز وماك</span><span>📴 دون إنترنت</span><span>🚫 بلا إعلانات</span></div>
+<p class="lead" data-en="Useful software for phone and computer — easy to use, carefully crafted, and respectful of your privacy.">برمجيات نافعة للهاتف والحاسب — سهلة الاستخدام، متقنة، وتحترم خصوصيتك.</p>
+<div class="ayah"><span lang="ar" dir="rtl">﴿مَثَلُ نُورِهِ كَمِشْكَاةٍ فِيهَا مِصْبَاحٌ﴾</span> <small data-en="[An-Nur 24:35] — “The example of His light is like a niche (mishkat) within which is a lamp.”">[النور: 35]</small></div>
+<div class="badges"><span data-en="📱 Android">📱 أندرويد</span><span data-en="🍎 iPhone &amp; iPad">🍎 آيفون وآيباد</span><span data-en="💻 Windows &amp; Mac">💻 ويندوز وماك</span><span data-en="📴 Works offline">📴 دون إنترنت</span><span data-en="🌐 Arabic &amp; English">🌐 العربية والإنجليزية</span><span data-en="🚫 No ads">🚫 بلا إعلانات</span></div>
 </div></header>
 
 <section id="today"><div class="wrap">
+<div class="dates" id="mkDates"></div>
 <div class="today">
- <article class="panel dod"><h3>✦ ذكر اليوم</h3><span class="lbl" id="dodCat"></span><div class="txt" id="dodTxt"></div><div class="src" id="dodSrc"></div>
-  <div class="btns"><button class="btn" id="dodCopy">⧉ نسخ</button><button class="btn" id="dodShare">↗ مشاركة</button><a class="btn gold" href="https://mohammadelshennawy-bit.github.io/rawd-azkar/" data-ev="open-rawd-dod">المزيد في روض الذكر</a></div></article>
- <article class="panel"><h3>🕌 مواقيت الصلاة</h3>
-  <div class="pnext"><div><small>الصلاة القادمة · <span id="prCity"></span></small><b id="prNext"></b><span class="at" id="prAt"></span></div><div style="text-align:center"><small>متبقٍّ</small><div class="cd" id="prCd">--:--:--</div></div></div>
+ <article class="panel dod"><h3 data-en="✦ Dhikr of the Day">✦ ذكر اليوم</h3><span class="lbl" id="dodCat"></span><div class="txt" id="dodTxt"></div><div class="src" id="dodSrc"></div>
+  <div class="btns"><button class="btn" id="dodCopy" data-en="⧉ Copy">⧉ نسخ</button><button class="btn" id="dodShare" data-en="↗ Share">↗ مشاركة</button><a class="btn gold" href="https://mohammadelshennawy-bit.github.io/rawd-azkar/" data-ev="open-rawd-dod" data-en="More in Rawd al-Dhikr">المزيد في روض الذكر</a></div></article>
+ <article class="panel"><h3 data-en="🕌 Prayer Times">🕌 مواقيت الصلاة</h3>
+  <div class="pnext"><div><small><span data-en="Next prayer">الصلاة القادمة</span> · <span id="prCity"></span></small><b id="prNext"></b><span class="at" id="prAt"></span></div><div style="text-align:center"><small data-en="Remaining">متبقٍّ</small><div class="cd" id="prCd">--:--:--</div></div></div>
   <div class="pdate" id="prDate"></div>
   <div class="plist" id="prList"></div>
-  <div class="pctl"><select id="prCitySel" aria-label="المدينة"></select><select id="prMethod" aria-label="طريقة الحساب"></select><button id="prGeo">📍 موقعي</button></div></article>
+  <div class="pctl"><select id="prCitySel" aria-label="المدينة" data-en-aria-label="City"></select><select id="prMethod" aria-label="طريقة الحساب" data-en-aria-label="Calculation method"></select><button id="prGeo" data-en="📍 My location">📍 موقعي</button></div></article>
 </div></div></section>
 
 <section id="apps"><div class="wrap">
-<h2>تطبيقاتنا</h2><p class="sub">حمّل التطبيق الذي تريده، أو افتحه مباشرة في المتصفح</p>
+<h2 data-en="Our Apps">تطبيقاتنا</h2><p class="sub" data-en="Download the app you want, or open it directly in your browser">حمّل التطبيق الذي تريده، أو افتحه مباشرة في المتصفح</p>
 <div class="apps">
- <article class="app"><div class="h"><img src="img/quran-icon.png" alt=""><div><h3>المصحف الشريف</h3><small>برواية حفص عن عاصم</small><span class="ver" id="verQuran">الإصدار …</span></div></div>
-  <ul><li>114 سورة و6236 آية بالرسم العثماني</li><li>خمسة خطوط للمصحف، وتكبير الخط</li><li>عرض صفحات أو تمرير متصل، ووضع ليلي ونهاري</li><li>فهرس السور والأجزاء، وبحث وعلامات حفظ</li><li>مواقيت الصلاة مع عدّاد للصلاة القادمة</li></ul>
-  <div class="btns"><a class="btn gold" href="https://mohammadelshennawy-bit.github.io/Quran-app/download.html" data-ev="dl-quran">⬇ تحميل وتثبيت</a><a class="btn" href="https://mohammadelshennawy-bit.github.io/Quran-app/" data-ev="open-quran">افتح في المتصفح ↗</a></div></article>
- <article class="app"><div class="h"><img src="img/rawd-icon.png" alt=""><div><h3>روض الذكر</h3><small>الأذكار والأدعية مشكولةً</small><span class="ver" id="verRawd">الإصدار …</span></div></div>
-  <ul><li>347 ذكرًا ودعاءً في 16 بابًا حسب الغرض</li><li>من «حصن المسلم» وجوامع دعاء النبي <span style="font-family:Amiri,serif">ﷺ</span></li><li>عدّاد لكل ذكر، مع الفضل والتخريج</li><li>سبحة إلكترونية بأعداد تحددها بنفسك</li><li>مواقيت الصلاة لمدينتك أو موقعك الحالي</li></ul>
-  <div class="btns"><a class="btn gold" href="https://mohammadelshennawy-bit.github.io/rawd-azkar/download.html" data-ev="dl-rawd">⬇ تحميل وتثبيت</a><a class="btn" href="https://mohammadelshennawy-bit.github.io/rawd-azkar/" data-ev="open-rawd">افتح في المتصفح ↗</a></div></article>
+ <article class="app"><div class="h"><img src="img/quran-icon.png" alt=""><div><h3 data-en="The Noble Quran">المصحف الشريف</h3><small data-en="Hafs ʿan ʿAsim narration">برواية حفص عن عاصم</small><span class="ver" id="verQuran">…</span></div></div>
+  <ul data-en="<li>114 surahs and 6,236 verses in the Uthmani script</li><li>5 Mushaf fonts, including the Madinah Mushaf (Hafs), with adjustable size</li><li>Page view or continuous scroll, with night and day modes</li><li>Surah and Juz index, search in the Quran text, and bookmarks</li><li>Prayer times for 50 cities or your location, with a countdown to the next prayer</li><li>Works fully offline — free and ad-free</li>"><li>114 سورة و6236 آية بالرسم العثماني</li><li>5 خطوط للمصحف منها خط مصحف المدينة النبوية، مع تكبير الخط</li><li>عرض صفحات أو تمرير متصل، ووضع ليلي ونهاري</li><li>فهرس السور والأجزاء، والبحث في نص القرآن، وعلامات مرجعية</li><li>مواقيت الصلاة لـ50 مدينة أو لموقعك، مع عدّاد للصلاة القادمة</li><li>يعمل كاملًا دون إنترنت — مجاني وبلا إعلانات</li></ul>
+  <div class="btns"><a class="btn gold" href="https://mohammadelshennawy-bit.github.io/Quran-app/download.html" data-ev="dl-quran" data-en="⬇ Download &amp; install">⬇ تحميل وتثبيت</a><a class="btn" href="https://mohammadelshennawy-bit.github.io/Quran-app/" data-ev="open-quran" data-en="Open in browser ↗">افتح في المتصفح ↗</a></div></article>
+ <article class="app"><div class="h"><img src="img/rawd-icon.png" alt=""><div><h3 data-en="Rawd al-Dhikr">روض الذكر</h3><small data-en="Fully-vowelled adhkar &amp; duas — Arabic &amp; English">الأذكار والأدعية مشكولةً — بالعربية والإنجليزية</small><span class="ver" id="verRawd">…</span></div></div>
+  <ul data-en="<li>347 adhkar and duas in 16 sections, from Hisn al-Muslim and the Prophet’s ﷺ comprehensive supplications</li><li>Smart counter for every dhikr: complete or reset with one tap, with virtue and source</li><li>Automatic reset by prayer times: morning at Fajr, evening at Asr, sleep at Maghrib</li><li>Prayer times, “Suggested for you now”, and morning/evening/sleep reminders</li><li>Electronic tasbih with ready adhkar and your own custom adhkar</li><li>English: transliteration and translation under every dhikr · 3 themes and 4 Quranic fonts</li>"><li>347 ذكرًا ودعاءً في 16 بابًا من «حصن المسلم» وجوامع دعاء النبي <span style="font-family:Amiri,serif">ﷺ</span></li><li>عدّاد ذكي لكل ذكر: إتمام العدّ والتصفير بضغطة، مع الفضل والتخريج</li><li>تصفير تلقائي بمواقيت الصلاة: الصباح عند الفجر، والمساء عند العصر، والنوم عند المغرب</li><li>مواقيت الصلاة و«مقترح لك الآن» وتذكيرات الصباح والمساء والنوم</li><li>سبحة إلكترونية بأذكار جاهزة وأذكارك الخاصة</li><li>الإنجليزية: النطق والترجمة تحت كل ذكر · 3 سمات و4 خطوط قرآنية</li></ul>
+  <div class="btns"><a class="btn gold" href="https://mohammadelshennawy-bit.github.io/rawd-azkar/download.html" data-ev="dl-rawd" data-en="⬇ Download &amp; install">⬇ تحميل وتثبيت</a><a class="btn" href="https://mohammadelshennawy-bit.github.io/rawd-azkar/" data-ev="open-rawd" data-en="Open in browser ↗">افتح في المتصفح ↗</a></div></article>
 </div>
-<p style="text-align:center;margin-top:24px"><a class="btn" href="media.html">🎬 شاهد الإعلانات والفيديو</a></p></div></section>
+<p style="text-align:center;margin-top:24px"><a class="btn" href="media.html" data-en="🎬 Watch the ads &amp; video">🎬 شاهد الإعلانات والفيديو</a></p></div></section>
 
 <section id="install"><div class="wrap">
-<h2>طريقة التثبيت</h2><p class="sub">صفحة التحميل لكل تطبيق تتعرّف على جهازك وتعرض لك الخطوات المناسبة</p>
+<h2 data-en="How to Install">طريقة التثبيت</h2><p class="sub" data-en="Each app’s download page detects your device and shows you the right steps">صفحة التحميل لكل تطبيق تتعرّف على جهازك وتعرض لك الخطوات المناسبة</p>
 <div class="how">
- <div><b>أندرويد</b><p>افتح رابط التطبيق في Chrome ← القائمة ⋮ ← «تثبيت التطبيق». يتحدث تلقائيًا. أو حمّل ملف APK من صفحة التحميل.</p></div>
- <div><b>آيفون وآيباد</b><p>افتح الرابط في Safari ← زر المشاركة ← «إضافة إلى الشاشة الرئيسية».</p></div>
- <div><b>ويندوز وماك</b><p>افتح الرابط في Edge أو Chrome ← أيقونة التثبيت في شريط العنوان.</p></div>
+ <div><b data-en="Android">أندرويد</b><p data-en="Open the app link in Chrome → menu ⋮ → “Install app”. It updates automatically. Or download the APK file from the download page.">افتح رابط التطبيق في Chrome ← القائمة ⋮ ← «تثبيت التطبيق». يتحدث تلقائيًا. أو حمّل ملف APK من صفحة التحميل.</p></div>
+ <div><b data-en="iPhone &amp; iPad">آيفون وآيباد</b><p data-en="Open the link in Safari → Share button → “Add to Home Screen”.">افتح الرابط في Safari ← زر المشاركة ← «إضافة إلى الشاشة الرئيسية».</p></div>
+ <div><b data-en="Windows &amp; Mac">ويندوز وماك</b><p data-en="Open the link in Edge or Chrome → the install icon in the address bar.">افتح الرابط في Edge أو Chrome ← أيقونة التثبيت في شريط العنوان.</p></div>
 </div></div></section>
 
 <section id="stats"><div class="wrap">
-<h2>مشكاة بالأرقام</h2><p class="sub">عدّادات حيّة لمتابعة الموقع والتطبيقات</p>
+<h2 data-en="Mishkat in Numbers">مشكاة بالأرقام</h2><p class="sub" data-en="Live counters for the site and the apps">عدّادات حيّة لمتابعة الموقع والتطبيقات</p>
 <div class="stats">
- <div class="stat"><div class="ic">👁️</div><div class="n" id="stSite">—</div><div class="l">زيارات موقع مشكاة</div></div>
- <div class="stat"><div class="ic">📊</div><div class="n" id="stAll">—</div><div class="l">إجمالي الزيارات والاستخدام</div><small>الموقع والتطبيقان معًا</small></div>
- <div class="stat"><div class="ic">📖</div><div class="n" id="stQuran">—</div><div class="l">تحميلات المصحف الشريف</div><small>نسخة أندرويد (APK)</small></div>
- <div class="stat"><div class="ic">📿</div><div class="n" id="stRawd">—</div><div class="l">تحميلات روض الذكر</div><small>نسخة أندرويد (APK)</small></div>
+ <div class="stat"><div class="ic">👁️</div><div class="n" id="stSite">—</div><div class="l" data-en="Mishkat site visits">زيارات موقع مشكاة</div></div>
+ <div class="stat"><div class="ic">📊</div><div class="n" id="stAll">—</div><div class="l" data-en="Total visits &amp; usage">إجمالي الزيارات والاستخدام</div><small data-en="The site and both apps">الموقع والتطبيقان معًا</small></div>
+ <div class="stat"><div class="ic">📖</div><div class="n" id="stQuran">—</div><div class="l" data-en="The Noble Quran downloads">تحميلات المصحف الشريف</div><small data-en="Android version (APK)">نسخة أندرويد (APK)</small></div>
+ <div class="stat"><div class="ic">📿</div><div class="n" id="stRawd">—</div><div class="l" data-en="Rawd al-Dhikr downloads">تحميلات روض الذكر</div><small data-en="Android version (APK)">نسخة أندرويد (APK)</small></div>
 </div>
 <p class="upd" id="stUpd"></p></div></section>
 
 <section id="supportcta"><div class="wrap" style="text-align:center">
-<h2>ادعم مشكاة</h2><p class="sub">ساهم في تطوير تطبيقات مشكاة المجانية وإبقائها بلا إعلانات</p>
-<a class="btn gold" href="support.html" style="font-size:18px;padding:13px 34px">♡ ادعم مشكاة</a></div></section>
+<h2 data-en="Support Mishkat">ادعم مشكاة</h2><p class="sub" data-en="Help develop Mishkat’s free apps and keep them ad-free">ساهم في تطوير تطبيقات مشكاة المجانية وإبقائها بلا إعلانات</p>
+<a class="btn gold" href="support.html" style="font-size:18px;padding:13px 34px" data-en="♡ Support Mishkat">♡ ادعم مشكاة</a></div></section>
 
 <section id="about"><div class="wrap">
-<h2>عن مشكاة</h2>
+<h2 data-en="About Mishkat">عن مشكاة</h2>
 <div class="about">
- <p style="margin-top:0">«مشكاة» مبادرة لإنتاج برمجيات نافعة للهاتف والحاسب، تجمع بين سهولة الاستخدام وإتقان العمل واحترام خصوصية المستخدم. بدأت بتطبيقات إسلامية مجانية، وتمتد إلى برمجيات لإدارة البيانات وقواعد البيانات وغيرها من المجالات.</p>
- <b>د. محمد الشناوي</b>
+ <p style="margin-top:0" data-en="“Mishkat” produces useful software for phone and computer, combining ease of use, careful craftsmanship and respect for user privacy. It began with free Islamic apps and extends to software for data management, databases and other fields.">«مشكاة» مبادرة لإنتاج برمجيات نافعة للهاتف والحاسب، تجمع بين سهولة الاستخدام وإتقان العمل واحترام خصوصية المستخدم. بدأت بتطبيقات إسلامية مجانية، وتمتد إلى برمجيات لإدارة البيانات وقواعد البيانات وغيرها من المجالات.</p>
+ <b data-en="Dr. Mohammad El-Shennawy">د. محمد الشناوي</b>
  <a class="mail" href="mailto:mishkatapps@gmail.com">✉ mishkatapps@gmail.com</a>
- <p style="font-family:Amiri,serif;font-size:22px;color:#f6e7bd;margin:18px 0 0">نسأل الله أن يجعلها صدقةً جاريةً ونفعًا لكل من استخدمها</p>
+ <p style="font-family:Amiri,serif;font-size:22px;color:#f6e7bd;margin:18px 0 0" data-en="We ask Allah to make it an ongoing charity and a benefit to everyone who uses it.">نسأل الله أن يجعلها صدقةً جاريةً ونفعًا لكل من استخدمها</p>
 </div></div></section>
 
-<footer>© مشكاة · MISHKAT APPS — برمجيات نافعة للهاتف والحاسب<br><a href="admin/" rel="nofollow" style="color:inherit;opacity:.55;font-size:12.5px;text-decoration:none">🔒 دخول الإدارة</a></footer>
+<footer><span data-en="© Mishkat · MISHKAT APPS — Useful software for phone and computer">© مشكاة · MISHKAT APPS — برمجيات نافعة للهاتف والحاسب</span><br><a href="admin/" rel="nofollow" style="color:inherit;opacity:.55;font-size:12.5px;text-decoration:none" data-en="🔒 Admin">🔒 دخول الإدارة</a></footer>
 <div class="toast" id="toast"></div>
 <script src="js/prayer.js"></script>
 <script src="js/dhikr.js"></script>
 <script>
 (function(){ // ذكر اليوم — نفس اختيار تطبيق روض الذكر
-  var P=window.MK_DHIKR||[];if(!P.length)return;var d=new Date(),it=P[(d.getFullYear()*372+d.getMonth()*31+d.getDate())%P.length];
-  var txt=String(it.t).replace(/[ \t]+\n/g,'\n').replace(/\n\s*\n+/g,'\n').trim();
-  document.getElementById('dodCat').textContent=it.c;document.getElementById('dodTxt').textContent=txt;document.getElementById('dodSrc').textContent=it.s||'';
-  var share=txt+'\n\n'+(it.s||'')+'\n— من موقع مشكاة: https://mishkatapps.github.io/';
+  var EN=!!window.MK_EN,P=window.MK_DHIKR||[];if(!P.length)return;var d=new Date(),it=P[(d.getFullYear()*372+d.getMonth()*31+d.getDate())%P.length];
+  var clean=function(x){return String(x||'').replace(/[ \t]+\n/g,'\n').replace(/\n\s*\n+/g,'\n').trim()};
+  var txt=clean(it.t),box=document.getElementById('dodTxt'),share;
+  document.getElementById('dodCat').textContent=EN?(it.ce||it.c):it.c;
+  document.getElementById('dodSrc').textContent=EN?(it.se||it.s||''):(it.s||'');
+  if(EN&&it.tl){ // الترتيب: النطق اللاتيني ← النص العربي ← الترجمة
+    box.classList.add('en');box.innerHTML='';
+    [['tl',clean(it.tl)],['ar',txt],['tr',clean(it.en)]].forEach(function(p){if(!p[1])return;var e=document.createElement('div');e.className=p[0];e.textContent=p[1];if(p[0]==='ar')e.lang='ar';box.appendChild(e)});
+    share=clean(it.tl)+'\n\n'+txt+'\n\n'+clean(it.en)+'\n\n'+(it.se||it.s||'')+'\n— Mishkat: https://mishkatapps.github.io/?lang=en';
+  } else { box.textContent=txt; share=txt+'\n\n'+(it.s||'')+'\n— من موقع مشكاة: https://mishkatapps.github.io/'; }
   function toast(m){var t=document.getElementById('toast');t.textContent=m;t.classList.add('on');setTimeout(function(){t.classList.remove('on')},1800)}
-  document.getElementById('dodCopy').onclick=async function(){try{await navigator.clipboard.writeText(share);toast('تم النسخ')}catch(e){}};
-  document.getElementById('dodShare').onclick=async function(){if(navigator.share){try{await navigator.share({title:'ذكر اليوم',text:share})}catch(e){}}else{try{await navigator.clipboard.writeText(share);toast('تم النسخ — الصقه حيث تشاء')}catch(e){}}};
+  document.getElementById('dodCopy').onclick=async function(){try{await navigator.clipboard.writeText(share);toast(EN?'Copied':'تم النسخ')}catch(e){}};
+  document.getElementById('dodShare').onclick=async function(){if(navigator.share){try{await navigator.share({title:EN?'Dhikr of the Day':'ذكر اليوم',text:share})}catch(e){}}else{try{await navigator.clipboard.writeText(share);toast(EN?'Copied — paste it anywhere':'تم النسخ — الصقه حيث تشاء')}catch(e){}}};
 })();
 (function(){ // العدّادات
   var fmt=function(n){return n==null?'—':Number(n).toLocaleString('en-US')};
@@ -186,13 +196,13 @@ footer{text-align:center;color:var(--mut);font-size:14px;padding:30px 20px calc(
   if(c){['stSite','stAll','stQuran','stRawd'].forEach(function(k){if(c[k]!=null)set(k,c[k])})}
   var out=Object.assign({},c||{});
   var gc=function(path){return fetch('https://mishkat.goatcounter.com/counter/'+encodeURIComponent(path)+'.json').then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(j){return +String(j.count).replace(/[^0-9]/g,'')})};
-  var setVer=function(id,v){var e=document.getElementById(id);if(e&&v)e.textContent='الإصدار '+String(v).replace(/^v/i,'')};
+  var setVer=function(id,v){var e=document.getElementById(id);if(e&&v)e.textContent=(window.MK_EN?'Version ':'الإصدار ')+String(v).replace(/^v/i,'')};
   if(c){setVer('verQuran',c.verQuran);setVer('verRawd',c.verRawd)}
   var gh=function(repo,vk){return fetch('https://api.github.com/repos/mohammadelshennawy-bit/'+repo+'/releases?per_page=100').then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(a){var n=0,latest=null;a.forEach(function(x){if(!latest&&!x.draft&&!x.prerelease)latest=x.tag_name;(x.assets||[]).forEach(function(s){if(/\.apk$/i.test(s.name))n+=s.download_count})});if(latest){out[vk]=latest;setVer(vk,latest)}return n})};
   var jobs=[['stSite',gc('/site/home')],['stAll',gc('TOTAL')],['stQuran',gh('Quran-app','verQuran')],['stRawd',gh('rawd-azkar','verRawd')]];
   Promise.all(jobs.map(function(j){return j[1].then(function(v){out[j[0]]=v;set(j[0],v)}).catch(function(){})})).then(function(){
     try{localStorage.setItem(C,JSON.stringify(out))}catch(e){}
-    document.getElementById('stUpd').textContent='آخر تحديث: '+new Date().toLocaleString('ar-EG-u-nu-latn',{dateStyle:'medium',timeStyle:'short'});
+    document.getElementById('stUpd').textContent=(window.MK_EN?'Last updated: ':'آخر تحديث: ')+new Date().toLocaleString(window.MK_EN?'en-GB':'ar-EG-u-nu-latn',{dateStyle:'medium',timeStyle:'short'});
   });
 })();
 </script>

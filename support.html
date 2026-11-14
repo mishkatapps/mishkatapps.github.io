@@ -6,6 +6,8 @@
 <title>ادعم مشكاة</title>
 <meta name="description" content="مشكاة: برمجيات نافعة للهاتف والحاسب — سهلة الاستخدام وتحترم خصوصية المستخدم. من إصداراتها: المصحف الشريف وروض الذكر.">
 <meta name="theme-color" content="#081433">
+<meta name="mk-title-en" content="Support Mishkat">
+<script src="js/i18n.js"></script>
 <meta property="og:title" content="مشكاة — برمجيات نافعة للهاتف والحاسب">
 <meta property="og:description" content="برمجيات نافعة للهاتف والحاسب، سهلة الاستخدام وتحترم خصوصيتك. من إصداراتها: المصحف الشريف وروض الذكر.">
 <meta property="og:image" content="https://mishkatapps.github.io/img/share.png">
@@ -69,27 +71,27 @@ h2{font-family:Amiri,serif;font-weight:700;font-size:clamp(32px,5vw,42px);color:
 footer{text-align:center;color:var(--mut);font-size:14px;padding:30px 20px calc(30px + env(safe-area-inset-bottom));border-top:1px solid var(--line);margin-top:30px}
 .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#0B1D3F;color:var(--gold);border:1px solid var(--gold);padding:8px 18px;border-radius:999px;opacity:0;transition:opacity .3s;pointer-events:none}
 .toast.on{opacity:1}
-@media(max-width:640px){.links a:not(.cta){display:none}nav .wrap{height:56px}.brand{font-size:24px}}
 </style>
+<link rel="stylesheet" href="css/site.css">
 </head>
 <body>
-<nav><div class="wrap"><a class="brand" href="./"><img src="img/mishkat.svg" alt="">مشكاة</a>
-<div class="links"><a href="./#apps">التطبيقات</a><a href="./#install">التثبيت</a><a href="media.html">الإعلانات</a><a href="./#about">عن مشكاة</a><a class="cta" href="support.html">♡ ادعمنا</a></div></div></nav>
+<nav><div class="wrap"><a class="brand" href="./"><img src="img/mishkat.svg" alt=""><span data-en="Mishkat">مشكاة</span></a>
+<div class="links"><a href="./#today" data-en="Today">اليوم والمواقيت</a><a href="./#apps" data-en="Apps">التطبيقات</a><a href="./#install" data-en="Install">التثبيت</a><a href="media.html" data-en="Ads &amp; Video">الإعلانات</a><a href="./#stats" data-en="Numbers">بالأرقام</a><a href="./#about" data-en="About">عن مشكاة</a><a class="cta" href="support.html" data-en="♡ Support us">♡ ادعمنا</a></div></div></nav>
 
 <section id="support" style="padding-top:34px"><div class="wrap">
-<h2>ادعم مشكاة</h2><p class="sub">ساهم في تطوير تطبيقات مشكاة المجانية وإبقائها بلا إعلانات</p>
+<h2 data-en="Support Mishkat">ادعم مشكاة</h2><p class="sub" data-en="Help develop Mishkat’s free apps and keep them ad-free">ساهم في تطوير تطبيقات مشكاة المجانية وإبقائها بلا إعلانات</p>
 <div class="support">
- <div class="sayah">﴿مَنْ ذَا الَّذِي يُقْرِضُ اللَّهَ قَرْضًا حَسَنًا﴾</div>
- <div style="font-weight:700;color:#8a6a22">التحويل عبر</div><div class="ip">InstaPay</div>
- <div class="qr"><img src="img/instapay-qr.svg" alt="رمز QR للتحويل عبر InstaPay"></div>
+ <div class="sayah" lang="ar" dir="rtl">﴿مَنْ ذَا الَّذِي يُقْرِضُ اللَّهَ قَرْضًا حَسَنًا﴾</div>
+ <div style="font-weight:700;color:#8a6a22" data-en="Transfer via">التحويل عبر</div><div class="ip">InstaPay</div>
+ <div class="qr"><img src="img/instapay-qr.svg" alt="رمز QR للتحويل عبر InstaPay" data-en-alt="InstaPay transfer QR code"></div>
  <div class="addr">moshen2026@instapay</div>
- <div class="btns" style="justify-content:center"><a class="btn gold" href="https://ipn.eg/C/Q/moshen2026/instapay?ISIGN=23052603MEUCIQCB/caVkAj879K/uDiPj2rXI0mT+feDQupgvva37LHEvgIgfxEdjo/IOCdGlkMOQJPYHdv1MvuhF2Zzip2uxgTTn94=" target="_blank" rel="noopener" data-ev="pay">ادفع عبر InstaPay ↗</a><button class="btn" id="copy">نسخ العنوان</button></div>
- <small>من جوال آخر: امسح الرمز بكاميرا الهاتف أو من تطبيق InstaPay</small>
-</div><p style="text-align:center;margin-top:22px"><a class="btn" href="./">← العودة إلى الصفحة الرئيسية</a></p></div></section>
-<footer>© مشكاة · MISHKAT APPS — برمجيات نافعة للهاتف والحاسب</footer>
+ <div class="btns" style="justify-content:center"><a class="btn gold" href="https://ipn.eg/C/Q/moshen2026/instapay?ISIGN=23052603MEUCIQCB/caVkAj879K/uDiPj2rXI0mT+feDQupgvva37LHEvgIgfxEdjo/IOCdGlkMOQJPYHdv1MvuhF2Zzip2uxgTTn94=" target="_blank" rel="noopener" data-ev="pay" data-en="Pay via InstaPay ↗">ادفع عبر InstaPay ↗</a><button class="btn" id="copy" data-en="Copy address">نسخ العنوان</button></div>
+ <small data-en="From another phone: scan the code with the camera or from the InstaPay app">من جوال آخر: امسح الرمز بكاميرا الهاتف أو من تطبيق InstaPay</small>
+</div><p style="text-align:center;margin-top:22px"><a class="btn" href="./" data-en="← Back to the home page">← العودة إلى الصفحة الرئيسية</a></p></div></section>
+<footer data-en="© Mishkat · MISHKAT APPS — Useful software for phone and computer">© مشكاة · MISHKAT APPS — برمجيات نافعة للهاتف والحاسب</footer>
 <div class="toast" id="toast"></div>
 <script>
-var cb=document.getElementById('copy');if(cb)cb.onclick=async function(){var t='moshen2026@instapay';try{await navigator.clipboard.writeText(t)}catch(e){var a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();try{document.execCommand('copy')}catch(_){}a.remove()}var o=document.getElementById('toast');o.textContent='تم نسخ عنوان InstaPay';o.classList.add('on');setTimeout(function(){o.classList.remove('on')},1800)};
+var cb=document.getElementById('copy');if(cb)cb.onclick=async function(){var t='moshen2026@instapay';try{await navigator.clipboard.writeText(t)}catch(e){var a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();try{document.execCommand('copy')}catch(_){}a.remove()}var o=document.getElementById('toast');o.textContent=window.MK_EN?'InstaPay address copied':'تم نسخ عنوان InstaPay';o.classList.add('on');setTimeout(function(){o.classList.remove('on')},1800)};
 (function(){try{var GC='https://mishkat.goatcounter.com/count';function send(p,t,ev){var i=new Image();i.src=GC+'?p='+encodeURIComponent(p)+'&t='+encodeURIComponent(t)+(ev?'&e=true':'')+'&rnd='+Math.random().toString(36).slice(2)}
 if(!sessionStorage.getItem('mk-site-sup')){sessionStorage.setItem('mk-site-sup','1');send('/site/support','موقع مشكاة — صفحة الدعم')}
 document.querySelectorAll('[data-ev]').forEach(function(a){a.addEventListener('click',function(){send('/site/'+a.dataset.ev,'موقع مشكاة — '+a.textContent.trim(),true)})})}catch(e){}})();

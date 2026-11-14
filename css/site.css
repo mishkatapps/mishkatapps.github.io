@@ -1,0 +1,39 @@
+/* مشكاة — أنماط مشتركة: زر اللغة، قائمة الموبايل، التاريخ، الاتجاه الإنجليزي */
+.navtools{display:flex;align-items:center;gap:8px}
+.langbtn{text-decoration:none;color:var(--gold);border:1px solid var(--line);border-radius:999px;padding:5px 13px;font-size:14px;font-weight:700;white-space:nowrap}
+.langbtn:hover{background:rgba(233,207,140,.12)}
+html.lang-en .langbtn{font-family:Tajawal,sans-serif}
+html.lang-ar .langbtn{font-family:"Segoe UI",Tajawal,sans-serif}
+.menubtn{display:none;width:42px;height:42px;border-radius:12px;border:1px solid var(--line);background:rgba(233,207,140,.06);cursor:pointer;padding:0;flex-direction:column;align-items:center;justify-content:center;gap:5px}
+.menubtn span{display:block;width:20px;height:2px;border-radius:2px;background:var(--gold);transition:transform .25s,opacity .2s}
+body.menu-open .menubtn span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+body.menu-open .menubtn span:nth-child(2){opacity:0}
+body.menu-open .menubtn span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+nav .wrap{position:relative}
+nav .links{margin-inline-start:auto}
+@media(max-width:820px){
+  nav .wrap{height:58px}
+  .menubtn{display:flex}
+  nav .links{display:none!important;position:absolute;top:100%;inset-inline:12px;margin:8px 0 0;flex-direction:column;gap:4px;padding:10px;background:rgba(8,20,51,.97);border:1px solid var(--line);border-radius:18px;box-shadow:0 18px 40px rgba(0,0,0,.45);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
+  body.menu-open nav .links{display:flex!important}
+  nav .links a,nav .links a:not(.cta){display:block!important;font-size:17px;padding:11px 16px;border-radius:12px}
+  nav .links a:not(.cta){border-bottom:1px solid rgba(212,175,95,.14)}
+  nav .links a.cta{text-align:center;margin-top:6px}
+  .brand{font-size:24px}
+}
+/* التاريخ الميلادي والهجري */
+.dates{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin:0 0 18px}
+.dates span{background:rgba(233,207,140,.09);border:1px solid var(--line);border-radius:999px;padding:6px 16px;font-size:15.5px;font-weight:700;color:var(--ink)}
+.dates .dh{color:var(--gold)}
+/* الإنجليزية: من اليسار لليمين */
+html.lang-en body{font-family:Tajawal,"Segoe UI",Tahoma,sans-serif}
+html.lang-en .app li{padding-right:0;padding-left:22px}
+html.lang-en .app li::before{right:auto;left:0}
+html.lang-en h2,html.lang-en .app h3,html.lang-en .panel h3,html.lang-en .brand,html.lang-en .hero h1{font-family:"Amiri",Georgia,serif}
+html.lang-en .ver{direction:ltr}
+/* ذكر اليوم بالإنجليزية: النطق ثم العربي ثم الترجمة */
+.dod .tl{font-style:italic;color:var(--gold);text-align:center;font-size:16.5px;line-height:1.8;direction:ltr;white-space:pre-line}
+.dod .ar{font-family:Amiri,serif;font-size:clamp(22px,3vw,27px);line-height:2;color:#f6e7bd;text-align:center;direction:rtl;white-space:pre-line;margin:8px 0}
+.dod .tr{text-align:center;font-size:16px;line-height:1.75;direction:ltr;color:var(--ink)}
+.dod .txt.en{flex-direction:column;font-family:inherit;font-size:inherit;gap:4px}
+html.lang-en .ayah small{display:block;margin-top:4px;font-size:13.5px}
