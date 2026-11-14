@@ -37,3 +37,6 @@ html.lang-en .ver{direction:ltr}
 .dod .tr{text-align:center;font-size:16px;line-height:1.75;direction:ltr;color:var(--ink)}
 .dod .txt.en{flex-direction:column;font-family:inherit;font-size:inherit;gap:4px}
 html.lang-en .ayah small{display:block;margin-top:4px;font-size:13.5px}
+/* القفز إلى الأقسام: لا يختفي أول المحتوى تحت الشريط العلوي الثابت */
+html{scroll-padding-top:64px}
+@media(max-width:820px){html{scroll-padding-top:60px}}
