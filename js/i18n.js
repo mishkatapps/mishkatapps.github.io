@@ -40,9 +40,10 @@
     var d = document.getElementById('mkDates');
     if (d) {
       var now = new Date(), g = '', h = '';
-      try { g = new Intl.DateTimeFormat(EN ? 'en-GB' : 'ar-EG-u-nu-latn', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }).format(now) + (EN ? ' CE' : ' م'); } catch (e) {}
+      try { g = new Intl.DateTimeFormat(EN ? 'en-GB' : 'ar-EG-u-nu-latn', { weekday: (EN && innerWidth < 520) ? 'short' : 'long', day: 'numeric', month: (EN && innerWidth < 520) ? 'short' : 'long', year: 'numeric' }).format(now) + (EN ? ' CE' : ' م'); } catch (e) {}
       try { h = new Intl.DateTimeFormat(EN ? 'en-GB-u-ca-islamic-umalqura' : 'ar-SA-u-ca-islamic-umalqura-nu-latn', { day: 'numeric', month: 'long', year: 'numeric' }).format(now).replace(/\s*(AH|هـ)\s*$/, '') + (EN ? ' AH' : ' هـ'); } catch (e) {}
-      d.innerHTML = '<span class="dg" title="' + (EN ? 'Gregorian date' : 'التاريخ الميلادي') + '">📅 ' + g + '</span><span class="dh" title="' + (EN ? 'Hijri date (Umm al-Qura)' : 'التاريخ الهجري (أم القرى)') + '">🌙 ' + h + '</span>';
+      d.classList.add('one');
+      d.innerHTML = '<span class="dg" title="' + (EN ? 'Gregorian date' : 'التاريخ الميلادي') + '"><span class="ic">📅</span>' + g + '</span><span class="sep">·</span><span class="dh" title="' + (EN ? 'Hijri date (Umm al-Qura)' : 'التاريخ الهجري (أم القرى)') + '"><span class="ic">🌙</span>' + h + '</span>';
     }
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', apply); else apply();
