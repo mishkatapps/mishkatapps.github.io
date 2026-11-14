@@ -73,3 +73,13 @@ header.hero .dates{margin:12px 0 0}
 .dates.one .sep{color:var(--gold);opacity:.6}
 #today .greet{margin-top:0}
 @media(max-width:520px){.heroapps{margin-top:-46px}.appbtn{font-size:14px;gap:7px}.appbtn img{width:30px!important;height:30px!important}.platbar{flex-wrap:nowrap;gap:2px 10px;font-size:clamp(11.5px,3.4vw,13.5px);padding:5px 12px;white-space:nowrap}.dates.one{flex-wrap:nowrap;font-size:clamp(11px,3.3vw,13px);padding:6px 10px;gap:5px;max-width:100%;font-weight:600}.dates.one .ic{display:none}}
+/* ترتيب قسم اليوم: المواقيت ← التهنئة والتوصية ← ذكر اليوم */
+.today.one{grid-template-columns:1fr;max-width:820px;margin-inline:auto}
+#today .today.one + .greet{margin-top:20px}
+#today .greet + .today.one{margin-top:0}
+/* زرا التطبيقين: أصغر */
+.appbtn{font-size:12.5px!important;gap:6px!important;padding:3px 11px 3px 4px!important;font-weight:700}
+html[dir=rtl] .appbtn{padding:3px 4px 3px 11px!important}
+.appbtn img{width:24px!important;height:24px!important;border-radius:7px!important}
+.heroapps{margin:-40px 0 12px!important}
+@media(max-width:520px){.heroapps{margin-top:-48px!important}.appbtn{font-size:12px!important}.appbtn img{width:22px!important;height:22px!important}}

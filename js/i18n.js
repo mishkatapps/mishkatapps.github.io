@@ -44,6 +44,8 @@
       try { h = new Intl.DateTimeFormat(EN ? 'en-GB-u-ca-islamic-umalqura' : 'ar-SA-u-ca-islamic-umalqura-nu-latn', { day: 'numeric', month: 'long', year: 'numeric' }).format(now).replace(/\s*(AH|هـ)\s*$/, '') + (EN ? ' AH' : ' هـ'); } catch (e) {}
       d.classList.add('one');
       d.innerHTML = '<span class="dg" title="' + (EN ? 'Gregorian date' : 'التاريخ الميلادي') + '"><span class="ic">📅</span>' + g + '</span><span class="sep">·</span><span class="dh" title="' + (EN ? 'Hijri date (Umm al-Qura)' : 'التاريخ الهجري (أم القرى)') + '"><span class="ic">🌙</span>' + h + '</span>';
+      var fitDates = function () { d.style.fontSize = ''; var fs = parseFloat(getComputedStyle(d).fontSize), max = d.parentNode.clientWidth - 4; while (d.scrollWidth > max && fs > 9) { fs -= 0.5; d.style.fontSize = fs + 'px'; } };
+      fitDates(); addEventListener('resize', fitDates); if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitDates);
     }
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', apply); else apply();
