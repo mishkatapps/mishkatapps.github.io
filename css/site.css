@@ -83,3 +83,9 @@ html[dir=rtl] .appbtn{padding:3px 4px 3px 11px!important}
 .appbtn img{width:24px!important;height:24px!important;border-radius:7px!important}
 .heroapps{margin:-40px 0 12px!important}
 @media(max-width:520px){.heroapps{margin-top:-48px!important}.appbtn{font-size:12px!important}.appbtn img{width:22px!important;height:22px!important}}
+/* التاريخ على الهاتف: سطران في المنتصف بالحجم المعتاد */
+@media(max-width:520px){
+  header.hero .dates.one{flex-direction:column;flex-wrap:nowrap;gap:3px;font-size:15px!important;font-weight:700;padding:7px 20px;line-height:1.5}
+  header.hero .dates.one .sep{display:none}
+  header.hero .dates.one .ic{display:inline}
+}
