@@ -133,6 +133,8 @@ function render() {
   tick();
 }
 function tick() { const np = nextPrayer(); $('prCd').textContent = countdown(np.at - new Date()); if (np.at - new Date() < 1000) setTimeout(render, 1500); }
+// واجهة لبقية الموقع (التهاني والتوصيات): مواقيت اليوم للمدينة المختارة
+window.MK_PRAY = { now: () => { const loc = prayLoc(), n = new Date(), [y, m, d] = ymdIn(loc.tz, n); return { loc, T: prayerTimes(y, m, d, loc) }; } };
 function init() {
   if (!$('prList')) return;
   const sel = $('prCitySel'), ms = $('prMethod');
