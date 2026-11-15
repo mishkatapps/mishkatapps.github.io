@@ -13,6 +13,7 @@
 :root{--navy:#0B1D3F;--navy2:#13295a;--gold:#D9B15C;--gold2:#f2d083;--olive:#0F4C4A;--ivory:#F7F1E3;--ink:#1d2433;--mut:#64748b;--line:#e6dcc4;--card:#fff}
 *{box-sizing:border-box}
 [hidden]{display:none!important}
+html,body{max-width:100%;overflow-x:hidden}
 body{margin:0;font-family:Tajawal,Tahoma,sans-serif;background:var(--ivory);color:var(--ink);font-size:15px}
 a{color:var(--olive)}
 header{background:linear-gradient(120deg,var(--navy),var(--navy2) 60%,var(--olive));color:#fff;padding:14px 20px;display:flex;align-items:center;gap:14px;position:sticky;top:0;z-index:5;box-shadow:0 4px 18px rgba(11,29,63,.25)}
@@ -182,22 +183,31 @@ const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&a
 /* ---------- تسجيل الدخول بحساب Google ---------- */
 const TK = 'mk-admin-token';
 let TOKEN = '', started = false;
+const OUT = 'mk-admin-out';
 const jwtExp = t => { try { return JSON.parse(atob(t.split('.')[1].replace(/-/g, '+').replace(/_/g, '/'))).exp * 1000; } catch (e) { return 0; } };
 function gate(msg) { $('#gate').hidden = false; $('#gmsg').textContent = msg || ''; }
 function signedIn(t) {
   TOKEN = t; try { sessionStorage.setItem(TK, t); } catch (e) {}
   $('#gate').hidden = true; $('#gmsg').textContent = '';
+  try { sessionStorage.removeItem(OUT); } catch (e) {}
+  window.scrollTo(0, 0); document.documentElement.scrollLeft = 0; document.body.scrollLeft = 0;   // الهاتف: لا إزاحة جانبية بعد نافذة Google
   if (!started) { started = true; loadRatings(); loadUnreadOnly(); } else { loadRatings(); if (M.loaded) loadMail(); }
 }
 function initGoogle() {
   if (!/apps\.googleusercontent\.com$/.test(CFG.clientId) || /ضع/.test(CFG.clientId + CFG.api)) { gate('لم يُضبط الإعداد بعد: ضع Client ID ورابط Apps Script في أعلى الشيفرة.'); return; }
   if (!window.google || !google.accounts) { setTimeout(initGoogle, 200); return; }
-  google.accounts.id.initialize({ client_id: CFG.clientId, callback: r => signedIn(r.credential), auto_select: true, cancel_on_tap_outside: false });
-  google.accounts.id.renderButton($('#gbtn'), { theme: 'filled_blue', size: 'large', shape: 'pill', text: 'signin_with', locale: 'ar' });
+  let out = false; try { out = sessionStorage.getItem(OUT) === '1'; } catch (e) {}
+  google.accounts.id.initialize({ client_id: CFG.clientId, callback: r => signedIn(r.credential), auto_select: !out, cancel_on_tap_outside: false });
+  google.accounts.id.renderButton($('#gbtn'), { theme: 'filled_blue', size: 'large', shape: 'pill', text: 'signin_with', locale: 'ar', width: Math.min(300, innerWidth - 90) });
   let saved = ''; try { saved = sessionStorage.getItem(TK) || ''; } catch (e) {}
+  if (out) { gate('تم تسجيل الخروج.'); return; }   // بعد الخروج: لا دخول تلقائي — الدخول بالضغط على الزر فقط
   if (saved && jwtExp(saved) - Date.now() > 120000) signedIn(saved); else { gate(); google.accounts.id.prompt(); }
 }
-$('#logout').onclick = () => { TOKEN = ''; try { sessionStorage.removeItem(TK); } catch (e) {} if (window.google && google.accounts) google.accounts.id.disableAutoSelect(); gate('تم تسجيل الخروج.'); };
+$('#logout').onclick = () => {   // الخروج: يمنع Google من إعادة الدخول تلقائيًا ثم يعيد تحميل الصفحة
+  TOKEN = ''; try { sessionStorage.removeItem(TK); sessionStorage.setItem(OUT, '1'); } catch (e) {}
+  try { if (window.google && google.accounts) { google.accounts.id.cancel(); google.accounts.id.disableAutoSelect(); } } catch (e) {}
+  gate('تم تسجيل الخروج.'); setTimeout(() => location.reload(), 150);
+};
 
 /* ---------- الاتصال بالخادم ---------- */
 async function run(fn, ...args) {
