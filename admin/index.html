@@ -21,6 +21,8 @@ html,body{max-width:100%;overflow-x:hidden}
 .reader iframe,.reader img,.reader table{max-width:100%!important}
 .toast{left:0!important;right:0!important;margin-inline:auto;width:max-content;max-width:90vw;transform:translateY(80px)!important}
 .toast.on{transform:none!important}
+#credential_picker_container,#credential_picker_iframe{max-width:100vw!important;left:0!important;right:0!important}
+#app,main{overflow-x:clip}
 body{margin:0;font-family:Tajawal,Tahoma,sans-serif;background:var(--ivory);color:var(--ink);font-size:15px}
 a{color:var(--olive)}
 header{background:linear-gradient(120deg,var(--navy),var(--navy2) 60%,var(--olive));color:#fff;padding:14px 20px;display:flex;align-items:center;gap:14px;position:sticky;top:0;z-index:5;box-shadow:0 4px 18px rgba(11,29,63,.25)}
@@ -191,13 +193,24 @@ const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&a
 const TK = 'mk-admin-token';
 let TOKEN = '', started = false;
 const OUT = 'mk-admin-out';
+function cleanGoogle() {
+  try { if (window.google && google.accounts) google.accounts.id.cancel(); } catch (e) {}
+  const fix = () => { document.querySelectorAll('#credential_picker_container,#credential_picker_iframe').forEach(n => n.remove());
+    window.scrollTo(0, window.scrollY); document.documentElement.scrollLeft = 0; document.body.scrollLeft = 0; };
+  fix(); [200, 800, 2000].forEach(t => setTimeout(fix, t));
+  if (/[?&]debug=1/.test(location.search)) setTimeout(() => {   // تشخيص: ?debug=1 يعرض العنصر الأعرض من الشاشة
+    const W = innerWidth, bad = [...document.querySelectorAll('body *')].filter(e => { const r = e.getBoundingClientRect(); return r.right > W + 1 || r.left < -1; })
+      .slice(0, 5).map(e => e.tagName + (e.id ? '#' + e.id : '') + '.' + String(e.className).slice(0, 30) + ' ' + Math.round(e.getBoundingClientRect().width));
+    alert('العرض ' + W + ' · الصفحة ' + document.documentElement.scrollWidth + '\n' + (bad.join('\n') || 'لا يوجد عنصر عريض'));
+  }, 3000);
+}
 const jwtExp = t => { try { return JSON.parse(atob(t.split('.')[1].replace(/-/g, '+').replace(/_/g, '/'))).exp * 1000; } catch (e) { return 0; } };
 function gate(msg) { $('#gate').hidden = false; $('#gmsg').textContent = msg || ''; }
 function signedIn(t) {
   TOKEN = t; try { sessionStorage.setItem(TK, t); } catch (e) {}
   $('#gate').hidden = true; $('#gmsg').textContent = '';
   try { sessionStorage.removeItem(OUT); } catch (e) {}
-  window.scrollTo(0, 0); document.documentElement.scrollLeft = 0; document.body.scrollLeft = 0;   // الهاتف: لا إزاحة جانبية بعد نافذة Google
+  cleanGoogle();   // الهاتف: إزالة بقايا نافذة Google المنبثقة التي تسبب الإزاحة الجانبية
   if (!started) { started = true; loadRatings(); loadUnreadOnly(); } else { loadRatings(); if (M.loaded) loadMail(); }
 }
 function initGoogle() {
@@ -208,7 +221,7 @@ function initGoogle() {
   google.accounts.id.renderButton($('#gbtn'), { theme: 'filled_blue', size: 'large', shape: 'pill', text: 'signin_with', locale: 'ar', width: Math.min(300, innerWidth - 90) });
   let saved = ''; try { saved = sessionStorage.getItem(TK) || ''; } catch (e) {}
   if (out) { gate('تم تسجيل الخروج.'); return; }   // بعد الخروج: لا دخول تلقائي — الدخول بالضغط على الزر فقط
-  if (saved && jwtExp(saved) - Date.now() > 120000) signedIn(saved); else { gate(); google.accounts.id.prompt(); }
+  if (saved && jwtExp(saved) - Date.now() > 120000) signedIn(saved); else gate();   // الدخول بزر Google فقط (بدون النافذة المنبثقة)
 }
 $('#logout').onclick = () => {   // الخروج: يمنع Google من إعادة الدخول تلقائيًا ثم يعيد تحميل الصفحة
   TOKEN = ''; try { sessionStorage.removeItem(TK); sessionStorage.setItem(OUT, '1'); } catch (e) {}
@@ -218,7 +231,7 @@ $('#logout').onclick = () => {   // الخروج: يمنع Google من إعاد�
 
 /* ---------- الاتصال بالخادم ---------- */
 async function run(fn, ...args) {
-  if (!TOKEN || jwtExp(TOKEN) - Date.now() < 60000) { gate('انتهت الجلسة، سجّل الدخول من جديد.'); if (window.google && google.accounts) google.accounts.id.prompt(); throw new Error('انتهت الجلسة'); }
+  if (!TOKEN || jwtExp(TOKEN) - Date.now() < 60000) { gate('انتهت الجلسة، سجّل الدخول من جديد.'); throw new Error('انتهت الجلسة'); }
   const r = await fetch(CFG.api, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ token: TOKEN, fn, args }) });
   const d = await r.json();
   if (!d.ok) { if (d.auth) { TOKEN = ''; try { sessionStorage.removeItem(TK); } catch (e) {} gate(d.error); } throw new Error(d.error); }
