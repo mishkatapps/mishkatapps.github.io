@@ -14,6 +14,13 @@
 *{box-sizing:border-box}
 [hidden]{display:none!important}
 html,body{max-width:100%;overflow-x:hidden}
+/* الهاتف: لا يتمدد أي عمود بسبب رابط أو نص طويل بلا مسافات */
+.mailwrap>*,.grid2>*,.kpis>*,main,section,.card,.panel{min-width:0}
+.mailwrap{grid-template-columns:minmax(0,1fr) minmax(0,1.4fr)}
+.msg,.msg *,.mi,.mi *,.reader,.rcard,.rtext,.mlist,.mlist *,.reader *,.rcard *,.rtx{overflow-wrap:anywhere;word-break:break-word}
+.reader iframe,.reader img,.reader table{max-width:100%!important}
+.toast{left:0!important;right:0!important;margin-inline:auto;width:max-content;max-width:90vw;transform:translateY(80px)!important}
+.toast.on{transform:none!important}
 body{margin:0;font-family:Tajawal,Tahoma,sans-serif;background:var(--ivory);color:var(--ink);font-size:15px}
 a{color:var(--olive)}
 header{background:linear-gradient(120deg,var(--navy),var(--navy2) 60%,var(--olive));color:#fff;padding:14px 20px;display:flex;align-items:center;gap:14px;position:sticky;top:0;z-index:5;box-shadow:0 4px 18px rgba(11,29,63,.25)}
@@ -71,7 +78,7 @@ main{max-width:1180px;margin:0 auto;padding:0 20px 40px}
 .rc select{border:1px solid var(--line);border-radius:10px;padding:4px 8px;font:13px Tajawal;background:#fff}
 .empty-st{text-align:center;color:var(--mut);padding:40px 10px}
 .mailwrap{display:grid;grid-template-columns:minmax(300px,1fr) 1.4fr;gap:14px}
-@media(max-width:900px){.mailwrap{grid-template-columns:1fr}}
+@media(max-width:900px){.mailwrap{grid-template-columns:minmax(0,1fr)!important}}
 .mailbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
 .mailbar input{flex:1;min-width:200px}
 .qchips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
