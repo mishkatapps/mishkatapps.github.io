@@ -109,3 +109,14 @@ body.rmd-open{overflow:hidden}
 .rmd-bell{text-align:center;margin:-8px 0 18px}
 .rmd-bell button{background:none;border:1px dashed var(--line);color:var(--gold);border-radius:999px;padding:5px 14px;font-size:13.5px;cursor:pointer;font-family:inherit}
 .rmd-bell:empty{display:none}
+/* زرا فتح التطبيقين بنفس المقاس */
+.heroapps .appbtn{flex:0 1 172px;min-width:0;justify-content:center;white-space:nowrap}
+@media(max-width:520px){.heroapps .appbtn{flex-basis:150px}}
+/* مفتاح نافذة التذكير في القائمة */
+nav .links a.rmd-nav{display:inline-flex;align-items:center;gap:8px}
+.rmd-nav .sw{position:relative;width:34px;height:19px;border-radius:99px;background:rgba(255,255,255,.18);flex:none;transition:background .2s}
+.rmd-nav .sw::after{content:"";position:absolute;top:2px;inset-inline-start:2px;width:15px;height:15px;border-radius:50%;background:#F7F1E3;transition:inset-inline-start .2s}
+.rmd-nav.on .sw{background:var(--gold)}
+.rmd-nav.on .sw::after{inset-inline-start:17px}
+@media(min-width:821px){.rmd-nav .t{display:none}.rmd-nav .sw{display:none}}
+@media(max-width:820px){nav .links a.rmd-nav{display:flex!important;justify-content:space-between}}
