@@ -227,7 +227,7 @@
     w.addEventListener('click', function (e) {
       if (e.target === w || e.target.closest('.rmd-x') || e.target.closest('[data-r="later"]')) return close();
       if (e.target.closest('[data-r="ok"]')) { var a = {}; try { a = JSON.parse(ls(RK) || '{}'); } catch (x) {} list.forEach(function (r) { a[r.id] = Date.now(); }); ls(RK, JSON.stringify(a)); close(); toast(EN ? 'Noted — may Allah accept from you' : 'تقبّل الله منك'); }
-      else if (e.target.closest('[data-r="off"]')) { ls(ROFF, '1'); close(); bell(); toast(EN ? 'Reminders turned off' : 'تم إيقاف نافذة التذكير'); }
+      else if (e.target.closest('[data-r="off"]')) { ls(ROFF, '1'); close(); bell(); navToggle(); toast(EN ? 'Reminders turned off' : 'تم إيقاف نافذة التذكير'); }
     });
     document.addEventListener('keydown', function k(e) { if (e.key === 'Escape') { close(); document.removeEventListener('keydown', k); } });
   }
@@ -235,13 +235,30 @@
     var b = document.getElementById('mkBell'); if (!b) { b = document.createElement('div'); b.id = 'mkBell'; b.className = 'rmd-bell'; box.parentNode.insertBefore(b, box.nextSibling); }
     var off = ls(ROFF) === '1', n = upcoming().length;
     b.innerHTML = off ? '<button>' + (EN ? '🔔 Turn reminders back on' : '🔔 تفعيل نافذة التذكير') + '</button>' : (n ? '<button>' + (EN ? '🔔 Upcoming reminders (' + n + ')' : '🔔 تذكيرات قادمة (' + n + ')') + '</button>' : '');
-    b.onclick = function (e) { if (!e.target.closest('button')) return; if (off) { try { localStorage.removeItem(ROFF); } catch (x) {} } showReminders(true); bell(); };
+    b.onclick = function (e) { if (!e.target.closest('button')) return; if (off) { try { localStorage.removeItem(ROFF); } catch (x) {} } showReminders(true); bell(); navToggle(); };
+  }
+
+  function navToggle() {   // مفتاح في قائمة الموقع: تشغيل/إيقاف نافذة التذكير عند الدخول
+    var links = document.querySelector('nav .links'); if (!links) return;
+    var a = document.getElementById('mkRemNav');
+    if (!a) { a = document.createElement('a'); a.id = 'mkRemNav'; a.href = '#'; a.className = 'rmd-nav'; a.setAttribute('role', 'switch');
+      var cta = links.querySelector('.cta'); links.insertBefore(a, cta || null);
+      a.addEventListener('click', function (e) { e.preventDefault(); e.stopPropagation();
+        var nowOff = ls(ROFF) !== '1';
+        if (nowOff) ls(ROFF, '1'); else { try { localStorage.removeItem(ROFF); } catch (x) {} }
+        navToggle(); bell(); toast(nowOff ? (EN ? 'Reminder window turned off' : 'تم إيقاف نافذة التذكير') : (EN ? 'Reminder window turned on' : 'تم تفعيل نافذة التذكير'));
+        if (!nowOff) setTimeout(function () { document.body.classList.remove('menu-open'); showReminders(true); }, 400); }); }
+    var on = ls(ROFF) !== '1';
+    a.classList.toggle('on', on); a.setAttribute('aria-checked', on ? 'true' : 'false');
+    var lbl = EN ? 'Reminder popup' : 'نافذة التذكير عند الدخول';
+    a.title = lbl + ': ' + (on ? (EN ? 'on' : 'مفعّلة') : (EN ? 'off' : 'موقوفة'));
+    a.innerHTML = '<span>' + (on ? '🔔' : '🔕') + ' <span class="t">' + lbl + '</span></span><span class="sw" aria-hidden="true"></span>';
   }
 
   /* ---------- التشغيل ---------- */
   var cached = null; try { cached = JSON.parse(localStorage.getItem(CK) || 'null'); } catch (e) {}
   BANK = parse(cached || window.MK_GREET_DEFAULT || { occ: [[]], msg: [[]] });
-  render(); bell();
+  render(); bell(); navToggle();
   var remT = setTimeout(function () { showReminders(); }, 2500);   // تنتظر بيانات الجدول قليلًا ثم تظهر
   fetchBank().then(function (b) {
     var s = JSON.stringify(b); if (cached && JSON.stringify(cached) === s) return;
