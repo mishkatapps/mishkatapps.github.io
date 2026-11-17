@@ -34,7 +34,7 @@
   }
   function parse(bank) {
     var on = function (v) { return !/^(لا|no|false|0)$/i.test(v || ''); };
-    var occ = toObjs(bank.occ, { key: 'المفتاح', name: 'المناسبة', en: 'English', hm: 'الشهر الهجري', d1: 'من يوم', d2: 'إلى يوم', wd: 'يوم الأسبوع', t1: 'من وقت', t2: 'إلى وقت', pr: 'الأولوية', on: 'مفعّل', rem: 'التذكير قبل (أيام)' }).filter(function (o) { return o.key && on(o.on); });
+    var occ = toObjs(bank.occ, { key: 'المفتاح', name: 'المناسبة', en: 'English', hm: 'الشهر الهجري', d1: 'من يوم', d2: 'إلى يوم', wd: 'يوم الأسبوع', t1: 'من وقت', t2: 'إلى وقت', pr: 'الأولوية', on: 'مفعّل', rem: 'التذكير قبل (أيام)', rs: 'يبدأ التذكير من وقت', re: 'ينتهي التذكير يوم المناسبة عند' }).filter(function (o) { return o.key && on(o.on); });
     var msg = toObjs(bank.msg, { key: 'المفتاح', type: 'النوع', ar: 'النص العربي', en: 'English', ev: 'الدليل', st: 'الملصق', img: 'صورة (رابط اختياري)', on: 'مفعّل' }).filter(function (m) { return m.key && (m.ar || m.en) && on(m.on); });
     return { occ: occ, msg: msg };
   }
@@ -137,24 +137,24 @@
   }
   function loadImg(u) { return new Promise(function (res) { if (!u) return res(null); var i = new Image(); i.crossOrigin = 'anonymous'; i.onload = function () { res(i); }; i.onerror = function () { res(null); }; i.src = imgUrl(u); }); }
   function makeImage(r) { return loadImg(r.m.img).then(function (im) { return drawCard(r, im); }); }
-  function drawCard(r, im) {
+  function drawCard(r, im) {   // صورة مربعة يغلب عليها الملصق، والنص قصير تحته
     var S = 1080, cv = document.createElement('canvas'); cv.width = cv.height = S;
     var x = cv.getContext('2d'), m = r.m, txt = EN ? m.en : m.ar;
-    var bg = x.createRadialGradient(S / 2, S * 0.3, 60, S / 2, S / 2, S * 0.8); bg.addColorStop(0, '#1a3778'); bg.addColorStop(0.55, '#0b1d48'); bg.addColorStop(1, '#050d24');
+    var bg = x.createRadialGradient(S / 2, S * 0.35, 80, S / 2, S / 2, S * 0.8); bg.addColorStop(0, '#1d3c80'); bg.addColorStop(0.55, '#0b1d48'); bg.addColorStop(1, '#050d24');
     x.fillStyle = bg; x.fillRect(0, 0, S, S);
-    x.strokeStyle = '#d9b15c'; x.lineWidth = 6; x.strokeRect(36, 36, S - 72, S - 72); x.lineWidth = 2; x.strokeRect(52, 52, S - 104, S - 104);
-    x.textAlign = 'center'; x.direction = EN ? 'ltr' : 'rtl';
-    x.textBaseline = 'middle';
-    var top = 440;
-    if (im) { x.drawImage(im, S / 2 - 260, 70, 520, 520); top = 600; }
-    else { x.font = '220px "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif'; x.fillText(m.st || '✨', S / 2, 270);
-      x.fillStyle = '#e9cf8c'; x.font = 'bold 40px Tajawal, "Segoe UI", sans-serif'; x.fillText(EN ? (r.occ.en || r.occ.name) : r.occ.name, S / 2, 440); }
-    var box = im ? 330 : 420, y1 = im ? 610 : 520, fs = EN ? (im ? 44 : 52) : (im ? 50 : 60); x.fillStyle = '#f6e7bd';
-    do { x.font = (EN ? '' : 'bold ') + fs + 'px ' + (EN ? 'Tajawal, "Segoe UI", sans-serif' : 'Amiri, "Traditional Arabic", serif'); var L = wrapLines(x, txt, S - 200); fs -= 4; } while (L.length * fs * 1.7 > box && fs > 28);
-    var lh = (fs + 4) * 1.7, y0 = y1 + (box - L.length * lh) / 2 + lh / 2;
+    x.fillStyle = 'rgba(233,207,140,.07)'; for (var i = 0; i < 26; i++) { x.beginPath(); x.arc((i * 397) % S, (i * 263) % S, 3 + (i % 4), 0, 7); x.fill(); }
+    x.strokeStyle = '#d9b15c'; x.lineWidth = 6; x.strokeRect(30, 30, S - 60, S - 60); x.lineWidth = 2; x.strokeRect(46, 46, S - 92, S - 92);
+    x.textAlign = 'center'; x.textBaseline = 'middle'; x.direction = EN ? 'ltr' : 'rtl';
+    var y1, box;
+    if (im) { x.drawImage(im, S / 2 - 370, 60, 740, 740); y1 = 800; box = 190; }
+    else { x.font = '300px "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif'; x.fillText(m.st || '✨', S / 2, 330);
+      x.fillStyle = '#e9cf8c'; x.font = 'bold 54px Tajawal, "Segoe UI", sans-serif'; x.fillText(EN ? (r.occ.en || r.occ.name) : r.occ.name, S / 2, 600); y1 = 680; box = 300; }
+    var fs = EN ? 40 : 46, L; x.fillStyle = '#f6e7bd';
+    do { x.font = (EN ? '' : 'bold ') + fs + 'px ' + (EN ? 'Tajawal, "Segoe UI", sans-serif' : 'Amiri, "Traditional Arabic", serif'); L = wrapLines(x, txt, S - 180); fs -= 2; } while (L.length * fs * 1.6 > box && fs > 24);
+    var lh = (fs + 2) * 1.6, y0 = y1 + (box - L.length * lh) / 2 + lh / 2;
     L.forEach(function (l, i) { x.fillText(l, S / 2, y0 + i * lh); });
-    x.fillStyle = '#d9b15c'; x.font = 'bold 34px Tajawal, "Segoe UI", sans-serif'; x.direction = 'rtl';
-    x.fillText(EN ? 'Mishkat · mishkatapps.github.io' : 'مشكاة · mishkatapps.github.io', S / 2, S - 110);
+    x.fillStyle = '#d9b15c'; x.font = 'bold 30px Tajawal, "Segoe UI", sans-serif'; x.direction = 'rtl';
+    x.fillText(EN ? 'Mishkat · mishkatapps.github.io' : 'مشكاة · mishkatapps.github.io', S / 2, S - 72);
     return new Promise(function (res) { cv.toBlob(res, 'image/png'); });
   }
   function shareImage(r) {
@@ -173,12 +173,40 @@
     if (b.dataset.g === 'next') render(k);
     else if (b.dataset.g === 'copy') { (navigator.clipboard ? navigator.clipboard.writeText(shareText(r)) : Promise.reject()).then(function () { toast(EN ? 'Copied' : 'تم النسخ'); }, function () {}); }
     else if (b.dataset.g === 'img') shareImage(r);
-    else if (b.dataset.g === 'stk') fetch(imgUrl(r.m.img)).then(function (x) { return x.blob(); }).then(function (blob) {
-      var f = new File([blob], 'mishkat-sticker-' + r.occ.key + '.png', { type: 'image/png' });
-      if (navigator.canShare && navigator.canShare({ files: [f] })) return navigator.share({ files: [f] }).catch(function () {});
-      var a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = f.name; document.body.appendChild(a); a.click(); a.remove(); toast(EN ? 'Sticker saved' : 'تم حفظ الملصق');
-    }).catch(function () {});
+    else if (b.dataset.g === 'stk') fetch(imgUrl(r.m.img)).then(function (x) { return x.blob(); }).then(function (blob) { shareBlob(blob, 'mishkat-sticker-' + r.occ.key + '.png', EN ? 'Sticker saved' : 'تم حفظ الملصق'); }).catch(function () {});
   });
+
+  /* ---------- معرض الملصقات: كل ملصقات مشكاة جاهزة للمشاركة ---------- */
+  var GAL = null;
+  function shareBlob(blob, name, okMsg) {
+    var f = new File([blob], name, { type: 'image/png' });
+    if (navigator.canShare && navigator.canShare({ files: [f] })) return navigator.share({ files: [f] }).catch(function () {});
+    var a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function () { URL.revokeObjectURL(a.href); }, 4000); toast(okMsg);
+  }
+  function gallery() {
+    var go = function (list) {
+      var c = context(new Date()), now = BANK ? BANK.occ.filter(function (o) { return active(o, c); }).map(function (o) { return o.key; }) : [];
+      upcoming().forEach(function (r) { now.push(r.occ.key); });
+      var score = function (it) { var o = it.occ || []; return o.some(function (k) { return now.indexOf(k) >= 0; }) ? 0 : !o.length ? 1 : /^g-/.test(it.id) ? 2 : 3; };
+      list = list.slice().sort(function (a, b) { return score(a) - score(b); });
+      var old = document.getElementById('mkGal'); if (old) old.remove();
+      var w = document.createElement('div'); w.id = 'mkGal'; w.className = 'rmd-back'; w.setAttribute('role', 'dialog'); w.setAttribute('aria-modal', 'true');
+      w.innerHTML = '<div class="rmd gal"><button class="rmd-x" aria-label="' + (EN ? 'Close' : 'إغلاق') + '">✕</button><h3>🎨 ' + (EN ? 'Stickers to share' : 'ملصقات للمشاركة') + '</h3>' +
+        '<p class="gal-tip">' + (EN ? 'Tap a sticker to send it to friends (WhatsApp, Telegram…)' : 'اضغط على أي ملصق لإرساله إلى أصدقائك (واتساب، تيليجرام…)') + '</p><div class="gal-grid">' +
+        list.map(function (it) { return '<button class="gal-it' + (score(it) === 0 ? ' now' : '') + '" data-id="' + esc(it.id) + '" title="' + esc(EN ? (it.en || '') : (it.ar || '')) + '"><img src="img/stickers/' + esc(it.id) + '.png" alt="' + esc(it.ar || '') + '" loading="lazy"></button>'; }).join('') +
+        '</div></div>';
+      document.body.appendChild(w); document.body.classList.add('rmd-open');
+      var close = function () { w.remove(); document.body.classList.remove('rmd-open'); };
+      w.addEventListener('click', function (e) {
+        if (e.target === w || e.target.closest('.rmd-x')) return close();
+        var b = e.target.closest('.gal-it'); if (!b) return;
+        fetch('img/stickers/' + b.dataset.id + '.png').then(function (x) { return x.blob(); }).then(function (blob) { shareBlob(blob, 'mishkat-' + b.dataset.id + '.png', EN ? 'Sticker saved' : 'تم حفظ الملصق'); }).catch(function () {});
+      });
+    };
+    if (GAL) return go(GAL);
+    fetch('img/stickers/index.json').then(function (x) { return x.json(); }).then(function (l) { GAL = l; go(l); }).catch(function () { toast(EN ? 'Could not load stickers' : 'تعذّر تحميل الملصقات'); });
+  }
 
   /* ---------- التذكير المسبق (نافذة عند دخول الموقع) ---------- */
   var RK = 'mk-remind-ack', ROFF = 'mk-remind-off', RSHOWN = 'mk-remind-shown';
@@ -194,14 +222,17 @@
   function upcoming() {
     if (!BANK) return [];
     var P = window.MK_PRAY && window.MK_PRAY.now ? window.MK_PRAY.now() : null, tz = P ? P.loc.tz : Intl.DateTimeFormat().resolvedOptions().timeZone;
-    var now = Date.now(), today = dayInfo(tz, new Date(now)), ack = {}; try { ack = JSON.parse(ls(RK) || '{}'); } catch (e) {}
-    var out = [], seen = {};
+    var now = Date.now(), ack = {}; try { ack = JSON.parse(ls(RK) || '{}'); } catch (e) {}
+    var C = context(new Date(now)), t = C.M.now, out = [], seen = {};
     BANK.occ.forEach(function (o) {
       var R = parseInt(o.rem, 10); if (!(R > 0) || seen[o.key]) return;
-      for (var d = 1; d <= R; d++) {
+      // نافذة التذكير: من «يبدأ التذكير من وقت» في أول أيام التذكير، حتى «ينتهي التذكير يوم المناسبة عند» في يوم المناسبة نفسه
+      for (var d = 0; d <= R; d++) {
         var x = dayInfo(tz, new Date(now + d * 864e5));
         if (!startsOn(o, x)) continue;
         if (d > 1 && startsOn(o, dayInfo(tz, new Date(now)))) break;
+        if (d === 0 && !(o.re && C.ok && t < tmin(o.re, C.M, false))) break;   // يوم المناسبة: حتى الوقت المحدد فقط
+        if (d === R && o.rs && t < tmin(o.rs, C.M, false)) break;               // أول أيام التذكير: من الوقت المحدد
         var id = o.key + '|' + x.ymd; if (ack[id]) break;
         var list = BANK.msg.filter(function (m) { return m.key === o.key && m.type === 'تذكير' && (EN ? m.en : m.ar); });
         if (!list.length) break;
@@ -210,11 +241,13 @@
     });
     return out.sort(function (a, b) { return a.d - b.d || (+b.occ.pr || 0) - (+a.occ.pr || 0); });
   }
-  function when(d) { return EN ? (d === 1 ? 'Tomorrow' : d === 2 ? 'In two days' : 'In ' + d + ' days') : (d === 1 ? 'غدًا' : d === 2 ? 'بعد يومين' : 'بعد ' + d + ' أيام'); }
+  function when(d) { if (d === 0) return EN ? 'Today' : 'اليوم'; return EN ? (d === 1 ? 'Tomorrow' : d === 2 ? 'In two days' : 'In ' + d + ' days') : (d === 1 ? 'غدًا' : d === 2 ? 'بعد يومين' : 'بعد ' + d + ' أيام'); }
   function showReminders(force) {
-    if (!force && (ls(ROFF) === '1' || sessionStorage.getItem(RSHOWN))) return;
-    var list = upcoming(); if (!list.length) { if (force) toast(EN ? 'No upcoming reminders' : 'لا توجد تذكيرات قادمة'); return; }
-    try { sessionStorage.setItem(RSHOWN, '1'); } catch (e) {}
+    if (!force && (ls(ROFF) === '1' || document.getElementById('mkRemind'))) return;
+    var shown = []; try { shown = JSON.parse(sessionStorage.getItem(RSHOWN) || '[]'); if (!Array.isArray(shown)) shown = []; } catch (e) {}
+    var list = upcoming(); if (!force) list = list.filter(function (r) { return shown.indexOf(r.id) < 0; });   // لا يتكرر في نفس الزيارة إلا الجديد
+    if (!list.length) { if (force) toast(EN ? 'No upcoming reminders' : 'لا توجد تذكيرات قادمة'); return; }
+    try { sessionStorage.setItem(RSHOWN, JSON.stringify(shown.concat(list.map(function (r) { return r.id; })))); } catch (e) {}
     var old = document.getElementById('mkRemind'); if (old) old.remove();
     var w = document.createElement('div'); w.id = 'mkRemind'; w.className = 'rmd-back'; w.setAttribute('role', 'dialog'); w.setAttribute('aria-modal', 'true');
     w.innerHTML = '<div class="rmd"><button class="rmd-x" aria-label="' + (EN ? 'Close' : 'إغلاق') + '">✕</button><h3>🔔 ' + (EN ? 'Reminder' : 'تذكير') + '</h3>' +
@@ -234,8 +267,10 @@
   function bell() {   // رابط صغير تحت البطاقات لإعادة تفعيل التذكير أو عرضه
     var b = document.getElementById('mkBell'); if (!b) { b = document.createElement('div'); b.id = 'mkBell'; b.className = 'rmd-bell'; box.parentNode.insertBefore(b, box.nextSibling); }
     var off = ls(ROFF) === '1', n = upcoming().length;
-    b.innerHTML = off ? '<button>' + (EN ? '🔔 Turn reminders back on' : '🔔 تفعيل نافذة التذكير') + '</button>' : (n ? '<button>' + (EN ? '🔔 Upcoming reminders (' + n + ')' : '🔔 تذكيرات قادمة (' + n + ')') + '</button>' : '');
-    b.onclick = function (e) { if (!e.target.closest('button')) return; if (off) { try { localStorage.removeItem(ROFF); } catch (x) {} } showReminders(true); bell(); navToggle(); };
+    b.innerHTML = '<button data-b="gal">' + (EN ? '🎨 Stickers to share' : '🎨 ملصقات للمشاركة') + '</button>' +
+      (off ? '<button data-b="rem">' + (EN ? '🔔 Turn reminders back on' : '🔔 تفعيل نافذة التذكير') + '</button>' : (n ? '<button data-b="rem">' + (EN ? '🔔 Upcoming reminders (' + n + ')' : '🔔 تذكيرات قادمة (' + n + ')') + '</button>' : ''));
+    b.onclick = function (e) { var t = e.target.closest('button'); if (!t) return; if (t.dataset.b === 'gal') return gallery();
+      if (off) { try { localStorage.removeItem(ROFF); } catch (x) {} } showReminders(true); bell(); navToggle(); };
   }
 
   function navToggle() {   // مفتاح في قائمة الموقع: تشغيل/إيقاف نافذة التذكير عند الدخول
@@ -255,11 +290,75 @@
     a.innerHTML = '<span>' + (on ? '🔔' : '🔕') + ' <span class="t">' + lbl + '</span></span><span class="sw" aria-hidden="true"></span>';
   }
 
+
+  /* ---------- «مشكاة النبوة»: حديث اليوم ---------- */
+  var HK = 'mk-hadith-v1', HBOX = document.getElementById('mkHadith'), HALL = window.MK_HADITH || [], HCUR = null, HOV = null;
+  function hFetch() {   // ورقة «مشكاة النبوة»: الرقم، المناسبة، مفعّل
+    var u = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/gviz/tq?tqx=out:csv&headers=1&sheet=' + encodeURIComponent('مشكاة النبوة') + '&_=' + Math.floor(Date.now() / 300000);
+    return fetch(u, { cache: 'no-store' }).then(function (r) { if (!r.ok) throw 0; return r.text(); }).then(function (t) {
+      var rows = csv(t), h = rows[0] || [], iN = h.indexOf('الرقم'), iO = h.indexOf('المناسبة'), iE = h.indexOf('مفعّل'), o = {};
+      if (iN < 0 || iE < 0) throw 0;
+      rows.slice(1).forEach(function (r) { var n = parseInt(r[iN], 10); if (n) o[n] = { on: String(r[iE] || '').trim(), occ: iO < 0 ? null : String(r[iO] || '').trim() }; });
+      return o;
+    });
+  }
+  function hList() {
+    return HALL.map(function (h) { var o = HOV && HOV[h.n]; return o ? { h: h, on: o.on ? !/^(لا|no|false|0)$/i.test(o.on) : h.on === 'نعم', occ: o.occ != null ? o.occ : h.occ } : { h: h, on: h.on === 'نعم', occ: h.occ }; })
+      .filter(function (x) { return x.on; });
+  }
+  function hDayNum() { var P = window.MK_PRAY && window.MK_PRAY.now ? window.MK_PRAY.now() : null, tz = P ? P.loc.tz : Intl.DateTimeFormat().resolvedOptions().timeZone, g = parts(tz, new Date());
+    return Math.floor(Date.UTC(+g.year, +g.month - 1, +g.day) / 864e5); }
+  function hPerm(n) {   // ترتيب عشوائي ثابت للجميع: لا يتكرر الحديث حتى تُستوفى كل الأحاديث
+    var a = []; for (var i = 0; i < n; i++) a.push(i);
+    var s = 20261117; for (var j = n - 1; j > 0; j--) { s = (s * 1103515245 + 12345) % 2147483648; var k = s % (j + 1), t = a[j]; a[j] = a[k]; a[k] = t; }
+    return a;
+  }
+  function hToday() {
+    var L = hList(); if (!L.length) return null;
+    var d = hDayNum(), c = context(new Date()), act = BANK ? BANK.occ.filter(function (o) { return (String(o.hm).trim() || o.d1 || o.wd) && active(Object.assign({}, o, { t1: '', t2: '' }), c); }).map(function (o) { return o.key; }) : [];   // مناسبات اليوم فقط (لا الأوقات اليومية المتكررة)
+    var occ = L.filter(function (x) { return String(x.occ || '').split(/[،,\s]+/).some(function (k) { return k && act.indexOf(k) >= 0; }); });
+    if (occ.length) return occ[d % occ.length].h;
+    var SEAS = /(^|,)\s*(ramadan|ramadan_start|last_ten|dhulhijja_ten|arafah|ashura|suhur|iftar)\s*(,|$)/;   // أحاديث المواسم تظهر في مواسمها فقط
+    var R = L.filter(function (x) { return !SEAS.test(String(x.occ || '')); }); if (!R.length) R = L;
+    return R[hPerm(R.length)[d % R.length]].h;
+  }
+  function hImg(h) { return 'img/hadith/' + ('00' + h.n).slice(-3) + '.jpg'; }
+  function hText(h) { return h.head + ': «' + h.text + '»\n' + [h.nar, h.src + (h.grade ? ' (' + h.grade + ')' : '')].filter(Boolean).join(' — '); }
+  function hRender(h) {
+    if (!HBOX) return; if (!h) { HBOX.hidden = true; return; } HCUR = h;
+    HBOX.innerHTML = '<div class="h-top"><span class="h-lbl">' + (EN ? '✦ Mishkat an-Nubuwwah · Hadith of the day' : '✦ مشكاة النبوة · حديث اليوم') + '</span></div>' +
+      '<figure class="h-fig"><img src="' + hImg(h) + '" alt="' + esc(h.head + ': ' + h.text) + '" loading="lazy" onerror="this.parentNode.classList.add(\'noimg\')">' +
+      '<figcaption class="h-txt" lang="ar" dir="rtl"><b>' + esc(h.head) + ':</b> «' + esc(h.text) + '»<small>' + esc([h.nar, h.src + (h.grade ? ' (' + h.grade + ')' : '')].filter(Boolean).join(' · ')) + '</small></figcaption></figure>' +
+      '<div class="gbtns"><button class="btn sm gold" data-h="img">' + (EN ? '🖼 Share image' : '🖼 مشاركة الصورة') + '</button>' +
+      '<button class="btn sm" data-h="copy">' + (EN ? '⧉ Copy text' : '⧉ نسخ النص') + '</button>' +
+      '<button class="btn sm" data-h="next">' + (EN ? '↻ Another hadith' : '↻ حديث آخر') + '</button></div>';
+    HBOX.hidden = false;
+  }
+  if (HBOX) HBOX.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-h]'); if (!b || !HCUR) return; var h = HCUR;
+    if (b.dataset.h === 'next') { var L = hList(); if (L.length > 1) { var x; do { x = L[Math.floor(Math.random() * L.length)].h; } while (x === h); hRender(x); HBOX.scrollIntoView({ block: 'nearest', behavior: 'smooth' }); } }
+    else if (b.dataset.h === 'copy') { var t = hText(h) + '\n\n— ' + (EN ? 'Mishkat · https://mishkatapps.github.io/?lang=en' : 'مشكاة · https://mishkatapps.github.io/');
+      (navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject()).then(function () { toast(EN ? 'Copied' : 'تم النسخ'); }, function () {}); }
+    else if (b.dataset.h === 'img') fetch(hImg(h)).then(function (x) { if (!x.ok) throw 0; return x.blob(); }).then(function (blob) {
+      var f = new File([blob], 'mishkat-hadith-' + h.n + '.jpg', { type: 'image/jpeg' });
+      if (navigator.canShare && navigator.canShare({ files: [f] })) return navigator.share({ files: [f], text: EN ? 'Mishkat · https://mishkatapps.github.io/' : 'مشكاة النبوة · https://mishkatapps.github.io/' }).catch(function () {});
+      var a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = f.name; document.body.appendChild(a); a.click(); a.remove(); toast(EN ? 'Image saved' : 'تم حفظ الصورة');
+    }).catch(function () { toast(EN ? 'Could not load the image' : 'تعذّر تحميل الصورة'); });
+  });
+  function hInit() {
+    try { HOV = JSON.parse(localStorage.getItem(HK) || 'null'); } catch (e) {}
+    hRender(hToday());
+    hFetch().then(function (o) { var s = JSON.stringify(o); if (s === JSON.stringify(HOV)) return; HOV = o; try { localStorage.setItem(HK, s); } catch (e) {} hRender(hToday()); }).catch(function () {});
+    var day = hDayNum(); setInterval(function () { var d = hDayNum(); if (d !== day) { day = d; hRender(hToday()); } }, 10 * 60 * 1000);
+  }
+
   /* ---------- التشغيل ---------- */
   var cached = null; try { cached = JSON.parse(localStorage.getItem(CK) || 'null'); } catch (e) {}
   BANK = parse(cached || window.MK_GREET_DEFAULT || { occ: [[]], msg: [[]] });
   render(); bell(); navToggle();
+  hInit();
   var remT = setTimeout(function () { showReminders(); }, 2500);   // تنتظر بيانات الجدول قليلًا ثم تظهر
+  setInterval(function () { if (!document.hidden) { showReminders(); bell(); } }, 5 * 60 * 1000);   // يظهر التذكير عند دخول وقته والصفحة مفتوحة
   fetchBank().then(function (b) {
     var s = JSON.stringify(b); if (cached && JSON.stringify(cached) === s) return;
     try { localStorage.setItem(CK, s); } catch (e) {}
@@ -267,5 +366,5 @@
   }).catch(function () {});
   var sig = function () { var c = context(new Date()); return BANK.occ.filter(function (o) { return active(o, c); }).map(function (o) { return o.key; }).join(','); }, last = sig();
   setInterval(function () { var s = sig(); if (s !== last) { last = s; render(); } }, 60 * 1000);   // تتغير البطاقات عند دخول وقت جديد فقط
-  window.MK_GREET_TEST = { context: context, active: active, bank: function () { return BANK; }, render: render, upcoming: upcoming, show: showReminders };
+  window.MK_GREET_TEST = { hToday: hToday, hList: hList, gallery: gallery, context: context, active: active, bank: function () { return BANK; }, render: render, upcoming: upcoming, show: showReminders };
 })();
