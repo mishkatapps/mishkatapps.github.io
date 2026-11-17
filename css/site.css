@@ -120,3 +120,24 @@ nav .links a.rmd-nav{display:inline-flex;align-items:center;gap:8px}
 .rmd-nav.on .sw::after{inset-inline-start:17px}
 @media(min-width:821px){.rmd-nav .t{display:none}.rmd-nav .sw{display:none}}
 @media(max-width:820px){nav .links a.rmd-nav{display:flex!important;justify-content:space-between}}
+/* معرض الملصقات */
+.rmd-bell{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.rmd.gal{width:min(640px,100%)}
+.gal-tip{text-align:center;margin:-4px 0 12px;font-size:14px;opacity:.85}
+.gal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(88px,1fr));gap:8px}
+.gal-it{background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:18px;padding:6px;cursor:pointer;transition:transform .15s}
+.gal-it:hover,.gal-it:focus-visible{transform:scale(1.05);border-color:var(--gold)}
+.gal-it.now{border-color:var(--gold);background:rgba(217,177,92,.14)}
+.gal-it img{width:100%;aspect-ratio:1;object-fit:contain;display:block}
+/* «مشكاة النبوة»: حديث اليوم */
+.hadith{margin:0 auto 22px;max-width:560px;border-radius:26px;padding:14px 14px 12px;border:1px solid var(--gold);background:radial-gradient(circle at 50% 0%,rgba(233,207,140,.16),transparent 60%),linear-gradient(160deg,#16306d,#0b1d48 60%,#081433);display:flex;flex-direction:column;gap:10px}
+.hadith .h-top{text-align:center}
+.hadith .h-lbl{display:inline-block;font-weight:700;font-size:14px;color:#0b1d3f;background:var(--gold);padding:4px 16px;border-radius:999px}
+.hadith .h-fig{margin:0;position:relative}
+.hadith .h-fig img{width:100%;aspect-ratio:1;display:block;border-radius:18px;box-shadow:0 10px 26px rgba(0,0,0,.4);background:#0b1d48}
+.hadith .h-txt{display:none;font-family:Amiri,"Traditional Arabic",serif;font-size:21px;line-height:1.9;text-align:center;color:#f6e7bd;padding:6px 8px}
+.hadith .h-txt b{color:var(--gold);display:block;font-size:18px}
+.hadith .h-txt small{display:block;font-family:inherit;font-size:13px;opacity:.8;margin-top:6px}
+.hadith .h-fig.noimg img{display:none}
+.hadith .h-fig.noimg .h-txt{display:block}
+.hadith .gbtns{display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
