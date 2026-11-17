@@ -6,6 +6,7 @@
 <title>لوحة مدير مشكاة</title>
 <link rel="icon" type="image/png" href="../img/favicon.png">
 <script src="https://accounts.google.com/gsi/client" async></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.119.0/dist/umd/supabase.js"></script>
 <meta charset="utf-8">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&family=Amiri:wght@700&display=swap" rel="stylesheet">
@@ -129,6 +130,12 @@ footer{text-align:center;color:var(--mut);font-size:12.5px;padding:16px}
 #gbtn{display:flex;justify-content:center;min-height:44px}
 #gmsg{margin-top:16px;color:#b42318;font-weight:700;min-height:1.4em;line-height:1.7}
 #gate .back{display:inline-block;margin-top:14px;font-size:13.5px}
+/* تبويب سعر ميزانية البيت */
+.pf{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;align-items:end}
+.pf label{display:grid;gap:4px;font-size:14px;color:var(--mut);font-weight:700}
+.pf .wide{grid-column:1/-1}
+.pf input,.pf textarea{border:1px solid var(--line);border-radius:12px;padding:8px 12px;font:15px Tajawal;background:#fff;color:var(--ink);width:100%}
+.pq{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:13px;color:var(--mut)}
 </style>
 </head>
 <body>
@@ -154,6 +161,7 @@ footer{text-align:center;color:var(--mut);font-size:12.5px;padding:16px}
 <div class="tabs">
   <button class="tab on" data-tab="r">⭐ التقييمات <span class="badge" id="bR">…</span></button>
   <button class="tab" data-tab="m">✉️ البريد <span class="badge" id="bM">…</span></button>
+  <button class="tab" data-tab="p">💰 سعر ميزانية البيت</button>
 </div>
 
 <main>
@@ -175,6 +183,9 @@ footer{text-align:center;color:var(--mut);font-size:12.5px;padding:16px}
         <div style="text-align:center;margin-top:8px"><button class="btn ghost sm" id="more" hidden>عرض المزيد</button></div></div>
       <div class="reader" id="reader"><div class="empty-st">اختر رسالة لقراءتها</div></div>
     </div>
+  </section>
+  <section class="panel" id="pP" hidden>
+    <div id="pBody"><div class="empty-st">افتح هذا التبويب لعرض السعر</div></div>
   </section>
 </main>
 <footer>مشكاة — برمجيات نافعة للهاتف والحاسب · هذه الصفحة خاصة بإدارة مشكاة</footer>
@@ -250,7 +261,8 @@ const STATUSES = ['جديد', 'تمت القراءة', 'قيد التنفيذ', 
 /* ---------- التبويبات ---------- */
 document.querySelectorAll('.tab').forEach(b => b.onclick = () => {
   document.querySelectorAll('.tab').forEach(x => x.classList.toggle('on', x === b));
-  $('#pR').hidden = b.dataset.tab !== 'r'; $('#pM').hidden = b.dataset.tab !== 'm';
+  $('#pR').hidden = b.dataset.tab !== 'r'; $('#pM').hidden = b.dataset.tab !== 'm'; $('#pP').hidden = b.dataset.tab !== 'p';
+  if (b.dataset.tab === 'p' && window.mkPricing) mkPricing.open();
   if (b.dataset.tab === 'm' && !M.loaded) loadMail();
 });
 $('#refresh').onclick = () => { loadRatings(); if (!$('#pM').hidden || M.loaded) loadMail(); };
@@ -374,6 +386,137 @@ document.querySelectorAll('#qchips button').forEach(b => b.onclick = () => { doc
 $('#more').onclick = () => loadMail(true);
 
 initGoogle();
+</script>
+<script>
+/* ===== السعر والخصم لتطبيق «ميزانية البيت» (قاعدة Supabase للنسخة العامة) ===== */
+(function () {
+  const SB_URL = 'https://uakmtakkctlkjvuityug.supabase.co';
+  const SB_KEY = 'sb_publishable_qHWTZdtAJgTlYMmYuGq2mA_6nE8nX-J'; // مفتاح عام بطبيعته؛ الحماية في دوال القاعدة (صاحب التطبيق فقط)
+  const FLAG = 'mk-open-pricing';
+  const q = s => document.querySelector(s);
+  const body = () => q('#pBody');
+  let sb = null, busy = false;
+
+  function client() {
+    if (!sb) {
+      if (!window.supabase || !window.supabase.createClient) throw new Error('تعذر تحميل مكتبة Supabase. تحقق من الإنترنت ثم حدّث الصفحة.');
+      // مفتاح تخزين منفصل حتى لا يختلط بدخول تطبيق «ميزانية البيت» على النطاق نفسه
+      sb = window.supabase.createClient(SB_URL, SB_KEY, { auth: { storageKey: 'mk-admin-budget', persistSession: true, detectSessionInUrl: true, flowType: 'pkce' } });
+    }
+    return sb;
+  }
+  const pad = n => String(n).padStart(2, '0');
+  const ymd = d => d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
+  const addDays = (s, n) => { const d = new Date(s + 'T12:00:00'); d.setDate(d.getDate() + n); return ymd(d); };
+  const today = () => ymd(new Date());
+  const MONTHS = ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو', 'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'];
+  const dayName = s => { if (!s) return ''; const p = s.split('-').map(Number); return p[2] + ' ' + MONTHS[p[1] - 1] + ' ' + p[0]; };
+  const loading = t => { body().innerHTML = '<div class="loading"><div class="spin"></div>' + esc(t) + '</div>'; };
+  const fail = (m, extra) => { body().innerHTML = '<div class="err">' + esc(m) + '</div>' + (extra || ''); bindSwitch(); };
+
+  async function open() {
+    if (busy) return; busy = true;
+    loading('جارٍ الاتصال بقاعدة «ميزانية البيت»…');
+    try {
+      const c = client();
+      const { data: { session } } = await c.auth.getSession();
+      if (location.search.includes('code=')) history.replaceState(null, '', location.pathname);
+      if (!session) return renderLogin();
+      const { data: owner, error } = await c.rpc('is_app_owner');
+      if (error) return fail('تعذر التحقق من الصلاحية: ' + error.message, '<p>إن كانت الرسالة عن دالة غير موجودة فشغّل ملف المخطط supabase/schema.sql في مشروع mishkatapps-budget أولاً.</p>' + switchBtn());
+      if (!owner) return renderNotOwner(session.user.email || '');
+      const { data: info, error: e2 } = await c.from('app_info').select('*').maybeSingle();
+      if (e2) return fail('تعذرت قراءة السعر: ' + e2.message);
+      renderForm(info || {}, session.user.email || '');
+    } catch (e) { fail(e.message || String(e)); }
+    finally { busy = false; }
+  }
+
+  function renderLogin() {
+    body().innerHTML = '<div class="box" style="max-width:560px"><h3>💰 السعر والخصم — ميزانية البيت</h3>' +
+      '<p>لتغيير السعر سجّل الدخول إلى قاعدة «ميزانية البيت» بحساب Google المسجَّل كصاحب للتطبيق. يُطلب هذا مرة واحدة على هذا المتصفح.</p>' +
+      '<button class="btn" id="pLogin">تسجيل الدخول إلى قاعدة ميزانية البيت</button></div>';
+    q('#pLogin').onclick = async () => {
+      try { sessionStorage.setItem(FLAG, '1'); } catch (e) {}
+      const { error } = await client().auth.signInWithOAuth({ provider: 'google', options: { redirectTo: location.origin + location.pathname } });
+      if (error) fail('تعذر بدء الدخول: ' + error.message);
+    };
+  }
+  const switchBtn = () => '<p><button class="btn ghost sm" id="pSwitch">تبديل الحساب</button></p>';
+  function bindSwitch() { const b = q('#pSwitch'); if (b) b.onclick = async () => { await client().auth.signOut(); open(); }; }
+
+  function renderNotOwner(email) {
+    const sql = "insert into public.app_owners (email) values ('" + email.replace(/'/g, "''") + "');";
+    body().innerHTML = '<div class="err">الحساب <b dir="ltr">' + esc(email) + '</b> غير مسجّل كصاحب للتطبيق، فلا يستطيع تغيير السعر.</div>' +
+      '<div class="box"><h3>لتسجيله صاحباً للتطبيق</h3>' +
+      '<p>في Supabase افتح مشروع <b>mishkatapps-budget</b> ← SQL Editor (والقائمة بجوار Run على Database)، وشغّل هذا السطر مرة واحدة، ثم اضغط «إعادة المحاولة»:</p>' +
+      '<pre dir="ltr" style="white-space:pre-wrap;background:#0b1d3f;color:#f2d083;padding:10px;border-radius:10px">' + esc(sql) + '</pre>' +
+      '<div class="ra"><button class="btn sm" id="pCopy">نسخ السطر</button><button class="btn ghost sm" id="pRetry">إعادة المحاولة</button></div></div>' + switchBtn();
+    q('#pCopy').onclick = () => navigator.clipboard.writeText(sql).then(() => toast('نُسخ السطر'));
+    q('#pRetry').onclick = open;
+    bindSwitch();
+  }
+
+  function renderForm(info, email) {
+    const tomorrow = addDays(today(), 1);
+    const v = x => esc(x == null ? '' : x);
+    body().innerHTML =
+      '<div class="grid2"><div class="box"><h3>💰 السعر والخصم — ميزانية البيت</h3>' +
+      '<form id="pForm" class="pf">' +
+      '<label>السعر الأساسي (دفعة واحدة)<input type="number" id="pBase" min="0" step="1" required value="' + v(info.base_price) + '" placeholder="مثال: 500"></label>' +
+      '<label>العملة<input id="pCur" maxlength="20" value="' + v(info.currency || 'جنيه') + '"></label>' +
+      '<label>نسبة الخصم %<input type="number" id="pPct" min="0" max="100" step="1" value="' + v(info.discount_percent == null ? 0 : info.discount_percent) + '"></label>' +
+      '<label>يبدأ الخصم يوم<input type="date" id="pFrom" value="' + v(info.discount_from) + '"></label>' +
+      '<label>وينتهي يوم (شاملاً)<input type="date" id="pTo" value="' + v(info.discount_to) + '"></label>' +
+      '<div class="pq"><span>اختصارات:</span>' +
+      '<button type="button" class="btn ghost sm" data-pct="10">10%</button><button type="button" class="btn ghost sm" data-pct="20">20%</button>' +
+      '<button type="button" class="btn ghost sm" data-pct="30">30%</button><button type="button" class="btn ghost sm" data-pct="50">50%</button>' +
+      '<button type="button" class="btn ghost sm" id="pWeek">أسبوع يبدأ غداً</button><button type="button" class="btn ghost sm" id="pNone">بلا خصم</button></div>' +
+      '<label class="wide">تعليمات الدفع (تظهر للمدير في شاشة الاشتراك)<textarea id="pPay" rows="4" maxlength="800" placeholder="حوّل المبلغ عبر InstaPay إلى العنوان …، ثم أرسل صورة التحويل إلى mishkatapps@gmail.com ليصلك رمز التفعيل.">' + v(info.payment_info) + '</textarea></label>' +
+      '<div class="ra wide"><button class="btn" id="pSave">حفظ السعر</button><button type="button" class="btn ghost sm" id="pReload">↻ إعادة التحميل</button></div>' +
+      '</form></div>' +
+      '<div class="box"><h3>كما يظهر في التطبيق</h3><div id="pPrev"></div>' +
+      '<p style="color:var(--mut);font-size:13px;margin-top:14px">' + (info.updated_at ? 'آخر تعديل: ' + esc(new Date(info.updated_at).toLocaleString('ar-EG-u-nu-latn')) : 'لم يُضبط السعر من هنا بعد.') +
+      '<br>متصل باسم <span dir="ltr">' + esc(email) + '</span> · <a href="#" id="pOut">قطع الاتصال</a></p></div></div>';
+    const f = { base: q('#pBase'), cur: q('#pCur'), pct: q('#pPct'), from: q('#pFrom'), to: q('#pTo'), pay: q('#pPay') };
+    const preview = () => {
+      const base = +f.base.value || 0, pct = +f.pct.value || 0, cur = f.cur.value.trim() || 'جنيه', from = f.from.value, to = f.to.value, now = today();
+      const has = pct > 0 && from && to, active = has && now >= from && now <= to, soon = has && now < from;
+      const final = active ? Math.round(base * (1 - pct / 100)) : base;
+      const status = !pct ? 'بلا خصم' : !from || !to ? '⚠ حدد بداية الخصم ونهايته' : to < from ? '⚠ النهاية قبل البداية'
+        : active ? '✅ الخصم سارٍ الآن' : soon ? '⏳ الخصم لم يبدأ بعد' : '⌛ انتهت مدة الخصم (يظهر السعر الأساسي)';
+      q('#pPrev').innerHTML = '<div style="font-size:15px">السعر ' + (active ? '<s style="color:var(--mut)">' + base.toLocaleString('en') + '</s> ' : '') +
+        '<b style="font-size:30px;color:' + (active ? '#15803d' : 'var(--navy)') + '">' + final.toLocaleString('en') + '</b> ' + esc(cur) + ' <span style="color:var(--mut)">تُدفع مرة واحدة</span></div>' +
+        (active ? '<span class="chip" style="background:#b42626;color:#fff">خصم ' + pct + '% حتى ' + dayName(to) + '</span>' : '') +
+        (soon ? '<span class="chip app">خصم ' + pct + '% من ' + dayName(from) + ' إلى ' + dayName(to) + '</span>' : '') +
+        '<p style="margin-top:10px"><b>' + status + '</b></p>' +
+        (f.pay.value.trim() ? '<p style="white-space:pre-line;font-size:14px;border-top:1px dashed var(--line);padding-top:8px">' + esc(f.pay.value.trim()) + '</p>' : '');
+    };
+    Object.values(f).forEach(i => { i.oninput = preview; });
+    document.querySelectorAll('[data-pct]').forEach(b => { b.onclick = () => { f.pct.value = b.dataset.pct; if (!f.from.value) { f.from.value = tomorrow; f.to.value = addDays(tomorrow, 6); } preview(); }; });
+    q('#pWeek').onclick = () => { f.from.value = tomorrow; f.to.value = addDays(tomorrow, 6); preview(); };
+    q('#pNone').onclick = () => { f.pct.value = 0; f.from.value = ''; f.to.value = ''; preview(); };
+    q('#pReload').onclick = open;
+    q('#pOut').onclick = async e => { e.preventDefault(); await client().auth.signOut(); open(); };
+    q('#pForm').onsubmit = async e => {
+      e.preventDefault();
+      const btn = q('#pSave'); btn.disabled = true;
+      const { error } = await client().rpc('set_pricing', {
+        p_base: +f.base.value, p_discount: +f.pct.value || 0, p_from: f.from.value || null, p_to: f.to.value || null,
+        p_payment: f.pay.value, p_currency: f.cur.value,
+      });
+      btn.disabled = false;
+      if (error) { toast('لم يُحفظ'); alert('لم يُحفظ: ' + error.message); return; }
+      toast('حُفظ السعر ✓'); open();
+    };
+    preview();
+  }
+
+  window.mkPricing = { open };
+  // بعد العودة من تسجيل الدخول: افتح تبويب السعر مباشرة
+  let back = false; try { back = sessionStorage.getItem(FLAG) === '1'; sessionStorage.removeItem(FLAG); } catch (e) {}
+  if (back || location.search.includes('code=')) { const t = document.querySelector('.tab[data-tab="p"]'); if (t) t.click(); }
+})();
 </script>
 </body>
 </html>
