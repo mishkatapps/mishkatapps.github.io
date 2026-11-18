@@ -190,9 +190,21 @@
   });
 
   /* ---------- معرض الملصقات: كل ملصقات مشكاة جاهزة للمشاركة ---------- */
-  var GAL = null;
+  /* الإتاحة من ورقة «إتاحة الملصقات» (المعرّف، مفعّل) يتحكم فيها المدير من لوحته؛
+     ما لم يُذكر في الورقة يظهر. إن تعذّرت قراءة الورقة يظهر الكل. */
+  var GAL = null, GAL_CATS = {}, GAL_CAT = '';
+  var gSrc = function (it) { return 'img/stickers/' + (it.src || it.id + '.png'); };
+  function galOff() {
+    var u = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/gviz/tq?tqx=out:csv&headers=1&sheet=' + encodeURIComponent('إتاحة الملصقات') + '&_=' + Math.floor(Date.now() / 300000);
+    return fetch(u).then(function (x) { return x.text(); }).then(function (t) {
+      var rows = csv(t), h = (rows[0] || []).map(function (x) { return String(x).trim(); }), iI = h.indexOf('المعرّف'), iE = h.indexOf('مفعّل'), off = {};
+      if (iI < 0 || iE < 0) return off;
+      rows.slice(1).forEach(function (r) { if (/^(لا|no|false|0)$/i.test(String(r[iE] || '').trim())) off[String(r[iI]).trim()] = 1; });
+      return off;
+    }).catch(function () { return {}; });
+  }
   function shareBlob(blob, name, okMsg) {
-    var f = new File([blob], name, { type: 'image/png' });
+    var f = new File([blob], name, { type: blob.type || 'image/png' });
     if (navigator.canShare && navigator.canShare({ files: [f] })) return navigator.share({ files: [f] }).catch(function () {});
     var a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click(); a.remove();
     setTimeout(function () { URL.revokeObjectURL(a.href); }, 4000); toast(okMsg);
@@ -203,22 +215,47 @@
       upcoming().forEach(function (r) { now.push(r.occ.key); });
       var score = function (it) { var o = it.occ || []; return o.some(function (k) { return now.indexOf(k) >= 0; }) ? 0 : !o.length ? 1 : /^g-/.test(it.id) ? 2 : 3; };
       list = list.slice().sort(function (a, b) { return score(a) - score(b); });
+      var BYID = {}; list.forEach(function (it) { BYID[it.id] = it; });
+      var cats = [], ord = Object.keys(GAL_CATS);
+      list.forEach(function (it) { var k = it.cat || 'occasion'; if (cats.indexOf(k) < 0) cats.push(k); });
+      cats.sort(function (a, b) { var x = ord.indexOf(a), y = ord.indexOf(b); return (x < 0 ? 99 : x) - (y < 0 ? 99 : y); });
+      if (GAL_CAT && cats.indexOf(GAL_CAT) < 0) GAL_CAT = '';
+      var cName = function (k) { var c = GAL_CATS[k] || {}; return EN ? (c.en || k) : (c.ar || k); };
       var old = document.getElementById('mkGal'); if (old) old.remove();
       var w = document.createElement('div'); w.id = 'mkGal'; w.className = 'rmd-back'; w.setAttribute('role', 'dialog'); w.setAttribute('aria-modal', 'true');
       w.innerHTML = '<div class="rmd gal"><button class="rmd-x" aria-label="' + (EN ? 'Close' : 'إغلاق') + '">✕</button><h3>🎨 ' + (EN ? 'Stickers to share' : 'ملصقات للمشاركة') + '</h3>' +
-        '<p class="gal-tip">' + (EN ? 'Tap a sticker to send it to friends (WhatsApp, Telegram…)' : 'اضغط على أي ملصق لإرساله إلى أصدقائك (واتساب، تيليجرام…)') + '</p><div class="gal-grid">' +
-        list.map(function (it) { return '<button class="gal-it' + (score(it) === 0 ? ' now' : '') + '" data-id="' + esc(it.id) + '" title="' + esc(EN ? (it.en || '') : (it.ar || '')) + '"><img src="img/stickers/' + esc(it.id) + '.png" alt="' + esc(it.ar || '') + '" loading="lazy"></button>'; }).join('') +
-        '</div></div>';
+        '<p class="gal-tip">' + (EN ? 'Tap a sticker to send it to friends (WhatsApp, Telegram…)' : 'اضغط على أي ملصق لإرساله إلى أصدقائك (واتساب، تيليجرام…)') + '</p>' +
+        (cats.length > 1 ? '<div class="gal-cats"><button data-cat="" class="' + (GAL_CAT ? '' : 'on') + '">' + (EN ? 'All' : 'الكل') + '</button>' +
+          cats.map(function (k) { return '<button data-cat="' + esc(k) + '" class="' + (GAL_CAT === k ? 'on' : '') + '">' + esc(cName(k)) + '</button>'; }).join('') + '</div>' : '') +
+        '<div class="gal-grid"></div></div>';
+      var grid = w.querySelector('.gal-grid');
+      var fill = function () {
+        grid.innerHTML = list.filter(function (it) { return !GAL_CAT || (it.cat || 'occasion') === GAL_CAT; }).map(function (it) {
+          return '<button class="gal-it' + (score(it) === 0 ? ' now' : '') + '" data-id="' + esc(it.id) + '" title="' + esc(EN ? (it.en || it.ar || '') : (it.ar || '')) + '"><img src="' + esc(gSrc(it)) + '" alt="' + esc(it.ar || '') + '" loading="lazy"></button>'; }).join('');
+        grid.scrollTop = 0;
+      };
+      fill();
       document.body.appendChild(w); document.body.classList.add('rmd-open');
       var close = function () { w.remove(); document.body.classList.remove('rmd-open'); };
       w.addEventListener('click', function (e) {
         if (e.target === w || e.target.closest('.rmd-x')) return close();
+        var cb = e.target.closest('[data-cat]');
+        if (cb) { GAL_CAT = cb.dataset.cat; w.querySelectorAll('[data-cat]').forEach(function (x) { x.classList.toggle('on', x === cb); }); return fill(); }
         var b = e.target.closest('.gal-it'); if (!b) return;
-        fetch('img/stickers/' + b.dataset.id + '.png').then(function (x) { return x.blob(); }).then(function (blob) { shareBlob(blob, 'mishkat-' + b.dataset.id + '.png', EN ? 'Sticker saved' : 'تم حفظ الملصق'); }).catch(function () {});
+        var it = BYID[b.dataset.id] || { id: b.dataset.id }, src = gSrc(it), ext = src.split('.').pop();
+        fetch(src).then(function (x) { return x.blob(); }).then(function (blob) { shareBlob(blob, 'mishkat-' + it.id + '.' + ext, EN ? 'Sticker saved' : 'تم حفظ الملصق'); }).catch(function () {});
       });
     };
     if (GAL) return go(GAL);
-    fetch('img/stickers/index.json').then(function (x) { return x.json(); }).then(function (l) { GAL = l; go(l); }).catch(function () { toast(EN ? 'Could not load stickers' : 'تعذّر تحميل الملصقات'); });
+    Promise.all([
+      fetch('img/stickers/index.json').then(function (x) { return x.json(); }),
+      fetch('img/stickers/categories.json').then(function (x) { return x.json(); }).catch(function () { return {}; }),
+      galOff()
+    ]).then(function (r) {
+      GAL_CATS = r[1] || {};
+      GAL = r[0].filter(function (it) { return !r[2][it.id]; });
+      go(GAL);
+    }).catch(function () { toast(EN ? 'Could not load stickers' : 'تعذّر تحميل الملصقات'); });
   }
 
   /* ---------- التذكير المسبق (نافذة عند دخول الموقع) ---------- */
