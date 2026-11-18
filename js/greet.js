@@ -317,7 +317,8 @@
     var L = hList(); if (!L.length) return null;
     var d = hDayNum(), c = context(new Date()), act = BANK ? BANK.occ.filter(function (o) { return (String(o.hm).trim() || o.d1 || o.wd) && active(Object.assign({}, o, { t1: '', t2: '' }), c); }).map(function (o) { return o.key; }) : [];   // مناسبات اليوم فقط (لا الأوقات اليومية المتكررة)
     var occ = L.filter(function (x) { return String(x.occ || '').split(/[،,\s]+/).some(function (k) { return k && act.indexOf(k) >= 0; }); });
-    if (occ.length) return occ[d % occ.length].h;
+    if (occ.length >= 3) return occ[d % occ.length].h;   // مناسبة لها أحاديث كثيرة: حديثها كل يوم
+  if (occ.length && d % 2 === 0) return occ[(d / 2) % occ.length].h;   // مناسبة طويلة بحديث أو اثنين: يومًا بيوم مع العشوائي حتى لا يتكرر الحديث نفسه شهرًا
     var SEAS = /(^|,)\s*(ramadan|ramadan_start|last_ten|dhulhijja_ten|arafah|ashura|suhur|iftar)\s*(,|$)/;   // أحاديث المواسم تظهر في مواسمها فقط
     var R = L.filter(function (x) { return !SEAS.test(String(x.occ || '')); }); if (!R.length) R = L;
     return R[hPerm(R.length)[d % R.length]].h;
