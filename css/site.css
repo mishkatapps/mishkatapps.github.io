@@ -141,3 +141,5 @@ nav .links a.rmd-nav{display:inline-flex;align-items:center;gap:8px}
 .hadith .h-fig.noimg img{display:none}
 .hadith .h-fig.noimg .h-txt{display:block}
 .hadith .gbtns{display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
+.hadith .h-txt[lang=en]{font-family:Georgia,"Times New Roman",serif;font-size:18px;line-height:1.6}
+.hadith .h-txt .h-ar{display:block;font-family:Amiri,"Traditional Arabic",serif;font-size:19px;line-height:1.9;margin-top:10px;opacity:.9}

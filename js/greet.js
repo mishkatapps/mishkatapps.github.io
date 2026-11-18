@@ -8,6 +8,19 @@
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); };
 
+  /* ترجمة «الدليل» إلى الإنجليزية: أسماء الكتب والدرجات ومراجع الآيات؛ وإن بقي نص عربي لا يُعرض */
+  var SURA = 'الفاتحة البقرة آل_عمران النساء المائدة الأنعام الأعراف الأنفال التوبة يونس هود يوسف الرعد إبراهيم الحجر النحل الإسراء الكهف مريم طه الأنبياء الحج المؤمنون النور الفرقان الشعراء النمل القصص العنكبوت الروم لقمان السجدة الأحزاب سبأ فاطر يس الصافات ص الزمر غافر فصلت الشورى الزخرف الدخان الجاثية الأحقاف محمد الفتح الحجرات ق الذاريات الطور النجم القمر الرحمن الواقعة الحديد المجادلة الحشر الممتحنة الصف الجمعة المنافقون التغابن الطلاق التحريم الملك القلم الحاقة المعارج نوح الجن المزمل المدثر القيامة الإنسان المرسلات النبأ النازعات عبس التكوير الانفطار المطففين الانشقاق البروج الطارق الأعلى الغاشية الفجر البلد الشمس الليل الضحى الشرح التين العلق القدر البينة الزلزلة العاديات القارعة التكاثر العصر الهمزة الفيل قريش الماعون الكوثر الكافرون النصر المسد الإخلاص الفلق الناس'.split(' ').map(function (x) { return x.replace(/_/g, ' '); });
+  var EVB = [['صحيح الجامع', 'Sahih al-Jamiʿ'], ['صحيح الترغيب', 'Sahih at-Targhib'], ['السلسلة الصحيحة', 'as-Silsilah as-Sahihah'], ['فتح الباري', 'Fath al-Bari'],
+    ['وصححه الألباني في', 'graded sahih by al-Albani in'], ['وحسّنه الألباني في', 'graded hasan by al-Albani in'], ['وصححه الألباني', 'graded sahih by al-Albani'], ['وحسّنه الألباني', 'graded hasan by al-Albani'], ['وحسنه الألباني', 'graded hasan by al-Albani'],
+    ['البخاري', 'al-Bukhari'], ['مسلم', 'Muslim'], ['الترمذي', 'at-Tirmidhi'], ['النسائي', 'an-Nasa’i'], ['أبو داود', 'Abu Dawud'], ['ابن ماجه', 'Ibn Majah'], ['أحمد', 'Ahmad'], ['الحاكم', 'al-Hakim'], ['ابن حبان', 'Ibn Hibban'], ['البيهقي', 'al-Bayhaqi'], ['الطبراني', 'at-Tabarani']];
+  function evEn(ev) {
+    var t = String(ev || '').replace(/﴿[^﴾]*﴾\s*/g, '').replace(/\[([^\]:]+):\s*([\d–\-]+)\]/g, function (m, s, v) { var i = SURA.indexOf(s.trim()); return i < 0 ? m : '[Qur’an ' + (i + 1) + ':' + v + ']'; });
+    EVB.forEach(function (p) { t = t.split(p[0]).join(p[1]); });
+    t = t.replace(/،/g, ',').replace(/\s+و(?=[A-Za-z])/g, ' and ').replace(/^[\s,—-]+|[\s,—-]+$/g, '');
+    return /[؀-ۿ]/.test(t) ? '' : t;
+  }
+  function evT(m) { return EN ? evEn(m.ev) : (m.ev || ''); }
+
   /* ---------- قراءة الجدول ---------- */
   function csv(text) {   // محلل CSV بسيط يدعم علامات التنصيص والأسطر داخل الخانة
     var rows = [], row = [], f = '', q = false;
@@ -111,7 +124,7 @@
   function card(kind, r) {
     var m = r.m, txt = EN ? m.en : m.ar, title = EN ? (r.occ.en || r.occ.name) : r.occ.name;
     return '<article class="gcard g-' + kind + '"><div class="gtop"><span class="glbl">' + esc(title) + '</span></div>' +
-      '<div class="gbody">' + sticker(m) + '<p class="gtxt">' + esc(txt) + '</p>' + (!EN && m.ev ? '<small class="gev">' + esc(m.ev) + '</small>' : '') + '</div>' +
+      '<div class="gbody">' + sticker(m) + '<p class="gtxt">' + esc(txt) + '</p>' + (evT(m) ? '<small class="gev">' + esc(evT(m)) + '</small>' : '') + '</div>' +
       '<div class="gbtns">' + (r.n > 1 ? '<button class="btn sm" data-g="next" data-k="' + kind + '">' + (EN ? '↻ Another' : '↻ عبارة أخرى') + '</button>' : '') +
       '<button class="btn sm" data-g="copy" data-k="' + kind + '">' + (EN ? '⧉ Copy' : '⧉ نسخ') + '</button>' +
       '<button class="btn sm gold" data-g="img" data-k="' + kind + '">' + (EN ? '🖼 Share as image' : '🖼 مشاركة كصورة') + '</button>' +
@@ -252,7 +265,7 @@
     var w = document.createElement('div'); w.id = 'mkRemind'; w.className = 'rmd-back'; w.setAttribute('role', 'dialog'); w.setAttribute('aria-modal', 'true');
     w.innerHTML = '<div class="rmd"><button class="rmd-x" aria-label="' + (EN ? 'Close' : 'إغلاق') + '">✕</button><h3>🔔 ' + (EN ? 'Reminder' : 'تذكير') + '</h3>' +
       list.map(function (r) { return '<div class="rmd-it">' + (r.m.img ? '<img src="' + esc(imgUrl(r.m.img)) + '" alt="">' : '<span class="rmd-emo">' + esc(r.m.st || '🔔') + '</span>') +
-        '<div><b>' + esc(EN ? (r.occ.en || r.occ.name) : r.occ.name) + ' <em>— ' + when(r.d) + '</em></b><p>' + esc(EN ? r.m.en : r.m.ar) + '</p>' + (!EN && r.m.ev ? '<small>' + esc(r.m.ev) + '</small>' : '') + '</div></div>'; }).join('') +
+        '<div><b>' + esc(EN ? (r.occ.en || r.occ.name) : r.occ.name) + ' <em>— ' + when(r.d) + '</em></b><p>' + esc(EN ? r.m.en : r.m.ar) + '</p>' + (evT(r.m) ? '<small>' + esc(evT(r.m)) + '</small>' : '') + '</div></div>'; }).join('') +
       '<div class="rmd-btns"><button class="btn gold" data-r="ok">' + (EN ? '✓ Got it — don’t remind me again' : '✓ تلقّيت التذكير — لا تكرّره') + '</button><button class="btn" data-r="later">' + (EN ? 'Later' : 'لاحقًا') + '</button></div>' +
       '<button class="rmd-off" data-r="off">' + (EN ? 'Don’t show reminders again' : 'عدم إظهار نافذة التذكير مرة أخرى') + '</button></div>';
     document.body.appendChild(w); document.body.classList.add('rmd-open');
@@ -293,43 +306,55 @@
 
   /* ---------- «مشكاة النبوة»: حديث اليوم ---------- */
   var HK = 'mk-hadith-v1', HBOX = document.getElementById('mkHadith'), HALL = window.MK_HADITH || [], HCUR = null, HOV = null;
-  function hFetch() {   // ورقة «مشكاة النبوة»: الرقم، المناسبة، مفعّل
+  function hFetch() {   // ورقة «مشكاة النبوة»: الرقم، المناسبة، مفعّل، تاريخ محدد
     var u = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/gviz/tq?tqx=out:csv&headers=1&sheet=' + encodeURIComponent('مشكاة النبوة') + '&_=' + Math.floor(Date.now() / 300000);
     return fetch(u, { cache: 'no-store' }).then(function (r) { if (!r.ok) throw 0; return r.text(); }).then(function (t) {
-      var rows = csv(t), h = rows[0] || [], iN = h.indexOf('الرقم'), iO = h.indexOf('المناسبة'), iE = h.indexOf('مفعّل'), o = {};
+      var rows = csv(t), h = (rows[0] || []).map(function (x) { return String(x).trim(); }), iN = h.indexOf('الرقم'), iO = h.indexOf('المناسبة'), iE = h.indexOf('مفعّل'), iD = h.indexOf('تاريخ محدد'), o = {};
       if (iN < 0 || iE < 0) throw 0;
-      rows.slice(1).forEach(function (r) { var n = parseInt(r[iN], 10); if (n) o[n] = { on: String(r[iE] || '').trim(), occ: iO < 0 ? null : String(r[iO] || '').trim() }; });
+      rows.slice(1).forEach(function (r) { var n = parseInt(r[iN], 10); if (n) o[n] = { on: String(r[iE] || '').trim(), occ: iO < 0 ? null : String(r[iO] || '').trim(), pin: iD < 0 ? '' : String(r[iD] || '').trim() }; });
       return o;
     });
   }
-  function hList() {
-    return HALL.map(function (h) { var o = HOV && HOV[h.n]; return o ? { h: h, on: o.on ? !/^(لا|no|false|0)$/i.test(o.on) : h.on === 'نعم', occ: o.occ != null ? o.occ : h.occ } : { h: h, on: h.on === 'نعم', occ: h.occ }; })
-      .filter(function (x) { return x.on; });
+  function hList(ov) {
+    ov = ov || HOV;
+    return HALL.map(function (h) { var o = ov && ov[h.n]; return o ? { h: h, on: o.on ? !/^(لا|no|false|0)$/i.test(o.on) : h.on === 'نعم', occ: o.occ != null ? o.occ : h.occ, pin: o.pin || '' } : { h: h, on: h.on === 'نعم', occ: h.occ, pin: '' }; })
+      .filter(function (x) { return x.on || x.pin; });
   }
-  function hDayNum() { var P = window.MK_PRAY && window.MK_PRAY.now ? window.MK_PRAY.now() : null, tz = P ? P.loc.tz : Intl.DateTimeFormat().resolvedOptions().timeZone, g = parts(tz, new Date());
-    return Math.floor(Date.UTC(+g.year, +g.month - 1, +g.day) / 864e5); }
+  function hTz() { var P = window.MK_PRAY && window.MK_PRAY.now ? window.MK_PRAY.now() : null; return P ? P.loc.tz : Intl.DateTimeFormat().resolvedOptions().timeZone; }
+  function hYmd(dt) { var g = parts(hTz(), dt || new Date()); return g.year + '-' + ('0' + g.month).slice(-2) + '-' + ('0' + g.day).slice(-2); }
+  function hDayNum(dt) { var g = parts(hTz(), dt || new Date()); return Math.floor(Date.UTC(+g.year, +g.month - 1, +g.day) / 864e5); }
   function hPerm(n) {   // ترتيب عشوائي ثابت للجميع: لا يتكرر الحديث حتى تُستوفى كل الأحاديث
     var a = []; for (var i = 0; i < n; i++) a.push(i);
     var s = 20261117; for (var j = n - 1; j > 0; j--) { s = (s * 1103515245 + 12345) % 2147483648; var k = s % (j + 1), t = a[j]; a[j] = a[k]; a[k] = t; }
     return a;
   }
-  function hToday() {
-    var L = hList(); if (!L.length) return null;
-    var d = hDayNum(), c = context(new Date()), act = BANK ? BANK.occ.filter(function (o) { return (String(o.hm).trim() || o.d1 || o.wd) && active(Object.assign({}, o, { t1: '', t2: '' }), c); }).map(function (o) { return o.key; }) : [];   // مناسبات اليوم فقط (لا الأوقات اليومية المتكررة)
+  function hPick(dt, ov) {   // حديث يوم معيّن (dt) — ov: إعدادات الورقة (للمعاينة من لوحة المدير)
+    dt = dt || new Date();
+    var All = hList(ov), ymd = hYmd(dt), pin = All.filter(function (x) { return String(x.pin).split(/[،,\s]+/).indexOf(ymd) >= 0; });
+    if (pin.length) return { h: pin[0].h, why: 'pin' };   // حديث مثبّت لهذا التاريخ من لوحة المدير
+    var L = All.filter(function (x) { return x.on; }); if (!L.length) return null;
+    var d = hDayNum(dt), c = context(dt), act = BANK ? BANK.occ.filter(function (o) { return (String(o.hm).trim() || o.d1 || o.wd) && active(Object.assign({}, o, { t1: '', t2: '' }), c); }).map(function (o) { return o.key; }) : [];   // مناسبات اليوم فقط (لا الأوقات اليومية المتكررة)
     var occ = L.filter(function (x) { return String(x.occ || '').split(/[،,\s]+/).some(function (k) { return k && act.indexOf(k) >= 0; }); });
-    if (occ.length >= 3) return occ[d % occ.length].h;   // مناسبة لها أحاديث كثيرة: حديثها كل يوم
-  if (occ.length && d % 2 === 0) return occ[(d / 2) % occ.length].h;   // مناسبة طويلة بحديث أو اثنين: يومًا بيوم مع العشوائي حتى لا يتكرر الحديث نفسه شهرًا
+    if (occ.length >= 3) return { h: occ[d % occ.length].h, why: 'occ', occ: act };   // مناسبة لها أحاديث كثيرة: حديثها كل يوم
+    if (occ.length && d % 2 === 0) return { h: occ[(d / 2) % occ.length].h, why: 'occ', occ: act };   // مناسبة طويلة بحديث أو اثنين: يومًا بيوم مع العشوائي
     var SEAS = /(^|,)\s*(ramadan|ramadan_start|last_ten|dhulhijja_ten|arafah|ashura|suhur|iftar)\s*(,|$)/;   // أحاديث المواسم تظهر في مواسمها فقط
     var R = L.filter(function (x) { return !SEAS.test(String(x.occ || '')); }); if (!R.length) R = L;
-    return R[hPerm(R.length)[d % R.length]].h;
+    return { h: R[hPerm(R.length)[d % R.length]].h, why: 'rand', occ: act };
   }
-  function hImg(h) { return 'img/hadith/' + ('00' + h.n).slice(-3) + '.jpg'; }
-  function hText(h) { return h.head + ': «' + h.text + '»\n' + [h.nar, h.src + (h.grade ? ' (' + h.grade + ')' : '')].filter(Boolean).join(' — '); }
+  function hToday() { var r = hPick(new Date()); return r && r.h; }
+  function hImg(h) { return 'img/hadith/' + (EN ? 'en/' : '') + ('00' + h.n).slice(-3) + '.jpg'; }
+  function hText(h) {
+    if (EN && h.ten) return h.hen + ': “' + h.ten + '”\n' + [h.nen, h.sen + (h.gen ? ' (' + h.gen + ')' : '')].filter(Boolean).join(' — ') + '\n\n' + h.head + ': «' + h.text + '»';
+    return h.head + ': «' + h.text + '»\n' + [h.nar, h.src + (h.grade ? ' (' + h.grade + ')' : '')].filter(Boolean).join(' — ');
+  }
   function hRender(h) {
     if (!HBOX) return; if (!h) { HBOX.hidden = true; return; } HCUR = h;
+    var en = EN && h.ten;
     HBOX.innerHTML = '<div class="h-top"><span class="h-lbl">' + (EN ? '✦ Mishkat an-Nubuwwah · Hadith of the day' : '✦ مشكاة النبوة · حديث اليوم') + '</span></div>' +
-      '<figure class="h-fig"><img src="' + hImg(h) + '" alt="' + esc(h.head + ': ' + h.text) + '" loading="lazy" onerror="this.parentNode.classList.add(\'noimg\')">' +
-      '<figcaption class="h-txt" lang="ar" dir="rtl"><b>' + esc(h.head) + ':</b> «' + esc(h.text) + '»<small>' + esc([h.nar, h.src + (h.grade ? ' (' + h.grade + ')' : '')].filter(Boolean).join(' · ')) + '</small></figcaption></figure>' +
+      '<figure class="h-fig"><img src="' + hImg(h) + '" alt="' + esc(en ? h.hen + ': ' + h.ten : h.head + ': ' + h.text) + '" loading="lazy" onerror="this.parentNode.classList.add(\'noimg\')">' +
+      (en ? '<figcaption class="h-txt" lang="en" dir="ltr"><b>' + esc(h.hen) + ':</b> “' + esc(h.ten) + '”<small>' + esc([h.nen, h.sen + (h.gen ? ' (' + h.gen + ')' : '')].filter(Boolean).join(' · ')) + '</small>' +
+        '<span class="h-ar" lang="ar" dir="rtl">' + esc(h.head) + ': «' + esc(h.text) + '»</span></figcaption></figure>'
+        : '<figcaption class="h-txt" lang="ar" dir="rtl"><b>' + esc(h.head) + ':</b> «' + esc(h.text) + '»<small>' + esc([h.nar, h.src + (h.grade ? ' (' + h.grade + ')' : '')].filter(Boolean).join(' · ')) + '</small></figcaption></figure>') +
       '<div class="gbtns"><button class="btn sm gold" data-h="img">' + (EN ? '🖼 Share image' : '🖼 مشاركة الصورة') + '</button>' +
       '<button class="btn sm" data-h="copy">' + (EN ? '⧉ Copy text' : '⧉ نسخ النص') + '</button>' +
       '<button class="btn sm" data-h="next">' + (EN ? '↻ Another hadith' : '↻ حديث آخر') + '</button></div>';
@@ -367,5 +392,5 @@
   }).catch(function () {});
   var sig = function () { var c = context(new Date()); return BANK.occ.filter(function (o) { return active(o, c); }).map(function (o) { return o.key; }).join(','); }, last = sig();
   setInterval(function () { var s = sig(); if (s !== last) { last = s; render(); } }, 60 * 1000);   // تتغير البطاقات عند دخول وقت جديد فقط
-  window.MK_GREET_TEST = { hToday: hToday, hList: hList, gallery: gallery, context: context, active: active, bank: function () { return BANK; }, render: render, upcoming: upcoming, show: showReminders };
+  window.MK_GREET_TEST = { hToday: hToday, hPick: hPick, hYmd: hYmd, hList: hList, gallery: gallery, context: context, active: active, bank: function () { return BANK; }, render: render, upcoming: upcoming, show: showReminders };
 })();

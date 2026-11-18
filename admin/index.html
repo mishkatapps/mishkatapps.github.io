@@ -136,6 +136,33 @@ footer{text-align:center;color:var(--mut);font-size:12.5px;padding:16px}
 .pf .wide{grid-column:1/-1}
 .pf input,.pf textarea{border:1px solid var(--line);border-radius:12px;padding:8px 12px;font:15px Tajawal;background:#fff;color:var(--ink);width:100%}
 .pq{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:13px;color:var(--mut)}
+/* تبويب «مشكاة النبوة» */
+.hnote{color:var(--mut);font-size:13px;line-height:1.7;margin:6px 0 10px}
+.hsel{border:1px solid var(--line);border-radius:999px;padding:6px 12px;font:600 14px Tajawal;background:#fff}
+.hsched{display:flex;gap:10px;overflow-x:auto;padding:4px 2px 10px;scroll-snap-type:x mandatory}
+.hday{flex:0 0 132px;scroll-snap-align:start;border:1px solid var(--line);border-radius:14px;background:#fff;padding:8px;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;font:inherit;color:var(--ink)}
+.hday.today{border:2px solid var(--gold);box-shadow:0 4px 14px rgba(217,177,92,.35)}
+.hday img{width:112px;height:112px;border-radius:10px;object-fit:cover}
+.hday small{font-size:12px;color:var(--mut);font-weight:700}.hday .hj{font-weight:500;font-size:11.5px}
+.chip.pin{background:#d9f0ec;color:#0F4C4A}.chip.occ{background:#fff1cf;color:#7a5a12}.chip.warn{background:#fde5e1;color:#8a2e22}
+.hgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,460px),1fr));gap:12px}
+.hc{display:flex;gap:12px;border:1px solid var(--line);border-radius:16px;background:#fff;padding:10px;border-inline-start:5px solid var(--olive)}
+.hc.off{border-inline-start-color:#c0392b;background:#fffaf8}.hc.off .hth img{filter:grayscale(.7);opacity:.75}
+.hth img{width:118px;height:118px;border-radius:12px;object-fit:cover;display:block}
+.hb{flex:1;min-width:0}.ht{display:flex;flex-wrap:wrap;gap:6px;align-items:center}.ht b{color:var(--navy);font-size:16px}
+.hx{font-family:Amiri,serif;font-size:15.5px;line-height:1.75;margin:6px 0;color:#2b2b2b}
+.hf{display:flex;flex-wrap:wrap;gap:8px;align-items:flex-end}
+.hl{display:grid;gap:3px;font-size:12px;color:var(--mut);font-weight:700}
+.hl input{border:1px solid var(--line);border-radius:10px;padding:6px 10px;font:14px Tajawal;width:150px;direction:ltr;text-align:right}
+.hdp{border:1px solid var(--line);border-radius:10px;padding:5px;font:13px Tajawal;width:42px;color:transparent}
+.hdp::-webkit-calendar-picker-indicator{cursor:pointer}
+.hsw{display:flex;align-items:center;gap:6px;font-weight:700;font-size:14px;cursor:pointer;padding-bottom:6px}
+.hsw input{display:none}.hsw span{width:42px;height:24px;border-radius:99px;background:#d6cdb8;position:relative;transition:.2s}
+.hsw span::after{content:"";position:absolute;top:3px;right:3px;width:18px;height:18px;border-radius:50%;background:#fff;transition:.2s}
+.hsw input:checked+span{background:var(--olive)}.hsw input:checked+span::after{right:21px}
+@media(max-width:480px){.hth img{width:84px;height:84px}.hl input{width:130px}}
+.hdlg{position:fixed;inset:0;background:rgba(11,29,63,.45);display:grid;place-items:center;z-index:50;padding:16px}
+.hdlg .box{max-width:440px;width:100%;display:grid;gap:10px}.hdlg .hl input{width:100%}
 </style>
 </head>
 <body>
@@ -161,6 +188,7 @@ footer{text-align:center;color:var(--mut);font-size:12.5px;padding:16px}
 <div class="tabs">
   <button class="tab on" data-tab="r">⭐ التقييمات <span class="badge" id="bR">…</span></button>
   <button class="tab" data-tab="m">✉️ البريد <span class="badge" id="bM">…</span></button>
+  <button class="tab" data-tab="h">📜 مشكاة النبوة</button>
   <button class="tab" data-tab="p">💰 سعر ميزانية البيت</button>
 </div>
 
@@ -183,6 +211,9 @@ footer{text-align:center;color:var(--mut);font-size:12.5px;padding:16px}
         <div style="text-align:center;margin-top:8px"><button class="btn ghost sm" id="more" hidden>عرض المزيد</button></div></div>
       <div class="reader" id="reader"><div class="empty-st">اختر رسالة لقراءتها</div></div>
     </div>
+  </section>
+  <section class="panel" id="pH" hidden>
+    <div id="hBody"><div class="empty-st">افتح هذا التبويب لإدارة نشر الأحاديث</div></div>
   </section>
   <section class="panel" id="pP" hidden>
     <div id="pBody"><div class="empty-st">افتح هذا التبويب لعرض السعر</div></div>
@@ -261,11 +292,12 @@ const STATUSES = ['جديد', 'تمت القراءة', 'قيد التنفيذ', 
 /* ---------- التبويبات ---------- */
 document.querySelectorAll('.tab').forEach(b => b.onclick = () => {
   document.querySelectorAll('.tab').forEach(x => x.classList.toggle('on', x === b));
-  $('#pR').hidden = b.dataset.tab !== 'r'; $('#pM').hidden = b.dataset.tab !== 'm'; $('#pP').hidden = b.dataset.tab !== 'p';
+  $('#pR').hidden = b.dataset.tab !== 'r'; $('#pM').hidden = b.dataset.tab !== 'm'; $('#pP').hidden = b.dataset.tab !== 'p'; $('#pH').hidden = b.dataset.tab !== 'h';
+  if (b.dataset.tab === 'h' && window.mkHadith) mkHadith.open();
   if (b.dataset.tab === 'p' && window.mkPricing) mkPricing.open();
   if (b.dataset.tab === 'm' && !M.loaded) loadMail();
 });
-$('#refresh').onclick = () => { loadRatings(); if (!$('#pM').hidden || M.loaded) loadMail(); };
+$('#refresh').onclick = () => { loadRatings(); if (!$('#pM').hidden || M.loaded) loadMail(); if (!$('#pH').hidden && window.mkHadith) mkHadith.reload(); };
 
 /* ---------- التقييمات ---------- */
 let R = [], F = { app: '', stars: '', status: '', text: false, q: '' };
@@ -516,6 +548,173 @@ initGoogle();
   // بعد العودة من تسجيل الدخول: افتح تبويب السعر مباشرة
   let back = false; try { back = sessionStorage.getItem(FLAG) === '1'; sessionStorage.removeItem(FLAG); } catch (e) {}
   if (back || location.search.includes('code=')) { const t = document.querySelector('.tab[data-tab="p"]'); if (t) t.click(); }
+})();
+</script>
+<script src="../js/hadith-data.js"></script>
+<script>
+/* ===== «مشكاة النبوة»: إدارة نشر الأحاديث =====
+   القراءة والحفظ عبر Apps Script (getHadith / setHadith) في ورقة «مشكاة النبوة» بجدول بنك التهاني.
+   المعاينة تستخدم منطق الموقع نفسه (صفحة الموقع في إطار مخفي) فتُظهر ما سيراه الزائر بالضبط. */
+(function () {
+  const q = s => document.querySelector(s), body = () => q('#hBody');
+  const ALL = window.MK_HADITH || [], BY = {}; ALL.forEach(h => BY[h.n] = h);
+  const img = n => '../img/hadith/' + String(n).padStart(3, '0') + '.jpg';
+  const strip = t => String(t || '').replace(/[ً-ْٰـ]/g, '');
+  const W = { rows: {}, occs: [], canSave: true, loaded: false, days: 14, f: { q: '', cat: '', st: '' }, frame: null, eng: null, dirty: {} };
+  const AR_DAYS = ['الأحد', 'الاثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة', 'السبت'];
+  const ymdOf = d => d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+  const pins = r => String((r && r.pin) || '').split(/[\s,،]+/).filter(Boolean);
+  const isOn = r => !/^(لا|no|false|0)$/i.test(String((r && r.on) || 'نعم').trim());
+
+  /* محرّك المعاينة: صفحة الموقع في إطار مخفي — نفس اختيار «حديث اليوم» */
+  function engine() {
+    if (W.eng) return Promise.resolve(W.eng);
+    return new Promise(res => {
+      const f = document.createElement('iframe'); f.src = '../?embed=hadith-admin'; f.title = 'معاينة';
+      f.style.cssText = 'position:absolute;width:1px;height:1px;opacity:0;pointer-events:none;border:0;inset-inline-start:-9999px';
+      document.body.appendChild(f); W.frame = f;
+      let n = 0; const t = setInterval(() => { let T = null; try { T = f.contentWindow.MK_GREET_TEST; } catch (e) {}
+        if ((T && T.hPick) || ++n > 80) { clearInterval(t); W.eng = T && T.hPick ? T : null; res(W.eng); } }, 150);
+    });
+  }
+  const ovr = () => { const o = {}; Object.values(W.rows).forEach(r => o[r.n] = { on: r.on, occ: r.occ, pin: r.pin }); return o; };
+
+  async function load() {
+    body().innerHTML = '<div class="loading"><div class="spin"></div>جارٍ تحميل ورقة «مشكاة النبوة»…</div>';
+    try { const d = await run('getHadith'); W.rows = {}; d.rows.forEach(r => W.rows[r.n] = r); W.occs = d.occs || []; W.canSave = true; }
+    catch (e) {
+      if (/انتهت الجلسة|سجّل الدخول/.test(e.message || '')) { body().innerHTML = '<div class="err">' + esc(e.message) + '</div>'; return; }
+      try { await readOnly(); W.canSave = false; W.err = e.message || String(e); }
+      catch (x) { body().innerHTML = '<div class="err">تعذّر قراءة الورقة: ' + esc(e.message || e) + '</div>'; return; }
+    }
+    W.loaded = true; draw();
+  }
+  async function readOnly() {   // إن لم تُحدَّث واجهة Apps Script بعد: قراءة فقط من الرابط العام
+    const u = 'https://docs.google.com/spreadsheets/d/1cR7mfBJTQsePtKjPTtSFrOw4f4HMNG_h1FkHVTBmHN8/gviz/tq?tqx=out:csv&headers=1&sheet=' + encodeURIComponent('مشكاة النبوة') + '&_=' + Date.now();
+    const t = await (await fetch(u, { cache: 'no-store' })).text();
+    const rows = t.trim().split('\n').map(l => (l.match(/("([^"]|"")*"|[^,]*)(,|$)/g) || []).map(c => c.replace(/,$/, '').replace(/^"|"$/g, '').replace(/""/g, '"')));
+    const h = rows[0].map(x => x.trim()), i = k => h.indexOf(k); W.rows = {};
+    rows.slice(1).forEach(r => { const n = +r[i('الرقم')]; if (n) W.rows[n] = { n, on: r[i('مفعّل')], occ: r[i('المناسبة')] || '', pin: i('تاريخ محدد') < 0 ? '' : r[i('تاريخ محدد')] || '', why: r[i('سبب الاستبعاد المقترح')] || '' }; });
+  }
+
+  function stats() { const R = Object.values(W.rows); return { on: R.filter(isOn).length, off: R.filter(r => !isOn(r)).length, pin: R.filter(r => pins(r).length).length, occ: R.filter(r => r.occ).length, all: R.length }; }
+
+  function draw() {
+    const s = stats(), cats = [...new Set(ALL.map(h => h.cat))];
+    body().innerHTML = `
+      ${W.canSave ? '' : `<div class="err" style="margin-bottom:12px">وضع القراءة فقط: لم تُحدَّث واجهة Apps Script بعد (${esc(W.err || '')}). حدّثها كما في الدليل ليعمل الحفظ من هنا.</div>`}
+      <div class="kpis">
+        <div class="kpi k1"><b>${s.on}</b><span>حديث مفعّل</span></div>
+        <div class="kpi" style="background:linear-gradient(135deg,#7a2e2e,#a34b3b)"><b>${s.off}</b><span>مستبعد</span></div>
+        <div class="kpi" style="background:linear-gradient(135deg,#0F4C4A,#1d7a6f)"><b>${s.pin}</b><span>مثبّت لتاريخ</span></div>
+        <div class="kpi k4"><b>${s.occ}</b><span>مرتبط بمناسبة</span></div>
+      </div>
+      <div class="box" style="margin-bottom:16px">
+        <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between">
+          <h3 style="margin:0">🗓️ جدول النشر — ما سيظهر للزوار</h3>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center">
+            <select id="hDays" class="hsel"><option value="7">7 أيام</option><option value="14" selected>14 يومًا</option><option value="30">30 يومًا</option></select>
+            ${W.canSave ? '<button class="btn sm" id="hPinNew">📌 تثبيت حديث في يوم</button>' : ''}
+          </div>
+        </div>
+        <p class="hnote">يُحسب الجدول بمنطق الموقع وروض الذكر نفسه: الحديث المثبّت لتاريخه أولًا، ثم أحاديث المناسبة القائمة، ثم الترتيب العشوائي الثابت. التذكير: الموقع والتطبيق يقرآن الورقة كل بضع دقائق.</p>
+        <div class="hsched" id="hSched"><div class="loading"><div class="spin"></div>جارٍ حساب الجدول…</div></div>
+      </div>
+      <div class="filters">
+        <input type="search" id="hQ" placeholder="ابحث برقم الحديث أو كلمة من نصه" value="${esc(W.f.q)}">
+        <select id="hCat"><option value="">كل التصنيفات</option>${cats.map(c => `<option ${W.f.cat === c ? 'selected' : ''}>${esc(c)}</option>`).join('')}</select>
+        <select id="hSt"><option value="">الكل (${s.all})</option><option value="on" ${W.f.st === 'on' ? 'selected' : ''}>المفعّلة</option><option value="off" ${W.f.st === 'off' ? 'selected' : ''}>المستبعدة</option><option value="pin" ${W.f.st === 'pin' ? 'selected' : ''}>المثبّتة لتاريخ</option><option value="occ" ${W.f.st === 'occ' ? 'selected' : ''}>المرتبطة بمناسبة</option></select>
+        <span class="chip" id="hCount"></span>
+      </div>
+      <datalist id="hOccs">${W.occs.map(o => `<option value="${esc(o.key)}">${esc(o.name)}</option>`).join('')}</datalist>
+      <div class="hgrid" id="hGrid"></div>`;
+    q('#hQ').oninput = e => { W.f.q = e.target.value.trim(); list(); };
+    q('#hCat').onchange = e => { W.f.cat = e.target.value; list(); };
+    q('#hSt').onchange = e => { W.f.st = e.target.value; list(); };
+    q('#hDays').value = String(W.days); q('#hDays').onchange = e => { W.days = +e.target.value; sched(); };
+    if (q('#hPinNew')) q('#hPinNew').onclick = () => pinDialog();
+    list(); sched();
+  }
+
+  function filtered() {
+    const k = strip(W.f.q);
+    return ALL.filter(h => { const r = W.rows[h.n] || {};
+      if (W.f.cat && h.cat !== W.f.cat) return false;
+      if (W.f.st === 'on' && !isOn(r)) return false; if (W.f.st === 'off' && isOn(r)) return false;
+      if (W.f.st === 'pin' && !pins(r).length) return false; if (W.f.st === 'occ' && !r.occ) return false;
+      if (k) { if (/^\d+$/.test(k)) return String(h.n) === k; return strip(h.text).includes(k) || (h.ten || '').toLowerCase().includes(k.toLowerCase()); }
+      return true; });
+  }
+  function card(h) {
+    const r = W.rows[h.n] || { n: h.n, on: h.on, occ: h.occ, pin: '' }, on = isOn(r), dis = W.canSave ? '' : 'disabled';
+    return `<article class="hc ${on ? '' : 'off'}" data-n="${h.n}">
+      <a href="${img(h.n)}" target="_blank" class="hth"><img src="${img(h.n)}" alt="" loading="lazy"></a>
+      <div class="hb">
+        <div class="ht"><b>#${h.n}</b> <span class="chip">${esc(h.cat)}</span>${pins(r).length ? ' <span class="chip pin">📌 ' + esc(pins(r).join('، ')) + '</span>' : ''}${r.why ? ' <span class="chip warn">' + esc(r.why) + '</span>' : ''}</div>
+        <p class="hx">${esc(h.head)}: «${esc(strip(h.text).slice(0, 150))}${strip(h.text).length > 150 ? '…' : ''}»</p>
+        <div class="hf">
+          <label class="hsw"><input type="checkbox" data-k="on" ${on ? 'checked' : ''} ${dis}><span></span>${on ? 'مفعّل' : 'مستبعد'}</label>
+          <label class="hl">المناسبة<input data-k="occ" list="hOccs" value="${esc(r.occ || '')}" placeholder="مثل: friday,ramadan" ${dis}></label>
+          <label class="hl">تاريخ محدد<input data-k="pin" value="${esc(r.pin || '')}" placeholder="2026-12-25" ${dis}></label>
+          <input type="date" class="hdp" data-add title="أضف تاريخًا" ${dis}>
+          <button class="btn sm hsave" hidden>💾 حفظ</button>
+        </div>
+      </div></article>`;
+  }
+  function list() {
+    const L = filtered(), g = q('#hGrid'); q('#hCount').textContent = L.length + ' حديث';
+    g.innerHTML = L.length ? L.slice(0, 120).map(card).join('') + (L.length > 120 ? `<div class="empty-st">يُعرض أول 120 — استخدم البحث أو التصفية للوصول إلى البقية</div>` : '') : '<div class="empty-st">لا نتائج</div>';
+    g.querySelectorAll('.hc').forEach(bind);
+  }
+  function bind(el) {
+    const n = +el.dataset.n, sv = el.querySelector('.hsave');
+    const mark = () => { sv.hidden = false; };
+    el.querySelectorAll('[data-k]').forEach(i => i.addEventListener(i.type === 'checkbox' ? 'change' : 'input', () => { if (i.type === 'checkbox') i.parentNode.lastChild.textContent = i.checked ? 'مفعّل' : 'مستبعد'; mark(); }));
+    const dp = el.querySelector('[data-add]'); if (dp) dp.onchange = () => { if (!dp.value) return; const p = el.querySelector('[data-k=pin]'), cur = p.value.split(/[\s,،]+/).filter(Boolean); if (!cur.includes(dp.value)) cur.push(dp.value); p.value = cur.sort().join(','); dp.value = ''; mark(); };
+    sv.onclick = () => save(n, { on: el.querySelector('[data-k=on]').checked ? 'نعم' : 'لا', occ: el.querySelector('[data-k=occ]').value.trim(), pin: el.querySelector('[data-k=pin]').value.trim() }, sv);
+  }
+  async function save(n, patch, btn) {
+    if (!W.canSave) return;
+    if (btn) { btn.disabled = true; btn.textContent = 'جارٍ الحفظ…'; }
+    try {
+      await run('setHadith', n, patch);
+      const p = pins(patch); if (p.length) Object.values(W.rows).forEach(r => { if (r.n !== n && pins(r).some(d => p.includes(d))) r.pin = pins(r).filter(d => !p.includes(d)).join(','); });
+      W.rows[n] = Object.assign(W.rows[n] || { n }, patch);
+      toast('حُفظ الحديث ' + n + ' ✓'); draw();
+    } catch (e) { toast('تعذّر الحفظ: ' + (e.message || e)); if (btn) { btn.disabled = false; btn.textContent = '💾 حفظ'; } }
+  }
+
+  async function sched() {
+    const box = q('#hSched'); if (!box) return;
+    const E = await engine();
+    if (!E) { box.innerHTML = '<div class="err">تعذّر تحميل منطق الموقع للمعاينة.</div>'; return; }
+    const o = ovr(), out = [], d0 = new Date(); d0.setHours(12, 0, 0, 0);
+    for (let i = 0; i < W.days; i++) { const d = new Date(d0.getTime() + i * 864e5); let r = null; try { r = E.hPick(d, o); } catch (e) {} out.push({ d, r }); }
+    const hij = d => { try { return new Intl.DateTimeFormat('ar-SA-u-ca-islamic-umalqura-nu-latn', { day: 'numeric', month: 'long' }).format(d); } catch (e) { return ''; } };
+    box.innerHTML = out.map(({ d, r }, i) => { const h = r && r.h;
+      const why = !r ? '—' : r.why === 'pin' ? '<span class="chip pin">📌 مثبّت</span>' : r.why === 'occ' ? '<span class="chip occ">🌙 مناسبة</span>' : '<span class="chip">🎲 عشوائي</span>';
+      return `<button class="hday ${i === 0 ? 'today' : ''}" data-go="${h ? h.n : ''}" data-d="${ymdOf(d)}">
+        <small>${i === 0 ? 'اليوم · ' : ''}${AR_DAYS[d.getDay()]} ${d.getDate()}/${d.getMonth() + 1}</small><small class="hj">${hij(d)}</small>
+        ${h ? `<img src="${img(h.n)}" alt="" loading="lazy"><b>#${h.n}</b>` : '<div class="empty-st">لا حديث</div>'}${why}</button>`; }).join('');
+    box.querySelectorAll('.hday').forEach(b => b.onclick = () => { if (b.dataset.go) { W.f = { q: b.dataset.go, cat: '', st: '' }; q('#hQ').value = b.dataset.go; q('#hCat').value = ''; q('#hSt').value = ''; list(); q('#hGrid').scrollIntoView({ behavior: 'smooth', block: 'start' }); } });
+  }
+
+  function pinDialog() {
+    const w = document.createElement('div'); w.className = 'hdlg';
+    w.innerHTML = `<div class="box"><h3>📌 تثبيت حديث في يوم محدد</h3>
+      <p class="hnote">يظهر الحديث في هذا اليوم للجميع في الموقع وروض الذكر، ويُقدَّم على أحاديث المناسبات والترتيب العشوائي — ولو كان مستبعدًا.</p>
+      <label class="hl">التاريخ<input type="date" id="pdD" value="${ymdOf(new Date(Date.now() + 864e5))}"></label>
+      <label class="hl">رقم الحديث<input type="number" id="pdN" min="1" max="${ALL.length}" placeholder="1 – ${ALL.length}"></label>
+      <p class="hx" id="pdP"></p>
+      <div style="display:flex;gap:8px;justify-content:flex-end"><button class="btn ghost sm" id="pdX">إلغاء</button><button class="btn sm" id="pdOk">تثبيت</button></div></div>`;
+    document.body.appendChild(w);
+    const pv = () => { const h = BY[+q('#pdN').value]; q('#pdP').textContent = h ? h.head + ': «' + strip(h.text).slice(0, 160) + '…»' : ''; };
+    q('#pdN').oninput = pv; q('#pdX').onclick = () => w.remove(); w.onclick = e => { if (e.target === w) w.remove(); };
+    q('#pdOk').onclick = async () => { const n = +q('#pdN').value, d = q('#pdD').value; if (!BY[n] || !d) return toast('اختر التاريخ ورقم الحديث');
+      const r = W.rows[n] || { n }, p = pins(r); if (!p.includes(d)) p.push(d); w.remove(); await save(n, { pin: p.sort().join(',') }); };
+  }
+
+  window.mkHadith = { open: () => { if (!W.loaded) load(); }, reload: load };
 })();
 </script>
 </body>
