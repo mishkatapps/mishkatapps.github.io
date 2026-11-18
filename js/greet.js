@@ -203,6 +203,19 @@
       return off;
     }).catch(function () { return {}; });
   }
+  function toPng(blob) {   // يحوّل أي صورة إلى PNG بالمقاس نفسه وبخلفية شفافة (PNG يبقى كما هو)
+    if (blob.type === 'image/png') return Promise.resolve(blob);
+    return new Promise(function (ok, no) {
+      var u = URL.createObjectURL(blob), im = new Image();
+      im.onload = function () {
+        var c = document.createElement('canvas'); c.width = im.naturalWidth; c.height = im.naturalHeight;
+        c.getContext('2d').drawImage(im, 0, 0); URL.revokeObjectURL(u);
+        c.toBlob(function (p) { p ? ok(p) : no(new Error('png')); }, 'image/png');
+      };
+      im.onerror = function () { URL.revokeObjectURL(u); no(new Error('img')); };
+      im.src = u;
+    });
+  }
   function shareBlob(blob, name, okMsg) {
     var f = new File([blob], name, { type: blob.type || 'image/png' });
     if (navigator.canShare && navigator.canShare({ files: [f] })) return navigator.share({ files: [f] }).catch(function () {});
@@ -242,8 +255,9 @@
         var cb = e.target.closest('[data-cat]');
         if (cb) { GAL_CAT = cb.dataset.cat; w.querySelectorAll('[data-cat]').forEach(function (x) { x.classList.toggle('on', x === cb); }); return fill(); }
         var b = e.target.closest('.gal-it'); if (!b) return;
-        var it = BYID[b.dataset.id] || { id: b.dataset.id }, src = gSrc(it), ext = src.split('.').pop();
-        fetch(src).then(function (x) { return x.blob(); }).then(function (blob) { shareBlob(blob, 'mishkat-' + it.id + '.' + ext, EN ? 'Sticker saved' : 'تم حفظ الملصق'); }).catch(function () {});
+        var it = BYID[b.dataset.id] || { id: b.dataset.id }, src = gSrc(it);
+        // واتساب يعامل ملف WebP المُرسَل كمستند لا كصورة: نحوّله إلى PNG لحظة المشاركة
+        fetch(src).then(function (x) { return x.blob(); }).then(toPng).then(function (blob) { shareBlob(blob, 'mishkat-' + it.id + '.png', EN ? 'Sticker saved' : 'تم حفظ الملصق'); }).catch(function () {});
       });
     };
     if (GAL) return go(GAL);
