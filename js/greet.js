@@ -237,7 +237,7 @@
       var old = document.getElementById('mkGal'); if (old) old.remove();
       var w = document.createElement('div'); w.id = 'mkGal'; w.className = 'rmd-back'; w.setAttribute('role', 'dialog'); w.setAttribute('aria-modal', 'true');
       w.innerHTML = '<div class="rmd gal"><button class="rmd-x" aria-label="' + (EN ? 'Close' : 'إغلاق') + '">✕</button><h3>🎨 ' + (EN ? 'Stickers to share' : 'ملصقات للمشاركة') + '</h3>' +
-        '<p class="gal-tip">' + (EN ? 'Tap a sticker to send it to friends (WhatsApp, Telegram…)' : 'اضغط على أي ملصق لإرساله إلى أصدقائك (واتساب، تيليجرام…)') + '</p>' +
+        '<p class="gal-tip">' + (EN ? 'Tap a sticker to send it as an image (WhatsApp, Telegram…) — to send real WhatsApp stickers use <a href="stickers/">Mishkat Stickers</a>' : 'اضغط على أي ملصق لإرساله صورةً (واتساب، تيليجرام…) — ولإرسالها «ملصقات» حقيقية في واتساب: <a href="stickers/">ملصقات مشكاة</a>') + '</p>' +
         (cats.length > 1 ? '<div class="gal-cats"><button data-cat="" class="' + (GAL_CAT ? '' : 'on') + '">' + (EN ? 'All' : 'الكل') + '</button>' +
           cats.map(function (k) { return '<button data-cat="' + esc(k) + '" class="' + (GAL_CAT === k ? 'on' : '') + '">' + esc(cName(k)) + '</button>'; }).join('') + '</div>' : '') +
         '<div class="gal-grid"></div></div>';

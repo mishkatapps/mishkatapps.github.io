@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 40 920 920" role="img" aria-label="شعار مشكاة">
+<polygon points="500.0,76.0 624.4,199.7 799.8,200.2 800.3,375.6 924.0,500.0 800.3,624.4 799.8,799.8 624.4,800.3 500.0,924.0 375.6,800.3 200.2,799.8 199.7,624.4 76.0,500.0 199.7,375.6 200.2,200.2 375.6,199.7" fill="#0f2350" stroke="#D9B15C" stroke-width="18" stroke-linejoin="round"/>
+<path d="M379 670 V480 Q379 360 500 297 Q621 360 621 480 V670" fill="none" stroke="#D9B15C" stroke-width="16" stroke-linejoin="round"/>
+<line x1="335" y1="677" x2="665" y2="677" stroke="#D9B15C" stroke-width="16" stroke-linecap="round"/>
+<line x1="500" y1="340" x2="500" y2="420" stroke="#D9B15C" stroke-width="12"/>
+<path d="M448 422 H552 L528 458 Q578 482 578 532 Q578 598 500 622 Q422 598 422 532 Q422 482 472 458 Z" fill="#17336e" stroke="#D9B15C" stroke-width="12" stroke-linejoin="round"/>
+<path d="M500 488 Q528 525 500 580 Q472 525 500 488 Z" fill="#D9B15C"/>
+</svg>

@@ -1,0 +1,2086 @@
+{
+"android_play_store_link": "",
+"ios_app_store_link": "",
+"sticker_packs": [
+{
+"identifier": "mishkat_1",
+"name": "مشكاة · صباح ومساء وتحيات",
+"name_en": "Mishkat · Morning, Evening & Greetings",
+"publisher": "مشكاة · Mishkat",
+"tray_image_file": "tray_cv_015.png",
+"image_data_version": "1",
+"avoid_cache": false,
+"publisher_email": "mishkatapps@gmail.com",
+"publisher_website": "https://mishkatapps.github.io/",
+"privacy_policy_website": "",
+"license_agreement_website": "",
+"animated_sticker_pack": false,
+"stickers": [
+{
+"image_file": "cv_015.webp",
+"emojis": [
+"👋",
+"🤝"
+],
+"accessibility_text": "Greetings  Islamic greeting sticker"
+},
+{
+"image_file": "cv_023.webp",
+"emojis": [
+"👋",
+"🤝"
+],
+"accessibility_text": "Greetings  Islamic greeting sticker"
+},
+{
+"image_file": "cv_024.webp",
+"emojis": [
+"👋",
+"🤝"
+],
+"accessibility_text": "Greetings  Islamic greeting sticker"
+},
+{
+"image_file": "cv_047.webp",
+"emojis": [
+"👋",
+"🤝"
+],
+"accessibility_text": "Greetings  Islamic greeting sticker"
+},
+{
+"image_file": "cv_001.webp",
+"emojis": [
+"☀️",
+"🌙"
+],
+"accessibility_text": "Morning & Evening  Islamic greeting sticker"
+},
+{
+"image_file": "cv_002.webp",
+"emojis": [
+"☀️",
+"🌙"
+],
+"accessibility_text": "Morning & Evening  Islamic greeting sticker"
+},
+{
+"image_file": "cv_003.webp",
+"emojis": [
+"☀️",
+"🌙"
+],
+"accessibility_text": "Morning & Evening  Islamic greeting sticker"
+},
+{
+"image_file": "cv_004.webp",
+"emojis": [
+"☀️",
+"🌙"
+],
+"accessibility_text": "Morning & Evening  Islamic greeting sticker"
+},
+{
+"image_file": "cv_006.webp",
+"emojis": [
+"☀️",
+"🌙"
+],
+"accessibility_text": "Morning & Evening  Islamic greeting sticker"
+},
+{
+"image_file": "cv_007.webp",
+"emojis": [
+"☀️",
+"🌙"
+],
+"accessibility_text": "Morning & Evening  Islamic greeting sticker"
+},
+{
+"image_file": "cv_020.webp",
+"emojis": [
+"☀️",
+"🌙"
+],
+"accessibility_text": "Morning & Evening  Islamic greeting sticker"
+},
+{
+"image_file": "cv_021.webp",
+"emojis": [
+"☀️",
+"🌙"
+],
+"accessibility_text": "Morning & Evening  Islamic greeting sticker"
+},
+{
+"image_file": "cv_022.webp",
+"emojis": [
+"☀️",
+"🌙"
+],
+"accessibility_text": "Morning & Evening  Islamic greeting sticker"
+},
+{
+"image_file": "cv_048.webp",
+"emojis": [
+"☀️",
+"🌙"
+],
+"accessibility_text": "Morning & Evening  Islamic greeting sticker"
+},
+{
+"image_file": "cv_049.webp",
+"emojis": [
+"☀️",
+"🌙"
+],
+"accessibility_text": "Morning & Evening  Islamic greeting sticker"
+},
+{
+"image_file": "cv_074.webp",
+"emojis": [
+"☀️",
+"🌙"
+],
+"accessibility_text": "Morning & Evening  Islamic greeting sticker"
+},
+{
+"image_file": "gp_007.webp",
+"emojis": [
+"☀️",
+"🌙"
+],
+"accessibility_text": "Morning & Evening  Islamic greeting sticker"
+},
+{
+"image_file": "gp_014.webp",
+"emojis": [
+"☀️",
+"🌙"
+],
+"accessibility_text": "Morning & Evening  Islamic greeting sticker"
+},
+{
+"image_file": "gp_019.webp",
+"emojis": [
+"☀️",
+"🌙"
+],
+"accessibility_text": "Morning & Evening  Islamic greeting sticker"
+},
+{
+"image_file": "gp_024.webp",
+"emojis": [
+"☀️",
+"🌙"
+],
+"accessibility_text": "Morning & Evening  Islamic greeting sticker"
+},
+{
+"image_file": "gp_026.webp",
+"emojis": [
+"☀️",
+"🌙"
+],
+"accessibility_text": "Morning & Evening  Islamic greeting sticker"
+},
+{
+"image_file": "gp_027.webp",
+"emojis": [
+"☀️",
+"🌙"
+],
+"accessibility_text": "Morning & Evening  Islamic greeting sticker"
+},
+{
+"image_file": "gp_053.webp",
+"emojis": [
+"☀️",
+"🌙"
+],
+"accessibility_text": "Morning & Evening  Islamic greeting sticker"
+},
+{
+"image_file": "gp_056.webp",
+"emojis": [
+"☀️",
+"🌙"
+],
+"accessibility_text": "Morning & Evening  Islamic greeting sticker"
+}
+]
+},
+{
+"identifier": "mishkat_2",
+"name": "مشكاة · شكر ودعوات طيبة",
+"name_en": "Mishkat · Thanks & Good Wishes",
+"publisher": "مشكاة · Mishkat",
+"tray_image_file": "tray_cv_005.png",
+"image_data_version": "1",
+"avoid_cache": false,
+"publisher_email": "mishkatapps@gmail.com",
+"publisher_website": "https://mishkatapps.github.io/",
+"privacy_policy_website": "",
+"license_agreement_website": "",
+"animated_sticker_pack": false,
+"stickers": [
+{
+"image_file": "cv_005.webp",
+"emojis": [
+"🙏",
+"💐"
+],
+"accessibility_text": "Thanks & Good Wishes  Islamic greeting sticker"
+},
+{
+"image_file": "cv_009.webp",
+"emojis": [
+"🙏",
+"💐"
+],
+"accessibility_text": "Thanks & Good Wishes  Islamic greeting sticker"
+},
+{
+"image_file": "cv_013.webp",
+"emojis": [
+"🙏",
+"💐"
+],
+"accessibility_text": "Thanks & Good Wishes  Islamic greeting sticker"
+},
+{
+"image_file": "cv_016.webp",
+"emojis": [
+"🙏",
+"💐"
+],
+"accessibility_text": "Thanks & Good Wishes  Islamic greeting sticker"
+},
+{
+"image_file": "cv_017.webp",
+"emojis": [
+"🙏",
+"💐"
+],
+"accessibility_text": "Thanks & Good Wishes  Islamic greeting sticker"
+},
+{
+"image_file": "cv_018.webp",
+"emojis": [
+"🙏",
+"💐"
+],
+"accessibility_text": "Thanks & Good Wishes  Islamic greeting sticker"
+},
+{
+"image_file": "cv_019.webp",
+"emojis": [
+"🙏",
+"💐"
+],
+"accessibility_text": "Thanks & Good Wishes  Islamic greeting sticker"
+},
+{
+"image_file": "cv_025.webp",
+"emojis": [
+"🙏",
+"💐"
+],
+"accessibility_text": "Thanks & Good Wishes  Islamic greeting sticker"
+},
+{
+"image_file": "cv_038.webp",
+"emojis": [
+"🙏",
+"💐"
+],
+"accessibility_text": "Thanks & Good Wishes  Islamic greeting sticker"
+},
+{
+"image_file": "cv_056.webp",
+"emojis": [
+"🙏",
+"💐"
+],
+"accessibility_text": "Thanks & Good Wishes  Islamic greeting sticker"
+},
+{
+"image_file": "cv_058.webp",
+"emojis": [
+"🙏",
+"💐"
+],
+"accessibility_text": "Thanks & Good Wishes  Islamic greeting sticker"
+},
+{
+"image_file": "cv_060.webp",
+"emojis": [
+"🙏",
+"💐"
+],
+"accessibility_text": "Thanks & Good Wishes  Islamic greeting sticker"
+},
+{
+"image_file": "cv_061.webp",
+"emojis": [
+"🙏",
+"💐"
+],
+"accessibility_text": "Thanks & Good Wishes  Islamic greeting sticker"
+},
+{
+"image_file": "gp_011.webp",
+"emojis": [
+"🙏",
+"💐"
+],
+"accessibility_text": "Thanks & Good Wishes  Islamic greeting sticker"
+},
+{
+"image_file": "gp_013.webp",
+"emojis": [
+"🙏",
+"💐"
+],
+"accessibility_text": "Thanks & Good Wishes  Islamic greeting sticker"
+},
+{
+"image_file": "gp_015.webp",
+"emojis": [
+"🙏",
+"💐"
+],
+"accessibility_text": "Thanks & Good Wishes  Islamic greeting sticker"
+},
+{
+"image_file": "gp_018.webp",
+"emojis": [
+"🙏",
+"💐"
+],
+"accessibility_text": "Thanks & Good Wishes  Islamic greeting sticker"
+},
+{
+"image_file": "gp_022.webp",
+"emojis": [
+"🙏",
+"💐"
+],
+"accessibility_text": "Thanks & Good Wishes  Islamic greeting sticker"
+},
+{
+"image_file": "gp_028.webp",
+"emojis": [
+"🙏",
+"💐"
+],
+"accessibility_text": "Thanks & Good Wishes  Islamic greeting sticker"
+},
+{
+"image_file": "gp_030.webp",
+"emojis": [
+"🙏",
+"💐"
+],
+"accessibility_text": "Thanks & Good Wishes  Islamic greeting sticker"
+},
+{
+"image_file": "gp_032.webp",
+"emojis": [
+"🙏",
+"💐"
+],
+"accessibility_text": "Thanks & Good Wishes  Islamic greeting sticker"
+},
+{
+"image_file": "gp_035.webp",
+"emojis": [
+"🙏",
+"💐"
+],
+"accessibility_text": "Thanks & Good Wishes  Islamic greeting sticker"
+},
+{
+"image_file": "gp_038.webp",
+"emojis": [
+"🙏",
+"💐"
+],
+"accessibility_text": "Thanks & Good Wishes  Islamic greeting sticker"
+},
+{
+"image_file": "gp_054.webp",
+"emojis": [
+"🙏",
+"💐"
+],
+"accessibility_text": "Thanks & Good Wishes  Islamic greeting sticker"
+}
+]
+},
+{
+"identifier": "mishkat_3",
+"name": "مشكاة · ردود ومرح",
+"name_en": "Mishkat · Reactions",
+"publisher": "مشكاة · Mishkat",
+"tray_image_file": "tray_cv_057.png",
+"image_data_version": "1",
+"avoid_cache": false,
+"publisher_email": "mishkatapps@gmail.com",
+"publisher_website": "https://mishkatapps.github.io/",
+"privacy_policy_website": "",
+"license_agreement_website": "",
+"animated_sticker_pack": false,
+"stickers": [
+{
+"image_file": "cv_057.webp",
+"emojis": [
+"😂",
+"👍"
+],
+"accessibility_text": "Reactions  Islamic greeting sticker"
+},
+{
+"image_file": "cv_064.webp",
+"emojis": [
+"😂",
+"👍"
+],
+"accessibility_text": "Reactions  Islamic greeting sticker"
+},
+{
+"image_file": "gp_006.webp",
+"emojis": [
+"😂",
+"👍"
+],
+"accessibility_text": "Reactions  Islamic greeting sticker"
+},
+{
+"image_file": "gp_009.webp",
+"emojis": [
+"😂",
+"👍"
+],
+"accessibility_text": "Reactions  Islamic greeting sticker"
+},
+{
+"image_file": "gp_010.webp",
+"emojis": [
+"😂",
+"👍"
+],
+"accessibility_text": "Reactions  Islamic greeting sticker"
+},
+{
+"image_file": "gp_036.webp",
+"emojis": [
+"😂",
+"👍"
+],
+"accessibility_text": "Reactions  Islamic greeting sticker"
+},
+{
+"image_file": "gp_037.webp",
+"emojis": [
+"😂",
+"👍"
+],
+"accessibility_text": "Reactions  Islamic greeting sticker"
+},
+{
+"image_file": "gp_068.webp",
+"emojis": [
+"😂",
+"👍"
+],
+"accessibility_text": "Reactions  Islamic greeting sticker"
+},
+{
+"image_file": "mo_243.webp",
+"emojis": [
+"😂",
+"👍"
+],
+"accessibility_text": "Reactions  Islamic greeting sticker"
+},
+{
+"image_file": "mo_244.webp",
+"emojis": [
+"😂",
+"👍"
+],
+"accessibility_text": "Reactions  Islamic greeting sticker"
+},
+{
+"image_file": "mo_246.webp",
+"emojis": [
+"😂",
+"👍"
+],
+"accessibility_text": "Reactions  Islamic greeting sticker"
+},
+{
+"image_file": "mo_247.webp",
+"emojis": [
+"😂",
+"👍"
+],
+"accessibility_text": "Reactions  Islamic greeting sticker"
+},
+{
+"image_file": "mo_249.webp",
+"emojis": [
+"😂",
+"👍"
+],
+"accessibility_text": "Reactions  Islamic greeting sticker"
+},
+{
+"image_file": "mo_250.webp",
+"emojis": [
+"😂",
+"👍"
+],
+"accessibility_text": "Reactions  Islamic greeting sticker"
+},
+{
+"image_file": "mo_251.webp",
+"emojis": [
+"😂",
+"👍"
+],
+"accessibility_text": "Reactions  Islamic greeting sticker"
+},
+{
+"image_file": "mo_252.webp",
+"emojis": [
+"😂",
+"👍"
+],
+"accessibility_text": "Reactions  Islamic greeting sticker"
+},
+{
+"image_file": "mo_253.webp",
+"emojis": [
+"😂",
+"👍"
+],
+"accessibility_text": "Reactions  Islamic greeting sticker"
+},
+{
+"image_file": "mo_254.webp",
+"emojis": [
+"😂",
+"👍"
+],
+"accessibility_text": "Reactions  Islamic greeting sticker"
+},
+{
+"image_file": "mo_257.webp",
+"emojis": [
+"😂",
+"👍"
+],
+"accessibility_text": "Reactions  Islamic greeting sticker"
+},
+{
+"image_file": "mo_258.webp",
+"emojis": [
+"😂",
+"👍"
+],
+"accessibility_text": "Reactions  Islamic greeting sticker"
+},
+{
+"image_file": "mo_259.webp",
+"emojis": [
+"😂",
+"👍"
+],
+"accessibility_text": "Reactions  Islamic greeting sticker"
+},
+{
+"image_file": "mo_260.webp",
+"emojis": [
+"😂",
+"👍"
+],
+"accessibility_text": "Reactions  Islamic greeting sticker"
+},
+{
+"image_file": "mo_261.webp",
+"emojis": [
+"😂",
+"👍"
+],
+"accessibility_text": "Reactions  Islamic greeting sticker"
+},
+{
+"image_file": "mo_262.webp",
+"emojis": [
+"😂",
+"👍"
+],
+"accessibility_text": "Reactions  Islamic greeting sticker"
+}
+]
+},
+{
+"identifier": "mishkat_4",
+"name": "مشكاة · أذكار وعبارات إيمانية",
+"name_en": "Mishkat · Dhikr",
+"publisher": "مشكاة · Mishkat",
+"tray_image_file": "tray_cv_012.png",
+"image_data_version": "1",
+"avoid_cache": false,
+"publisher_email": "mishkatapps@gmail.com",
+"publisher_website": "https://mishkatapps.github.io/",
+"privacy_policy_website": "",
+"license_agreement_website": "",
+"animated_sticker_pack": false,
+"stickers": [
+{
+"image_file": "cv_012.webp",
+"emojis": [
+"📿",
+"🤲"
+],
+"accessibility_text": "Dhikr  Islamic greeting sticker"
+},
+{
+"image_file": "cv_014.webp",
+"emojis": [
+"📿",
+"🤲"
+],
+"accessibility_text": "Dhikr  Islamic greeting sticker"
+},
+{
+"image_file": "cv_037.webp",
+"emojis": [
+"📿",
+"🤲"
+],
+"accessibility_text": "Dhikr  Islamic greeting sticker"
+},
+{
+"image_file": "cv_044.webp",
+"emojis": [
+"📿",
+"🤲"
+],
+"accessibility_text": "Dhikr  Islamic greeting sticker"
+},
+{
+"image_file": "cv_050.webp",
+"emojis": [
+"📿",
+"🤲"
+],
+"accessibility_text": "Dhikr  Islamic greeting sticker"
+},
+{
+"image_file": "cv_051.webp",
+"emojis": [
+"📿",
+"🤲"
+],
+"accessibility_text": "Dhikr  Islamic greeting sticker"
+},
+{
+"image_file": "cv_052.webp",
+"emojis": [
+"📿",
+"🤲"
+],
+"accessibility_text": "Dhikr  Islamic greeting sticker"
+},
+{
+"image_file": "cv_053.webp",
+"emojis": [
+"📿",
+"🤲"
+],
+"accessibility_text": "Dhikr  Islamic greeting sticker"
+},
+{
+"image_file": "cv_054.webp",
+"emojis": [
+"📿",
+"🤲"
+],
+"accessibility_text": "Dhikr  Islamic greeting sticker"
+},
+{
+"image_file": "cv_055.webp",
+"emojis": [
+"📿",
+"🤲"
+],
+"accessibility_text": "Dhikr  Islamic greeting sticker"
+},
+{
+"image_file": "gp_001.webp",
+"emojis": [
+"📿",
+"🤲"
+],
+"accessibility_text": "Dhikr  Islamic greeting sticker"
+},
+{
+"image_file": "gp_004.webp",
+"emojis": [
+"📿",
+"🤲"
+],
+"accessibility_text": "Dhikr  Islamic greeting sticker"
+},
+{
+"image_file": "gp_005.webp",
+"emojis": [
+"📿",
+"🤲"
+],
+"accessibility_text": "Dhikr  Islamic greeting sticker"
+},
+{
+"image_file": "gp_012.webp",
+"emojis": [
+"📿",
+"🤲"
+],
+"accessibility_text": "Dhikr  Islamic greeting sticker"
+},
+{
+"image_file": "gp_029.webp",
+"emojis": [
+"📿",
+"🤲"
+],
+"accessibility_text": "Dhikr  Islamic greeting sticker"
+},
+{
+"image_file": "gp_034.webp",
+"emojis": [
+"📿",
+"🤲"
+],
+"accessibility_text": "Dhikr  Islamic greeting sticker"
+},
+{
+"image_file": "gp_051.webp",
+"emojis": [
+"📿",
+"🤲"
+],
+"accessibility_text": "Dhikr  Islamic greeting sticker"
+},
+{
+"image_file": "gp_141.webp",
+"emojis": [
+"📿",
+"🤲"
+],
+"accessibility_text": "Dhikr  Islamic greeting sticker"
+},
+{
+"image_file": "gp_142.webp",
+"emojis": [
+"📿",
+"🤲"
+],
+"accessibility_text": "Dhikr  Islamic greeting sticker"
+},
+{
+"image_file": "gp_143.webp",
+"emojis": [
+"📿",
+"🤲"
+],
+"accessibility_text": "Dhikr  Islamic greeting sticker"
+},
+{
+"image_file": "gp_144.webp",
+"emojis": [
+"📿",
+"🤲"
+],
+"accessibility_text": "Dhikr  Islamic greeting sticker"
+},
+{
+"image_file": "gp_145.webp",
+"emojis": [
+"📿",
+"🤲"
+],
+"accessibility_text": "Dhikr  Islamic greeting sticker"
+},
+{
+"image_file": "gp_146.webp",
+"emojis": [
+"📿",
+"🤲"
+],
+"accessibility_text": "Dhikr  Islamic greeting sticker"
+},
+{
+"image_file": "gp_147.webp",
+"emojis": [
+"📿",
+"🤲"
+],
+"accessibility_text": "Dhikr  Islamic greeting sticker"
+}
+]
+},
+{
+"identifier": "mishkat_5",
+"name": "مشكاة · أدعية",
+"name_en": "Mishkat · Duas",
+"publisher": "مشكاة · Mishkat",
+"tray_image_file": "tray_cv_045.png",
+"image_data_version": "1",
+"avoid_cache": false,
+"publisher_email": "mishkatapps@gmail.com",
+"publisher_website": "https://mishkatapps.github.io/",
+"privacy_policy_website": "",
+"license_agreement_website": "",
+"animated_sticker_pack": false,
+"stickers": [
+{
+"image_file": "cv_045.webp",
+"emojis": [
+"🤲",
+"💚"
+],
+"accessibility_text": "Duas  Islamic greeting sticker"
+},
+{
+"image_file": "cv_046.webp",
+"emojis": [
+"🤲",
+"💚"
+],
+"accessibility_text": "Duas  Islamic greeting sticker"
+},
+{
+"image_file": "cv_062.webp",
+"emojis": [
+"🤲",
+"💚"
+],
+"accessibility_text": "Duas  Islamic greeting sticker"
+},
+{
+"image_file": "cv_063.webp",
+"emojis": [
+"🤲",
+"💚"
+],
+"accessibility_text": "Duas  Islamic greeting sticker"
+},
+{
+"image_file": "gp_020.webp",
+"emojis": [
+"🤲",
+"💚"
+],
+"accessibility_text": "Duas  Islamic greeting sticker"
+},
+{
+"image_file": "gp_021.webp",
+"emojis": [
+"🤲",
+"💚"
+],
+"accessibility_text": "Duas  Islamic greeting sticker"
+},
+{
+"image_file": "gp_025.webp",
+"emojis": [
+"🤲",
+"💚"
+],
+"accessibility_text": "Duas  Islamic greeting sticker"
+},
+{
+"image_file": "gp_044.webp",
+"emojis": [
+"🤲",
+"💚"
+],
+"accessibility_text": "Duas  Islamic greeting sticker"
+},
+{
+"image_file": "gp_058.webp",
+"emojis": [
+"🤲",
+"💚"
+],
+"accessibility_text": "Duas  Islamic greeting sticker"
+},
+{
+"image_file": "gp_064.webp",
+"emojis": [
+"🤲",
+"💚"
+],
+"accessibility_text": "Duas  Islamic greeting sticker"
+},
+{
+"image_file": "gp_082.webp",
+"emojis": [
+"🤲",
+"💚"
+],
+"accessibility_text": "Duas  Islamic greeting sticker"
+},
+{
+"image_file": "gp_086.webp",
+"emojis": [
+"🤲",
+"💚"
+],
+"accessibility_text": "Duas  Islamic greeting sticker"
+},
+{
+"image_file": "gp_106.webp",
+"emojis": [
+"🤲",
+"💚"
+],
+"accessibility_text": "Duas  Islamic greeting sticker"
+},
+{
+"image_file": "gp_121.webp",
+"emojis": [
+"🤲",
+"💚"
+],
+"accessibility_text": "Duas  Islamic greeting sticker"
+},
+{
+"image_file": "gp_122.webp",
+"emojis": [
+"🤲",
+"💚"
+],
+"accessibility_text": "Duas  Islamic greeting sticker"
+},
+{
+"image_file": "gp_123.webp",
+"emojis": [
+"🤲",
+"💚"
+],
+"accessibility_text": "Duas  Islamic greeting sticker"
+},
+{
+"image_file": "gp_124.webp",
+"emojis": [
+"🤲",
+"💚"
+],
+"accessibility_text": "Duas  Islamic greeting sticker"
+},
+{
+"image_file": "gp_126.webp",
+"emojis": [
+"🤲",
+"💚"
+],
+"accessibility_text": "Duas  Islamic greeting sticker"
+},
+{
+"image_file": "gp_127.webp",
+"emojis": [
+"🤲",
+"💚"
+],
+"accessibility_text": "Duas  Islamic greeting sticker"
+},
+{
+"image_file": "gp_128.webp",
+"emojis": [
+"🤲",
+"💚"
+],
+"accessibility_text": "Duas  Islamic greeting sticker"
+},
+{
+"image_file": "gp_129.webp",
+"emojis": [
+"🤲",
+"💚"
+],
+"accessibility_text": "Duas  Islamic greeting sticker"
+},
+{
+"image_file": "gp_130.webp",
+"emojis": [
+"🤲",
+"💚"
+],
+"accessibility_text": "Duas  Islamic greeting sticker"
+},
+{
+"image_file": "gp_131.webp",
+"emojis": [
+"🤲",
+"💚"
+],
+"accessibility_text": "Duas  Islamic greeting sticker"
+},
+{
+"image_file": "gp_132.webp",
+"emojis": [
+"🤲",
+"💚"
+],
+"accessibility_text": "Duas  Islamic greeting sticker"
+}
+]
+},
+{
+"identifier": "mishkat_6",
+"name": "مشكاة · أحاديث نبوية",
+"name_en": "Mishkat · Hadith",
+"publisher": "مشكاة · Mishkat",
+"tray_image_file": "tray_hc_161.png",
+"image_data_version": "1",
+"avoid_cache": false,
+"publisher_email": "mishkatapps@gmail.com",
+"publisher_website": "https://mishkatapps.github.io/",
+"privacy_policy_website": "",
+"license_agreement_website": "",
+"animated_sticker_pack": false,
+"stickers": [
+{
+"image_file": "hc_161.webp",
+"emojis": [
+"📖",
+"💚"
+],
+"accessibility_text": "Hadith  Islamic greeting sticker"
+},
+{
+"image_file": "hc_162.webp",
+"emojis": [
+"📖",
+"💚"
+],
+"accessibility_text": "Hadith  Islamic greeting sticker"
+},
+{
+"image_file": "hc_163.webp",
+"emojis": [
+"📖",
+"💚"
+],
+"accessibility_text": "Hadith  Islamic greeting sticker"
+},
+{
+"image_file": "hc_164.webp",
+"emojis": [
+"📖",
+"💚"
+],
+"accessibility_text": "Hadith  Islamic greeting sticker"
+},
+{
+"image_file": "hc_165.webp",
+"emojis": [
+"📖",
+"💚"
+],
+"accessibility_text": "Hadith  Islamic greeting sticker"
+},
+{
+"image_file": "hc_166.webp",
+"emojis": [
+"📖",
+"💚"
+],
+"accessibility_text": "Hadith  Islamic greeting sticker"
+},
+{
+"image_file": "hc_167.webp",
+"emojis": [
+"📖",
+"💚"
+],
+"accessibility_text": "Hadith  Islamic greeting sticker"
+},
+{
+"image_file": "hc_168.webp",
+"emojis": [
+"📖",
+"💚"
+],
+"accessibility_text": "Hadith  Islamic greeting sticker"
+},
+{
+"image_file": "hc_169.webp",
+"emojis": [
+"📖",
+"💚"
+],
+"accessibility_text": "Hadith  Islamic greeting sticker"
+},
+{
+"image_file": "hc_170.webp",
+"emojis": [
+"📖",
+"💚"
+],
+"accessibility_text": "Hadith  Islamic greeting sticker"
+},
+{
+"image_file": "hc_171.webp",
+"emojis": [
+"📖",
+"💚"
+],
+"accessibility_text": "Hadith  Islamic greeting sticker"
+},
+{
+"image_file": "hc_172.webp",
+"emojis": [
+"📖",
+"💚"
+],
+"accessibility_text": "Hadith  Islamic greeting sticker"
+},
+{
+"image_file": "hc_173.webp",
+"emojis": [
+"📖",
+"💚"
+],
+"accessibility_text": "Hadith  Islamic greeting sticker"
+},
+{
+"image_file": "hc_174.webp",
+"emojis": [
+"📖",
+"💚"
+],
+"accessibility_text": "Hadith  Islamic greeting sticker"
+},
+{
+"image_file": "hc_175.webp",
+"emojis": [
+"📖",
+"💚"
+],
+"accessibility_text": "Hadith  Islamic greeting sticker"
+},
+{
+"image_file": "hc_176.webp",
+"emojis": [
+"📖",
+"💚"
+],
+"accessibility_text": "Hadith  Islamic greeting sticker"
+},
+{
+"image_file": "hc_177.webp",
+"emojis": [
+"📖",
+"💚"
+],
+"accessibility_text": "Hadith  Islamic greeting sticker"
+},
+{
+"image_file": "hc_178.webp",
+"emojis": [
+"📖",
+"💚"
+],
+"accessibility_text": "Hadith  Islamic greeting sticker"
+},
+{
+"image_file": "hc_179.webp",
+"emojis": [
+"📖",
+"💚"
+],
+"accessibility_text": "Hadith  Islamic greeting sticker"
+},
+{
+"image_file": "hc_180.webp",
+"emojis": [
+"📖",
+"💚"
+],
+"accessibility_text": "Hadith  Islamic greeting sticker"
+},
+{
+"image_file": "hc_182.webp",
+"emojis": [
+"📖",
+"💚"
+],
+"accessibility_text": "Hadith  Islamic greeting sticker"
+},
+{
+"image_file": "hc_186.webp",
+"emojis": [
+"📖",
+"💚"
+],
+"accessibility_text": "Hadith  Islamic greeting sticker"
+},
+{
+"image_file": "hc_190.webp",
+"emojis": [
+"📖",
+"💚"
+],
+"accessibility_text": "Hadith  Islamic greeting sticker"
+},
+{
+"image_file": "hc_191.webp",
+"emojis": [
+"📖",
+"💚"
+],
+"accessibility_text": "Hadith  Islamic greeting sticker"
+}
+]
+},
+{
+"identifier": "mishkat_7",
+"name": "مشكاة · رمضان والجمعة والأعياد",
+"name_en": "Mishkat · Ramadan, Jumuʿah & Eid",
+"publisher": "مشكاة · Mishkat",
+"tray_image_file": "tray_cv_008.png",
+"image_data_version": "1",
+"avoid_cache": false,
+"publisher_email": "mishkatapps@gmail.com",
+"publisher_website": "https://mishkatapps.github.io/",
+"privacy_policy_website": "",
+"license_agreement_website": "",
+"animated_sticker_pack": false,
+"stickers": [
+{
+"image_file": "cv_008.webp",
+"emojis": [
+"🌙",
+"🕌"
+],
+"accessibility_text": "Islamic Occasions  Islamic greeting sticker"
+},
+{
+"image_file": "cv_011.webp",
+"emojis": [
+"🌙",
+"🕌"
+],
+"accessibility_text": "Islamic Occasions  Islamic greeting sticker"
+},
+{
+"image_file": "cv_026.webp",
+"emojis": [
+"🌙",
+"🕌"
+],
+"accessibility_text": "Islamic Occasions  Islamic greeting sticker"
+},
+{
+"image_file": "cv_027.webp",
+"emojis": [
+"🌙",
+"🕌"
+],
+"accessibility_text": "Islamic Occasions  Islamic greeting sticker"
+},
+{
+"image_file": "cv_028.webp",
+"emojis": [
+"🌙",
+"🕌"
+],
+"accessibility_text": "Islamic Occasions  Islamic greeting sticker"
+},
+{
+"image_file": "cv_029.webp",
+"emojis": [
+"🌙",
+"🕌"
+],
+"accessibility_text": "Islamic Occasions  Islamic greeting sticker"
+},
+{
+"image_file": "cv_030.webp",
+"emojis": [
+"🌙",
+"🕌"
+],
+"accessibility_text": "Islamic Occasions  Islamic greeting sticker"
+},
+{
+"image_file": "cv_068.webp",
+"emojis": [
+"🌙",
+"🕌"
+],
+"accessibility_text": "Islamic Occasions  Islamic greeting sticker"
+},
+{
+"image_file": "cv_069.webp",
+"emojis": [
+"🌙",
+"🕌"
+],
+"accessibility_text": "Islamic Occasions  Islamic greeting sticker"
+},
+{
+"image_file": "cv_072.webp",
+"emojis": [
+"🌙",
+"🕌"
+],
+"accessibility_text": "Islamic Occasions  Islamic greeting sticker"
+},
+{
+"image_file": "cv_073.webp",
+"emojis": [
+"🌙",
+"🕌"
+],
+"accessibility_text": "Islamic Occasions  Islamic greeting sticker"
+},
+{
+"image_file": "cv_075.webp",
+"emojis": [
+"🌙",
+"🕌"
+],
+"accessibility_text": "Islamic Occasions  Islamic greeting sticker"
+},
+{
+"image_file": "cv_076.webp",
+"emojis": [
+"🌙",
+"🕌"
+],
+"accessibility_text": "Islamic Occasions  Islamic greeting sticker"
+},
+{
+"image_file": "gp_033.webp",
+"emojis": [
+"🌙",
+"🕌"
+],
+"accessibility_text": "Islamic Occasions  Islamic greeting sticker"
+},
+{
+"image_file": "gp_059.webp",
+"emojis": [
+"🌙",
+"🕌"
+],
+"accessibility_text": "Islamic Occasions  Islamic greeting sticker"
+},
+{
+"image_file": "gp_061.webp",
+"emojis": [
+"🌙",
+"🕌"
+],
+"accessibility_text": "Islamic Occasions  Islamic greeting sticker"
+},
+{
+"image_file": "gp_071.webp",
+"emojis": [
+"🌙",
+"🕌"
+],
+"accessibility_text": "Islamic Occasions  Islamic greeting sticker"
+},
+{
+"image_file": "gp_081.webp",
+"emojis": [
+"🌙",
+"🕌"
+],
+"accessibility_text": "Islamic Occasions  Islamic greeting sticker"
+},
+{
+"image_file": "gp_085.webp",
+"emojis": [
+"🌙",
+"🕌"
+],
+"accessibility_text": "Islamic Occasions  Islamic greeting sticker"
+},
+{
+"image_file": "gp_090.webp",
+"emojis": [
+"🌙",
+"🕌"
+],
+"accessibility_text": "Islamic Occasions  Islamic greeting sticker"
+},
+{
+"image_file": "gp_105.webp",
+"emojis": [
+"🌙",
+"🕌"
+],
+"accessibility_text": "Islamic Occasions  Islamic greeting sticker"
+},
+{
+"image_file": "mo_227.webp",
+"emojis": [
+"🌙",
+"🕌"
+],
+"accessibility_text": "Islamic Occasions  Islamic greeting sticker"
+},
+{
+"image_file": "g-jumuah.webp",
+"emojis": [
+"🎉",
+"🌙"
+],
+"accessibility_text": "Jumuah Mubarak"
+},
+{
+"image_file": "g-jumuah-roses.webp",
+"emojis": [
+"🎉",
+"🌙"
+],
+"accessibility_text": "Blessed Friday"
+}
+]
+},
+{
+"identifier": "mishkat_8",
+"name": "مشكاة · تهاني ومناسبات",
+"name_en": "Mishkat · Congratulations & Occasions",
+"publisher": "مشكاة · Mishkat",
+"tray_image_file": "tray_cv_031.png",
+"image_data_version": "1",
+"avoid_cache": false,
+"publisher_email": "mishkatapps@gmail.com",
+"publisher_website": "https://mishkatapps.github.io/",
+"privacy_policy_website": "",
+"license_agreement_website": "",
+"animated_sticker_pack": false,
+"stickers": [
+{
+"image_file": "cv_031.webp",
+"emojis": [
+"🎉",
+"🥳"
+],
+"accessibility_text": "Congratulations  Islamic greeting sticker"
+},
+{
+"image_file": "cv_039.webp",
+"emojis": [
+"🎉",
+"🥳"
+],
+"accessibility_text": "Congratulations  Islamic greeting sticker"
+},
+{
+"image_file": "cv_065.webp",
+"emojis": [
+"🎉",
+"🥳"
+],
+"accessibility_text": "Congratulations  Islamic greeting sticker"
+},
+{
+"image_file": "cv_066.webp",
+"emojis": [
+"🎉",
+"🥳"
+],
+"accessibility_text": "Congratulations  Islamic greeting sticker"
+},
+{
+"image_file": "cv_067.webp",
+"emojis": [
+"🎉",
+"🥳"
+],
+"accessibility_text": "Congratulations  Islamic greeting sticker"
+},
+{
+"image_file": "cv_070.webp",
+"emojis": [
+"🎉",
+"🥳"
+],
+"accessibility_text": "Congratulations  Islamic greeting sticker"
+},
+{
+"image_file": "cv_077.webp",
+"emojis": [
+"🎉",
+"🥳"
+],
+"accessibility_text": "Congratulations  Islamic greeting sticker"
+},
+{
+"image_file": "cv_078.webp",
+"emojis": [
+"🎉",
+"🥳"
+],
+"accessibility_text": "Congratulations  Islamic greeting sticker"
+},
+{
+"image_file": "gp_008.webp",
+"emojis": [
+"🎉",
+"🥳"
+],
+"accessibility_text": "Congratulations  Islamic greeting sticker"
+},
+{
+"image_file": "gp_016.webp",
+"emojis": [
+"🎉",
+"🥳"
+],
+"accessibility_text": "Congratulations  Islamic greeting sticker"
+},
+{
+"image_file": "gp_017.webp",
+"emojis": [
+"🎉",
+"🥳"
+],
+"accessibility_text": "Congratulations  Islamic greeting sticker"
+},
+{
+"image_file": "gp_031.webp",
+"emojis": [
+"🎉",
+"🥳"
+],
+"accessibility_text": "Congratulations  Islamic greeting sticker"
+},
+{
+"image_file": "gp_039.webp",
+"emojis": [
+"🎉",
+"🥳"
+],
+"accessibility_text": "Congratulations  Islamic greeting sticker"
+},
+{
+"image_file": "gp_070.webp",
+"emojis": [
+"🎉",
+"🥳"
+],
+"accessibility_text": "Congratulations  Islamic greeting sticker"
+},
+{
+"image_file": "mo_248.webp",
+"emojis": [
+"🎉",
+"🥳"
+],
+"accessibility_text": "Congratulations  Islamic greeting sticker"
+},
+{
+"image_file": "g-salawat.webp",
+"emojis": [
+"🎉",
+"🌙"
+],
+"accessibility_text": "Salawat"
+},
+{
+"image_file": "g-dua.webp",
+"emojis": [
+"🎉",
+"🌙"
+],
+"accessibility_text": "O Lord"
+},
+{
+"image_file": "g-tasbih.webp",
+"emojis": [
+"🎉",
+"🌙"
+],
+"accessibility_text": "SubhanAllah"
+},
+{
+"image_file": "g-hijri.webp",
+"emojis": [
+"🎉",
+"🌙"
+],
+"accessibility_text": "Happy Hijri year"
+},
+{
+"image_file": "g-aqsa.webp",
+"emojis": [
+"🎉",
+"🌙"
+],
+"accessibility_text": "Isra & Miraj"
+},
+{
+"image_file": "g-white-moon.webp",
+"emojis": [
+"🎉",
+"🌙"
+],
+"accessibility_text": "White days"
+},
+{
+"image_file": "g-sabah.webp",
+"emojis": [
+"🎉",
+"🌙"
+],
+"accessibility_text": "Good morning"
+},
+{
+"image_file": "g-masaa.webp",
+"emojis": [
+"🎉",
+"🌙"
+],
+"accessibility_text": "Good evening"
+},
+{
+"image_file": "g-fasting.webp",
+"emojis": [
+"🎉",
+"🌙"
+],
+"accessibility_text": "Accepted fast"
+}
+]
+},
+{
+"identifier": "mishkat_9",
+"name": "مشكاة · محبة ودعوات للأحبة",
+"name_en": "Mishkat · Love & Prayers for Loved Ones",
+"publisher": "مشكاة · Mishkat",
+"tray_image_file": "tray_cv_059.png",
+"image_data_version": "1",
+"avoid_cache": false,
+"publisher_email": "mishkatapps@gmail.com",
+"publisher_website": "https://mishkatapps.github.io/",
+"privacy_policy_website": "",
+"license_agreement_website": "",
+"animated_sticker_pack": false,
+"stickers": [
+{
+"image_file": "cv_059.webp",
+"emojis": [
+"❤️",
+"🤗"
+],
+"accessibility_text": "Love & Friendship  Islamic greeting sticker"
+},
+{
+"image_file": "gp_023.webp",
+"emojis": [
+"❤️",
+"🤗"
+],
+"accessibility_text": "Love & Friendship  Islamic greeting sticker"
+},
+{
+"image_file": "gp_055.webp",
+"emojis": [
+"❤️",
+"🤗"
+],
+"accessibility_text": "Love & Friendship  Islamic greeting sticker"
+},
+{
+"image_file": "gp_094.webp",
+"emojis": [
+"❤️",
+"🤗"
+],
+"accessibility_text": "Love & Friendship  Islamic greeting sticker"
+},
+{
+"image_file": "gp_110.webp",
+"emojis": [
+"❤️",
+"🤗"
+],
+"accessibility_text": "Love & Friendship  Islamic greeting sticker"
+},
+{
+"image_file": "gp_114.webp",
+"emojis": [
+"❤️",
+"🤗"
+],
+"accessibility_text": "Love & Friendship  Islamic greeting sticker"
+},
+{
+"image_file": "mo_241.webp",
+"emojis": [
+"❤️",
+"🤗"
+],
+"accessibility_text": "Love & Friendship  Islamic greeting sticker"
+},
+{
+"image_file": "mo_242.webp",
+"emojis": [
+"❤️",
+"🤗"
+],
+"accessibility_text": "Love & Friendship  Islamic greeting sticker"
+},
+{
+"image_file": "mo_221.webp",
+"emojis": [
+"🤲",
+"💚"
+],
+"accessibility_text": "Prayers for Loved Ones  Islamic greeting sticker"
+},
+{
+"image_file": "mo_222.webp",
+"emojis": [
+"🤲",
+"💚"
+],
+"accessibility_text": "Prayers for Loved Ones  Islamic greeting sticker"
+},
+{
+"image_file": "mo_223.webp",
+"emojis": [
+"🤲",
+"💚"
+],
+"accessibility_text": "Prayers for Loved Ones  Islamic greeting sticker"
+},
+{
+"image_file": "mo_224.webp",
+"emojis": [
+"🤲",
+"💚"
+],
+"accessibility_text": "Prayers for Loved Ones  Islamic greeting sticker"
+},
+{
+"image_file": "mo_225.webp",
+"emojis": [
+"🤲",
+"💚"
+],
+"accessibility_text": "Prayers for Loved Ones  Islamic greeting sticker"
+},
+{
+"image_file": "mo_226.webp",
+"emojis": [
+"🤲",
+"💚"
+],
+"accessibility_text": "Prayers for Loved Ones  Islamic greeting sticker"
+},
+{
+"image_file": "mo_229.webp",
+"emojis": [
+"🤲",
+"💚"
+],
+"accessibility_text": "Prayers for Loved Ones  Islamic greeting sticker"
+},
+{
+"image_file": "mo_230.webp",
+"emojis": [
+"🤲",
+"💚"
+],
+"accessibility_text": "Prayers for Loved Ones  Islamic greeting sticker"
+},
+{
+"image_file": "mo_231.webp",
+"emojis": [
+"🤲",
+"💚"
+],
+"accessibility_text": "Prayers for Loved Ones  Islamic greeting sticker"
+},
+{
+"image_file": "mo_232.webp",
+"emojis": [
+"🤲",
+"💚"
+],
+"accessibility_text": "Prayers for Loved Ones  Islamic greeting sticker"
+},
+{
+"image_file": "mo_233.webp",
+"emojis": [
+"🤲",
+"💚"
+],
+"accessibility_text": "Prayers for Loved Ones  Islamic greeting sticker"
+},
+{
+"image_file": "mo_234.webp",
+"emojis": [
+"🤲",
+"💚"
+],
+"accessibility_text": "Prayers for Loved Ones  Islamic greeting sticker"
+},
+{
+"image_file": "mo_235.webp",
+"emojis": [
+"🤲",
+"💚"
+],
+"accessibility_text": "Prayers for Loved Ones  Islamic greeting sticker"
+},
+{
+"image_file": "mo_236.webp",
+"emojis": [
+"🤲",
+"💚"
+],
+"accessibility_text": "Prayers for Loved Ones  Islamic greeting sticker"
+},
+{
+"image_file": "mo_237.webp",
+"emojis": [
+"🤲",
+"💚"
+],
+"accessibility_text": "Prayers for Loved Ones  Islamic greeting sticker"
+},
+{
+"image_file": "mo_238.webp",
+"emojis": [
+"🤲",
+"💚"
+],
+"accessibility_text": "Prayers for Loved Ones  Islamic greeting sticker"
+}
+]
+},
+{
+"identifier": "mishkat_10",
+"name": "مشكاة · مواساة وشفاء",
+"name_en": "Mishkat · Condolences & Get Well",
+"publisher": "مشكاة · Mishkat",
+"tray_image_file": "tray_cv_040.png",
+"image_data_version": "1",
+"avoid_cache": false,
+"publisher_email": "mishkatapps@gmail.com",
+"publisher_website": "https://mishkatapps.github.io/",
+"privacy_policy_website": "",
+"license_agreement_website": "",
+"animated_sticker_pack": false,
+"stickers": [
+{
+"image_file": "cv_040.webp",
+"emojis": [
+"🤍",
+"🤲"
+],
+"accessibility_text": "Condolences  Islamic greeting sticker"
+},
+{
+"image_file": "cv_041.webp",
+"emojis": [
+"🤍",
+"🤲"
+],
+"accessibility_text": "Condolences  Islamic greeting sticker"
+},
+{
+"image_file": "cv_042.webp",
+"emojis": [
+"🤍",
+"🤲"
+],
+"accessibility_text": "Condolences  Islamic greeting sticker"
+},
+{
+"image_file": "cv_043.webp",
+"emojis": [
+"🤍",
+"🤲"
+],
+"accessibility_text": "Condolences  Islamic greeting sticker"
+},
+{
+"image_file": "mo_201.webp",
+"emojis": [
+"🤍",
+"🤲"
+],
+"accessibility_text": "Condolences  Islamic greeting sticker"
+},
+{
+"image_file": "mo_202.webp",
+"emojis": [
+"🤍",
+"🤲"
+],
+"accessibility_text": "Condolences  Islamic greeting sticker"
+},
+{
+"image_file": "mo_203.webp",
+"emojis": [
+"🤍",
+"🤲"
+],
+"accessibility_text": "Condolences  Islamic greeting sticker"
+},
+{
+"image_file": "mo_204.webp",
+"emojis": [
+"🤍",
+"🤲"
+],
+"accessibility_text": "Condolences  Islamic greeting sticker"
+},
+{
+"image_file": "mo_205.webp",
+"emojis": [
+"🤍",
+"🤲"
+],
+"accessibility_text": "Condolences  Islamic greeting sticker"
+},
+{
+"image_file": "mo_206.webp",
+"emojis": [
+"🤍",
+"🤲"
+],
+"accessibility_text": "Condolences  Islamic greeting sticker"
+},
+{
+"image_file": "mo_207.webp",
+"emojis": [
+"🤍",
+"🤲"
+],
+"accessibility_text": "Condolences  Islamic greeting sticker"
+},
+{
+"image_file": "mo_208.webp",
+"emojis": [
+"🤍",
+"🤲"
+],
+"accessibility_text": "Condolences  Islamic greeting sticker"
+},
+{
+"image_file": "mo_209.webp",
+"emojis": [
+"🤍",
+"🤲"
+],
+"accessibility_text": "Condolences  Islamic greeting sticker"
+},
+{
+"image_file": "mo_210.webp",
+"emojis": [
+"🤍",
+"🤲"
+],
+"accessibility_text": "Condolences  Islamic greeting sticker"
+},
+{
+"image_file": "mo_211.webp",
+"emojis": [
+"🤍",
+"🤲"
+],
+"accessibility_text": "Condolences  Islamic greeting sticker"
+},
+{
+"image_file": "mo_212.webp",
+"emojis": [
+"🤍",
+"🤲"
+],
+"accessibility_text": "Condolences  Islamic greeting sticker"
+},
+{
+"image_file": "mo_213.webp",
+"emojis": [
+"🤍",
+"🤲"
+],
+"accessibility_text": "Condolences  Islamic greeting sticker"
+},
+{
+"image_file": "mo_214.webp",
+"emojis": [
+"🤍",
+"🤲"
+],
+"accessibility_text": "Condolences  Islamic greeting sticker"
+},
+{
+"image_file": "mo_215.webp",
+"emojis": [
+"🤍",
+"🤲"
+],
+"accessibility_text": "Condolences  Islamic greeting sticker"
+},
+{
+"image_file": "mo_216.webp",
+"emojis": [
+"🤍",
+"🤲"
+],
+"accessibility_text": "Condolences  Islamic greeting sticker"
+},
+{
+"image_file": "cv_010.webp",
+"emojis": [
+"🤒",
+"💐"
+],
+"accessibility_text": "Get Well  Islamic greeting sticker"
+},
+{
+"image_file": "cv_032.webp",
+"emojis": [
+"🤒",
+"💐"
+],
+"accessibility_text": "Get Well  Islamic greeting sticker"
+},
+{
+"image_file": "cv_033.webp",
+"emojis": [
+"🤒",
+"💐"
+],
+"accessibility_text": "Get Well  Islamic greeting sticker"
+},
+{
+"image_file": "cv_034.webp",
+"emojis": [
+"🤒",
+"💐"
+],
+"accessibility_text": "Get Well  Islamic greeting sticker"
+}
+]
+}
+]
+}
