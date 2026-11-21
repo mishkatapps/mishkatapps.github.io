@@ -71,6 +71,8 @@
   }
   function loadPacks() {
     let s = null; try { s = JSON.parse(store.get('mks-packs-v1', 'null')); } catch (e) {}
+    // نشر حزم جديدة من لوحة المدير (catalog_version) يعيد الحزم الافتراضية الجديدة بدل القديمة المحفوظة
+    const ver = DEF.catalog_version || ''; if (ver && store.get('mks-cat-ver', '') !== ver) { s = null; store.set('mks-cat-ver', ver); }
     PACKS = Array.isArray(s) && s.length ? s.filter(p => p && p.id).map(p => Object.assign(p, { ids: (p.ids || []).filter(id => BY[id]) })) : seedPacks();
   }
   function contents() {   // بصيغة contents.json التي يقرؤها مزوّد الملصقات في أندرويد
@@ -218,7 +220,9 @@
 
   applyLang(); hint();
   Promise.all([fetch((SITE ? '' : '') + 'stickers/library.json').then(r => r.json()), fetch('stickers/packs-default.json').then(r => r.json())]).then(([L, D]) => {
-    LIB = L; LIB.items.forEach(i => BY[i.id] = i); DEF = D; loadPacks();
+    LIB = L; LIB.items.forEach(i => BY[i.id] = i); DEF = D;
+    if (D.app_name) { T.title = [D.app_name, D.app_name_en || D.app_name]; applyLang(); }   // اسم التطبيق: «ملصقات مشكاة (ب)»…
+    loadPacks();
     if (CAT && !LIB.cats[CAT]) CAT = '';
     render(); if (native()) savePacks();
     fetchOff().then(o => { if (!o) return; const ch = JSON.stringify(o) !== JSON.stringify(OFF); OFF = o; store.set('mks-off', JSON.stringify(o)); if (ch) { render(); if (native()) savePacks(); } });
