@@ -1,11 +1,11 @@
 {
- "version": "20261122T2122",
- "updated": "2026-11-22T21:22:00.894Z",
+ "version": "20261122T2217",
+ "updated": "2026-11-22T22:17:52.121534+00:00",
  "packs": [
   {
    "id": "mishkat_1",
-   "name": "مشكاة · صباح ومساء وتحيات",
-   "nameEn": "Mishkat · Morning, Evening & Greetings",
+   "name": "صباح الخير ومساء النور",
+   "nameEn": "Good Morning & Evening",
    "ids": [
     "cv_015",
     "cv_023",
@@ -29,16 +29,31 @@
     "gp_026",
     "gp_027",
     "gp_053",
-    "gp_056"
+    "gp_056",
+    "gp_060",
+    "gp_062",
+    "gp_063",
+    "gp_073",
+    "gp_074",
+    "gp_083",
+    "gp_084"
    ],
    "tray": "cv_015",
-   "v": 1
+   "v": 2
   },
   {
    "id": "mishkat_2",
-   "name": "مشكاة · شكر ودعوات طيبة",
-   "nameEn": "Mishkat · Thanks & Good Wishes",
+   "name": "تحيات طيبة وشكر",
+   "nameEn": "Kind Greetings & Thanks",
    "ids": [
+    "gp_091",
+    "gp_093",
+    "gp_101",
+    "gp_102",
+    "gp_103",
+    "gp_104",
+    "gp_111",
+    "gp_113",
     "cv_005",
     "cv_009",
     "cv_013",
@@ -60,185 +75,94 @@
     "gp_028",
     "gp_030",
     "gp_032",
-    "gp_035",
-    "gp_038",
-    "gp_054"
+    "gp_035"
    ],
-   "tray": "cv_005",
-   "v": 1
+   "tray": "gp_091",
+   "v": 2
   },
   {
    "id": "mishkat_3",
-   "name": "مشكاة · ردود ومرح",
-   "nameEn": "Mishkat · Reactions",
+   "name": "جزاكم الله خيرًا",
+   "nameEn": "May Allah Reward You",
    "ids": [
-    "cv_057",
-    "cv_064",
-    "gp_006",
-    "gp_009",
-    "gp_010",
-    "gp_036",
-    "gp_037",
-    "gp_068",
-    "mo_243",
-    "mo_244",
-    "mo_246",
-    "mo_247",
-    "mo_249",
-    "mo_250",
-    "mo_251",
-    "mo_252",
-    "mo_253",
-    "mo_254",
-    "mo_257",
-    "mo_258",
-    "mo_259",
-    "mo_260",
-    "mo_261",
-    "mo_262"
+    "gp_038",
+    "gp_054",
+    "gp_067",
+    "gp_069",
+    "gp_075",
+    "gp_080",
+    "gp_089",
+    "gp_095",
+    "gp_096",
+    "gp_100",
+    "gp_109",
+    "gp_115",
+    "gp_116",
+    "mo_245",
+    "mo_255",
+    "mo_256",
+    "mo_329",
+    "mo_330",
+    "mo_331",
+    "mo_340",
+    "gp_023",
+    "gp_055",
+    "gp_094",
+    "gp_110",
+    "gp_114",
+    "mo_241",
+    "mo_242",
+    "mo_221",
+    "mo_223",
+    "mo_225"
    ],
-   "tray": "cv_057",
-   "v": 1
+   "tray": "gp_038",
+   "v": 2
   },
   {
    "id": "mishkat_4",
-   "name": "مشكاة · أذكار وعبارات إيمانية",
-   "nameEn": "Mishkat · Dhikr",
+   "name": "دعوات للأحبة",
+   "nameEn": "Prayers for Loved Ones",
    "ids": [
-    "cv_014",
-    "cv_037",
-    "cv_044",
-    "cv_050",
-    "cv_051",
-    "cv_052",
-    "cv_053",
-    "cv_054",
-    "cv_055",
-    "gp_004",
-    "gp_012",
-    "gp_029",
-    "gp_034",
-    "gp_051",
-    "gp_141",
-    "gp_143",
-    "gp_144",
-    "gp_145",
-    "gp_146",
-    "gp_147"
-   ],
-   "tray": "",
-   "v": 1
-  },
-  {
-   "id": "mishkat_5",
-   "name": "مشكاة · أدعية",
-   "nameEn": "Mishkat · Duas",
-   "ids": [
-    "cv_045",
-    "cv_046",
-    "cv_062",
-    "cv_063",
-    "gp_020",
-    "gp_021",
-    "gp_025",
-    "gp_044",
-    "gp_058",
-    "gp_064",
-    "gp_082",
-    "gp_086",
-    "gp_106",
-    "gp_121",
-    "gp_122",
-    "gp_123",
-    "gp_124",
-    "gp_126",
-    "gp_127",
-    "gp_128",
-    "gp_130",
-    "gp_131",
-    "gp_132"
-   ],
-   "tray": "cv_045",
-   "v": 1
-  },
-  {
-   "id": "mishkat_6",
-   "name": "مشكاة · أحاديث نبوية",
-   "nameEn": "Mishkat · Hadith",
-   "ids": [
-    "hc_161",
-    "hc_162",
-    "hc_163",
-    "hc_164",
-    "hc_165",
-    "hc_166",
-    "hc_167",
-    "hc_168",
-    "hc_169",
-    "hc_170",
-    "hc_171",
-    "hc_172",
-    "hc_173",
-    "hc_174",
-    "hc_175",
-    "hc_176",
-    "hc_177",
-    "hc_178",
-    "hc_179",
-    "hc_180",
-    "hc_182",
-    "hc_186",
-    "hc_190",
-    "hc_191"
-   ],
-   "tray": "hc_161",
-   "v": 1
-  },
-  {
-   "id": "mishkat_7",
-   "name": "مشكاة · رمضان والجمعة والأعياد",
-   "nameEn": "Mishkat · Ramadan, Jumuʿah & Eid",
-   "ids": [
-    "cv_008",
-    "cv_011",
-    "cv_026",
-    "cv_027",
-    "cv_028",
-    "cv_029",
-    "cv_030",
-    "cv_068",
-    "cv_069",
-    "cv_072",
-    "cv_073",
-    "cv_075",
-    "cv_076",
-    "gp_033",
-    "gp_059",
-    "gp_061",
-    "gp_071",
-    "gp_081",
-    "gp_085",
-    "gp_090",
-    "gp_105",
-    "mo_227",
-    "g-jumuah",
-    "g-jumuah-roses"
-   ],
-   "tray": "cv_008",
-   "v": 1
-  },
-  {
-   "id": "mishkat_8",
-   "name": "مشكاة · تهاني ومناسبات",
-   "nameEn": "Mishkat · Congratulations & Occasions",
-   "ids": [
+    "mo_226",
+    "mo_229",
+    "mo_230",
+    "mo_231",
+    "mo_232",
+    "mo_233",
+    "mo_235",
+    "mo_236",
+    "mo_237",
+    "mo_238",
+    "mo_239",
+    "mo_240",
+    "mo_324",
+    "mo_324b",
+    "mo_325",
+    "mo_325b",
+    "mo_332",
+    "mo_333",
+    "mo_334",
+    "mo_335",
+    "mo_335b",
+    "mo_336",
+    "mo_337",
     "cv_031",
     "cv_039",
     "cv_065",
     "cv_066",
     "cv_067",
     "cv_070",
-    "cv_077",
+    "cv_077"
+   ],
+   "tray": "mo_226",
+   "v": 2
+  },
+  {
+   "id": "mishkat_5",
+   "name": "تهاني ومواسم الخير",
+   "nameEn": "Congratulations & Blessed Seasons",
+   "ids": [
     "cv_078",
     "gp_008",
     "gp_016",
@@ -255,45 +179,114 @@
     "g-white-moon",
     "g-sabah",
     "g-masaa",
-    "g-fasting"
+    "g-fasting",
+    "cv_008",
+    "cv_011",
+    "cv_026",
+    "cv_027",
+    "cv_028",
+    "cv_029",
+    "cv_030",
+    "cv_068",
+    "cv_069",
+    "cv_072",
+    "cv_073",
+    "cv_075",
+    "cv_076"
    ],
-   "tray": "cv_031",
-   "v": 1
+   "tray": "cv_078",
+   "v": 2
   },
   {
-   "id": "mishkat_9",
-   "name": "مشكاة · محبة ودعوات للأحبة",
-   "nameEn": "Mishkat · Love & Prayers for Loved Ones",
+   "id": "mishkat_6",
+   "name": "الجمعة ورمضان والأعياد",
+   "nameEn": "Friday, Ramadan & Eid",
    "ids": [
-    "gp_023",
-    "gp_055",
-    "gp_094",
-    "gp_110",
-    "gp_114",
-    "mo_241",
-    "mo_242",
-    "mo_221",
-    "mo_223",
-    "mo_225",
-    "mo_226",
-    "mo_229",
-    "mo_230",
-    "mo_231",
-    "mo_232",
-    "mo_233",
-    "mo_235",
-    "mo_236",
-    "mo_237",
-    "mo_238"
+    "gp_033",
+    "gp_059",
+    "gp_061",
+    "gp_071",
+    "gp_081",
+    "gp_085",
+    "gp_090",
+    "gp_105",
+    "mo_227",
+    "g-jumuah",
+    "g-jumuah-roses",
+    "g-kahf",
+    "g-ramadan-lanterns",
+    "g-fanous",
+    "g-iftar",
+    "g-suhur",
+    "g-qadr",
+    "g-eid-gift",
+    "g-kahk",
+    "g-adha",
+    "g-hajj",
+    "g-arafah",
+    "g-quran",
+    "g-salah",
+    "g-palm",
+    "g-jazak",
+    "g-ameen",
+    "g-salam",
+    "g-mashallah",
+    "g-hamd"
    ],
-   "tray": "",
-   "v": 1
+   "tray": "gp_033",
+   "v": 2
   },
   {
-   "id": "mishkat_10",
-   "name": "مشكاة · مواساة وشفاء",
-   "nameEn": "Mishkat · Condolences & Get Well",
+   "id": "mishkat_7",
+   "name": "مناسبات العام الهجري",
+   "nameEn": "Hijri Year Occasions",
    "ids": [
+    "jumuah-1",
+    "jumuah-2",
+    "jumuah-3",
+    "salawat",
+    "kahf",
+    "dua-hour",
+    "ramadan-kareem",
+    "ramadan-mubarak",
+    "balaghana",
+    "iftar",
+    "suhur",
+    "qadr",
+    "eid-fitr",
+    "eid-adha",
+    "taqabbal",
+    "kul-am",
+    "hijri",
+    "dhulhijja",
+    "takbir",
+    "ashura",
+    "white-days",
+    "fast-tomorrow",
+    "shawwal",
+    "sabah",
+    "masaa",
+    "istighfar",
+    "mawlid",
+    "isra",
+    "nisf-shaban",
+    "badr"
+   ],
+   "tray": "jumuah-1",
+   "v": 2
+  },
+  {
+   "id": "mishkat_8",
+   "name": "تعزية ومواساة",
+   "nameEn": "Condolences",
+   "ids": [
+    "fath",
+    "zakat-fitr",
+    "shaban",
+    "muharram",
+    "hurum",
+    "mon-thu",
+    "dawud",
     "cv_040",
     "cv_041",
     "cv_042",
@@ -316,17 +309,459 @@
     "mo_216",
     "cv_010",
     "cv_032",
-    "cv_033",
-    "cv_034"
+    "cv_033"
    ],
-   "tray": "cv_040",
-   "v": 1
+   "tray": "fath",
+   "v": 2
+  },
+  {
+   "id": "mishkat_9",
+   "name": "دعاء بالشفاء وردود لطيفة",
+   "nameEn": "Get Well & Kind Replies",
+   "ids": [
+    "cv_034",
+    "cv_035",
+    "cv_036",
+    "cv_071",
+    "gp_072",
+    "gp_125",
+    "mo_218",
+    "mo_219",
+    "mo_220",
+    "mo_228",
+    "mo_322",
+    "mo_322b",
+    "mo_323",
+    "mo_323b",
+    "mo_326",
+    "mo_327",
+    "cv_057",
+    "cv_064",
+    "gp_006",
+    "gp_009",
+    "gp_010",
+    "gp_036",
+    "gp_037",
+    "gp_068",
+    "mo_243",
+    "mo_244",
+    "mo_246",
+    "mo_247",
+    "mo_249",
+    "mo_250"
+   ],
+   "tray": "cv_034",
+   "v": 2
+  },
+  {
+   "id": "mishkat_10",
+   "name": "ردود ومرح",
+   "nameEn": "Reactions & Fun",
+   "ids": [
+    "mo_251",
+    "mo_252",
+    "mo_253",
+    "mo_254",
+    "mo_257",
+    "mo_258",
+    "mo_259",
+    "mo_260",
+    "mo_261",
+    "mo_262",
+    "mo_263",
+    "mo_264",
+    "mo_265",
+    "mo_266",
+    "mo_267",
+    "mo_268",
+    "mo_269",
+    "mo_270",
+    "mo_271",
+    "mo_272",
+    "mo_273",
+    "mo_274",
+    "mo_275",
+    "mo_276",
+    "mo_277",
+    "mo_278",
+    "mo_279",
+    "mo_280",
+    "mo_303",
+    "mo_304"
+   ],
+   "tray": "mo_251",
+   "v": 2
   },
   {
    "id": "mishkat_11",
+   "name": "ردود ويومياتي",
+   "nameEn": "Replies & My Day",
+   "ids": [
+    "mo_306",
+    "mo_307",
+    "mo_308",
+    "mo_309",
+    "mo_310",
+    "mo_311",
+    "mo_312",
+    "mo_313",
+    "mo_314",
+    "mo_315",
+    "mo_316",
+    "mo_317",
+    "mo_318",
+    "gp_040",
+    "gp_065",
+    "gp_066",
+    "gp_076",
+    "gp_077",
+    "gp_078",
+    "gp_079",
+    "gp_087",
+    "gp_092",
+    "gp_097",
+    "gp_098",
+    "gp_099",
+    "gp_107",
+    "gp_108",
+    "gp_112",
+    "gp_117",
+    "gp_118"
+   ],
+   "tray": "mo_306",
+   "v": 2
+  },
+  {
+   "id": "mishkat_12",
+   "name": "عبارات إيمانية",
+   "nameEn": "Words of Faith",
+   "ids": [
+    "gp_119",
+    "gp_120",
+    "gp_136",
+    "cv_014",
+    "cv_037",
+    "cv_044",
+    "cv_050",
+    "cv_051",
+    "cv_052",
+    "cv_053",
+    "cv_054",
+    "cv_055",
+    "gp_004",
+    "gp_012",
+    "gp_029",
+    "gp_034",
+    "gp_051",
+    "gp_141",
+    "gp_143",
+    "gp_144",
+    "gp_145",
+    "gp_146",
+    "gp_147",
+    "gp_148",
+    "gp_149",
+    "gp_153",
+    "gp_154",
+    "gp_156",
+    "gp_160",
+    "mo_320"
+   ],
+   "tray": "gp_119",
+   "v": 2
+  },
+  {
+   "id": "mishkat_13",
+   "name": "أذكار الصباح والمساء",
+   "nameEn": "Morning & Evening Adhkar",
+   "ids": [
+    "mo_321",
+    "mo_321b",
+    "mo_328",
+    "mo_328b",
+    "mo_338",
+    "mo_339",
+    "zk_morning_01",
+    "zk_morning_02",
+    "zk_morning_03",
+    "zk_morning_04",
+    "zk_morning_05",
+    "zk_morning_06",
+    "zk_morning_07",
+    "zk_morning_08",
+    "zk_morning_09",
+    "zk_morning_10",
+    "zk_morning_11",
+    "zk_evening_01",
+    "zk_evening_02",
+    "zk_evening_03",
+    "zk_evening_04",
+    "zk_evening_05",
+    "zk_evening_06",
+    "zk_evening_07",
+    "zk_evening_08",
+    "zk_evening_09",
+    "zk_evening_10",
+    "zk_evening_11",
+    "zk_prayer_01",
+    "zk_prayer_02"
+   ],
+   "tray": "mo_321",
+   "v": 2
+  },
+  {
+   "id": "mishkat_14",
+   "name": "أذكار الصلاة والطهارة",
+   "nameEn": "Prayer & Purification Adhkar",
+   "ids": [
+    "zk_prayer_03",
+    "zk_prayer_04",
+    "zk_prayer_05",
+    "zk_prayer_06",
+    "zk_prayer_07",
+    "zk_salah_01",
+    "zk_salah_02",
+    "zk_salah_03",
+    "zk_salah_04",
+    "zk_salah_05",
+    "zk_salah_06",
+    "zk_salah_07",
+    "zk_salah_08",
+    "zk_salah_09",
+    "zk_salah_10",
+    "zk_salah_11",
+    "zk_salah_12",
+    "zk_salah_13",
+    "zk_salah_14",
+    "zk_salah_15",
+    "zk_salah_16",
+    "zk_sleep_01",
+    "zk_sleep_02",
+    "zk_sleep_03",
+    "zk_sleep_04",
+    "zk_sleep_05",
+    "zk_home_01",
+    "zk_home_02",
+    "zk_home_03",
+    "zk_food_01"
+   ],
+   "tray": "zk_prayer_03",
+   "v": 2
+  },
+  {
+   "id": "mishkat_15",
+   "name": "أذكار النوم والسفر والكرب",
+   "nameEn": "Sleep, Travel & Distress Adhkar",
+   "ids": [
+    "zk_food_02",
+    "zk_food_03",
+    "zk_food_04",
+    "zk_food_05",
+    "zk_food_06",
+    "zk_food_07",
+    "zk_food_08",
+    "zk_travel_01",
+    "zk_travel_02",
+    "zk_travel_03",
+    "zk_travel_04",
+    "zk_travel_05",
+    "zk_relief_01",
+    "zk_relief_02",
+    "zk_relief_03",
+    "zk_relief_04",
+    "zk_relief_05",
+    "zk_relief_06",
+    "zk_relief_07",
+    "zk_relief_08",
+    "zk_relief_09",
+    "zk_relief_10",
+    "zk_health_01",
+    "zk_health_02",
+    "zk_health_03",
+    "zk_health_04",
+    "zk_health_05",
+    "zk_health_06",
+    "zk_health_07",
+    "zk_occasions_01"
+   ],
+   "tray": "zk_food_02",
+   "v": 2
+  },
+  {
+   "id": "mishkat_16",
+   "name": "أذكار الأحوال والمناسبات",
+   "nameEn": "Adhkar for Occasions",
+   "ids": [
+    "zk_occasions_02",
+    "zk_occasions_03",
+    "zk_occasions_04",
+    "zk_occasions_05",
+    "zk_occasions_06",
+    "zk_occasions_07",
+    "zk_occasions_08",
+    "zk_occasions_09",
+    "zk_occasions_10",
+    "zk_occasions_11",
+    "zk_occasions_12",
+    "zk_occasions_13",
+    "zk_occasions_14",
+    "zk_occasions_15",
+    "zk_occasions_16",
+    "zk_occasions_17",
+    "zk_occasions_18",
+    "zk_hajj_01",
+    "zk_hajj_02",
+    "zk_hajj_03",
+    "zk_ramadan_01",
+    "zk_ramadan_02",
+    "zk_ramadan_03",
+    "zk_ramadan_04",
+    "zk_ramadan_05",
+    "zk_virtue_01",
+    "zk_virtue_02",
+    "zk_virtue_03",
+    "zk_virtue_04",
+    "zk_virtue_05"
+   ],
+   "tray": "zk_occasions_02",
+   "v": 2
+  },
+  {
+   "id": "mishkat_17",
+   "name": "أدعية قرآنية وفضل الذكر",
+   "nameEn": "Quranic Duas & Dhikr",
+   "ids": [
+    "zk_virtue_06",
+    "zk_virtue_07",
+    "zk_virtue_08",
+    "zk_virtue_09",
+    "zk_virtue_10",
+    "zk_virtue_11",
+    "zk_virtue_12",
+    "zk_virtue_13",
+    "zk_quran_01",
+    "zk_quran_02",
+    "zk_quran_03",
+    "zk_quran_04",
+    "zk_quran_05",
+    "zk_quran_06",
+    "zk_quran_07",
+    "zk_quran_08",
+    "zk_quran_09",
+    "zk_quran_10",
+    "zk_quran_11",
+    "zk_quran_12",
+    "zk_quran_13",
+    "zk_quran_14",
+    "zk_quran_15",
+    "zk_quran_16",
+    "zk_quran_17",
+    "du_001",
+    "du_002",
+    "du_003",
+    "du_004",
+    "du_005"
+   ],
+   "tray": "zk_virtue_06",
+   "v": 2
+  },
+  {
+   "id": "mishkat_18",
+   "name": "أدعية نبوية ومختارة",
+   "nameEn": "Prophetic & Selected Duas",
+   "ids": [
+    "du_006",
+    "du_007",
+    "du_008",
+    "du_009",
+    "du_010",
+    "du_011",
+    "du_012",
+    "du_013",
+    "du_014",
+    "du_015",
+    "du_016",
+    "cv_045",
+    "cv_046",
+    "cv_062",
+    "cv_063",
+    "gp_020",
+    "gp_021",
+    "gp_025",
+    "gp_044",
+    "gp_058",
+    "gp_064",
+    "gp_082",
+    "gp_086",
+    "gp_106",
+    "gp_121",
+    "gp_122",
+    "gp_123",
+    "gp_124",
+    "gp_126",
+    "gp_127"
+   ],
+   "tray": "du_006",
+   "v": 2
+  },
+  {
+   "id": "mishkat_19",
+   "name": "يا رب وأحاديث الخير",
+   "nameEn": "Ya Rabb & Hadith",
+   "ids": [
+    "gp_128",
+    "gp_130",
+    "gp_131",
+    "gp_132",
+    "gp_133",
+    "gp_134",
+    "gp_135",
+    "gp_137",
+    "gp_138",
+    "gp_139",
+    "gp_150",
+    "gp_151",
+    "gp_155",
+    "gp_157",
+    "gp_158",
+    "gp_159",
+    "mo_301",
+    "mo_302",
+    "mo_305",
+    "mo_319",
+    "hc_161",
+    "hc_162",
+    "hc_163",
+    "hc_164",
+    "hc_165",
+    "hc_166",
+    "hc_167",
+    "hc_168",
+    "hc_169",
+    "hc_170"
+   ],
+   "tray": "gp_128",
+   "v": 2
+  },
+  {
+   "id": "mishkat_20",
    "name": "أحاديث نبوية ١",
    "nameEn": "Hadith 1",
    "ids": [
+    "hc_171",
+    "hc_172",
+    "hc_173",
+    "hc_174",
+    "hc_175",
+    "hc_176",
+    "hc_177",
+    "hc_178",
+    "hc_179",
+    "hc_180",
+    "hc_182",
+    "hc_186",
+    "hc_190",
+    "hc_191",
     "hd_001",
     "hd_002",
     "hd_003",
@@ -342,7 +777,16 @@
     "hd_013",
     "hd_014",
     "hd_015",
-    "hd_016",
+    "hd_016"
+   ],
+   "tray": "hc_171",
+   "v": 2
+  },
+  {
+   "id": "mishkat_21",
+   "name": "أحاديث نبوية ٢",
+   "nameEn": "Hadith 2",
+   "ids": [
     "hd_017",
     "hd_018",
     "hd_019",
@@ -354,16 +798,7 @@
     "hd_025",
     "hd_026",
     "hd_027",
-    "hd_028"
-   ],
-   "tray": "hd_001",
-   "v": 1
-  },
-  {
-   "id": "mishkat_12",
-   "name": "أحاديث نبوية ٢",
-   "nameEn": "Hadith 2",
-   "ids": [
+    "hd_028",
     "hd_029",
     "hd_030",
     "hd_031",
@@ -381,7 +816,16 @@
     "hd_043",
     "hd_044",
     "hd_045",
-    "hd_046",
+    "hd_046"
+   ],
+   "tray": "hd_017",
+   "v": 2
+  },
+  {
+   "id": "mishkat_22",
+   "name": "أحاديث نبوية ٣",
+   "nameEn": "Hadith 3",
+   "ids": [
     "hd_047",
     "hd_048",
     "hd_049",
@@ -391,16 +835,7 @@
     "hd_053",
     "hd_054",
     "hd_055",
-    "hd_056"
-   ],
-   "tray": "hd_029",
-   "v": 1
-  },
-  {
-   "id": "mishkat_13",
-   "name": "أحاديث نبوية ٣",
-   "nameEn": "Hadith 3",
-   "ids": [
+    "hd_056",
     "hd_057",
     "hd_058",
     "hd_059",
@@ -420,316 +855,84 @@
     "hd_073",
     "hd_074",
     "hd_075",
-    "hd_076",
+    "hd_076"
+   ],
+   "tray": "hd_047",
+   "v": 2
+  },
+  {
+   "id": "mishkat_23",
+   "name": "أحاديث نبوية ٤",
+   "nameEn": "Hadith 4",
+   "ids": [
     "hd_077",
     "hd_078",
     "hd_079",
     "hd_080",
     "hd_081",
     "hd_082",
-    "hd_083"
+    "hd_083",
+    "gp_162",
+    "gp_163",
+    "gp_164",
+    "gp_165",
+    "gp_166",
+    "gp_167",
+    "gp_168",
+    "gp_170",
+    "gp_171",
+    "gp_172",
+    "gp_173",
+    "gp_174",
+    "gp_175",
+    "gp_176",
+    "gp_178",
+    "gp_179",
+    "gp_181",
+    "gp_182",
+    "gp_183",
+    "gp_184",
+    "gp_185",
+    "gp_187",
+    "gp_188"
    ],
-   "tray": "hd_057",
-   "v": 1
-  },
-  {
-   "id": "mishkat_14",
-   "name": "من دعاء النبي ﷺ",
-   "nameEn": "Prophetic Duas",
-   "ids": [
-    "du_001",
-    "du_002",
-    "du_003",
-    "du_004",
-    "du_005",
-    "du_006",
-    "du_007",
-    "du_008",
-    "du_009",
-    "du_010",
-    "du_011",
-    "du_012",
-    "du_013",
-    "du_014",
-    "du_015",
-    "du_016"
-   ],
-   "tray": "du_001",
-   "v": 1
-  },
-  {
-   "id": "mishkat_15",
-   "name": "أذكار الصباح",
-   "nameEn": "Morning Adhkar",
-   "ids": [
-    "zk_morning_01",
-    "zk_morning_02",
-    "zk_morning_03",
-    "zk_morning_04",
-    "zk_morning_05",
-    "zk_morning_06",
-    "zk_morning_07",
-    "zk_morning_08",
-    "zk_morning_09",
-    "zk_morning_10",
-    "zk_morning_11"
-   ],
-   "tray": "zk_morning_01",
-   "v": 1
-  },
-  {
-   "id": "mishkat_16",
-   "name": "أذكار المساء",
-   "nameEn": "Evening Adhkar",
-   "ids": [
-    "zk_evening_01",
-    "zk_evening_02",
-    "zk_evening_03",
-    "zk_evening_04",
-    "zk_evening_05",
-    "zk_evening_06",
-    "zk_evening_07",
-    "zk_evening_08",
-    "zk_evening_09",
-    "zk_evening_10",
-    "zk_evening_11"
-   ],
-   "tray": "zk_evening_01",
-   "v": 1
-  },
-  {
-   "id": "mishkat_17",
-   "name": "أذكار بعد الصلاة",
-   "nameEn": "After Prayer",
-   "ids": [
-    "zk_prayer_01",
-    "zk_prayer_02",
-    "zk_prayer_03",
-    "zk_prayer_04",
-    "zk_prayer_05",
-    "zk_prayer_06",
-    "zk_prayer_07"
-   ],
-   "tray": "zk_prayer_01",
-   "v": 1
-  },
-  {
-   "id": "mishkat_18",
-   "name": "أفكار ذهبية للعشر الأواخر",
-   "nameEn": "Last Ten Nights",
-   "ids": [
-    "zk_ramadan_01",
-    "zk_ramadan_02",
-    "zk_ramadan_03",
-    "zk_ramadan_04",
-    "zk_ramadan_05"
-   ],
-   "tray": "zk_ramadan_01",
-   "v": 1
-  },
-  {
-   "id": "mishkat_19",
-   "name": "النوم والاستيقاظ",
-   "nameEn": "Sleep & Waking",
-   "ids": [
-    "zk_sleep_01",
-    "zk_sleep_02",
-    "zk_sleep_03",
-    "zk_sleep_04",
-    "zk_sleep_05"
-   ],
-   "tray": "zk_sleep_01",
-   "v": 1
-  },
-  {
-   "id": "mishkat_20",
-   "name": "الطهارة والصلاة",
-   "nameEn": "Purification & Prayer",
-   "ids": [
-    "zk_salah_01",
-    "zk_salah_02",
-    "zk_salah_03",
-    "zk_salah_04",
-    "zk_salah_05",
-    "zk_salah_06",
-    "zk_salah_07",
-    "zk_salah_08",
-    "zk_salah_09",
-    "zk_salah_10",
-    "zk_salah_11",
-    "zk_salah_12",
-    "zk_salah_13",
-    "zk_salah_14",
-    "zk_salah_15",
-    "zk_salah_16"
-   ],
-   "tray": "zk_salah_01",
-   "v": 1
-  },
-  {
-   "id": "mishkat_21",
-   "name": "المنزل والمسجد واللباس",
-   "nameEn": "Home, Mosque & Clothing",
-   "ids": [
-    "zk_home_01",
-    "zk_home_02",
-    "zk_home_03"
-   ],
-   "tray": "zk_home_01",
-   "v": 1
-  },
-  {
-   "id": "mishkat_22",
-   "name": "الطعام والشراب والصيام",
-   "nameEn": "Food, Drink & Fasting",
-   "ids": [
-    "zk_food_01",
-    "zk_food_02",
-    "zk_food_03",
-    "zk_food_04",
-    "zk_food_05",
-    "zk_food_06",
-    "zk_food_07",
-    "zk_food_08"
-   ],
-   "tray": "zk_food_01",
-   "v": 1
-  },
-  {
-   "id": "mishkat_23",
-   "name": "السفر",
-   "nameEn": "Travel",
-   "ids": [
-    "zk_travel_01",
-    "zk_travel_02",
-    "zk_travel_03",
-    "zk_travel_04",
-    "zk_travel_05"
-   ],
-   "tray": "zk_travel_01",
-   "v": 1
+   "tray": "hd_077",
+   "v": 2
   },
   {
    "id": "mishkat_24",
-   "name": "الكرب والهم والشدائد",
-   "nameEn": "Distress & Hardship",
+   "name": "أحاديث نبوية ٥",
+   "nameEn": "Hadith 5",
    "ids": [
-    "zk_relief_01",
-    "zk_relief_02",
-    "zk_relief_03",
-    "zk_relief_04",
-    "zk_relief_05",
-    "zk_relief_06",
-    "zk_relief_07",
-    "zk_relief_08",
-    "zk_relief_09",
-    "zk_relief_10"
+    "gp_189",
+    "gp_190",
+    "gp_191",
+    "gp_192",
+    "gp_193",
+    "gp_194",
+    "gp_195",
+    "gp_196",
+    "gp_198",
+    "gp_200",
+    "hc_181",
+    "hc_183",
+    "hc_184",
+    "hc_185",
+    "hc_187",
+    "hc_188",
+    "hc_189",
+    "hc_192",
+    "hc_193",
+    "hc_194",
+    "hc_195",
+    "hc_196",
+    "hc_197",
+    "hc_198",
+    "hc_199",
+    "hc_200"
    ],
-   "tray": "zk_relief_01",
-   "v": 1
-  },
-  {
-   "id": "mishkat_25",
-   "name": "المرض والموت",
-   "nameEn": "Illness & Death",
-   "ids": [
-    "zk_health_01",
-    "zk_health_02",
-    "zk_health_03",
-    "zk_health_04",
-    "zk_health_05",
-    "zk_health_06",
-    "zk_health_07"
-   ],
-   "tray": "zk_health_01",
-   "v": 1
-  },
-  {
-   "id": "mishkat_26",
-   "name": "الأحوال والمناسبات",
-   "nameEn": "Occasions",
-   "ids": [
-    "zk_occasions_01",
-    "zk_occasions_02",
-    "zk_occasions_03",
-    "zk_occasions_04",
-    "zk_occasions_05",
-    "zk_occasions_06",
-    "zk_occasions_07",
-    "zk_occasions_08",
-    "zk_occasions_09",
-    "zk_occasions_10",
-    "zk_occasions_11",
-    "zk_occasions_12",
-    "zk_occasions_13",
-    "zk_occasions_14",
-    "zk_occasions_15",
-    "zk_occasions_16",
-    "zk_occasions_17",
-    "zk_occasions_18"
-   ],
-   "tray": "zk_occasions_01",
-   "v": 1
-  },
-  {
-   "id": "mishkat_27",
-   "name": "الحج والعمرة",
-   "nameEn": "Hajj & Umrah",
-   "ids": [
-    "zk_hajj_01",
-    "zk_hajj_02",
-    "zk_hajj_03"
-   ],
-   "tray": "zk_hajj_01",
-   "v": 1
-  },
-  {
-   "id": "mishkat_28",
-   "name": "فضل الذكر والاستغفار",
-   "nameEn": "Virtue of Dhikr",
-   "ids": [
-    "zk_virtue_01",
-    "zk_virtue_02",
-    "zk_virtue_03",
-    "zk_virtue_04",
-    "zk_virtue_05",
-    "zk_virtue_06",
-    "zk_virtue_07",
-    "zk_virtue_08",
-    "zk_virtue_09",
-    "zk_virtue_10",
-    "zk_virtue_11",
-    "zk_virtue_12",
-    "zk_virtue_13"
-   ],
-   "tray": "zk_virtue_01",
-   "v": 1
-  },
-  {
-   "id": "mishkat_29",
-   "name": "أدعية من القرآن",
-   "nameEn": "Duas from the Quran",
-   "ids": [
-    "zk_quran_01",
-    "zk_quran_02",
-    "zk_quran_03",
-    "zk_quran_04",
-    "zk_quran_05",
-    "zk_quran_06",
-    "zk_quran_07",
-    "zk_quran_08",
-    "zk_quran_09",
-    "zk_quran_10",
-    "zk_quran_11",
-    "zk_quran_12",
-    "zk_quran_13",
-    "zk_quran_14",
-    "zk_quran_15",
-    "zk_quran_16",
-    "zk_quran_17"
-   ],
-   "tray": "zk_quran_01",
-   "v": 1
+   "tray": "gp_189",
+   "v": 2
   }
  ],
  "apps": [
@@ -763,12 +966,11 @@
     "mishkat_12",
     "mishkat_13",
     "mishkat_14",
-    "mishkat_29",
     "mishkat_15",
     "mishkat_16",
     "mishkat_17",
-    "mishkat_19",
-    "mishkat_28"
+    "mishkat_18",
+    "mishkat_19"
    ]
   },
   {
@@ -778,502 +980,13 @@
    "nameEn": "Mishkat Stickers (C)",
    "appId": "com.mishkat.stickers.c",
    "packs": [
-    "mishkat_18",
     "mishkat_20",
     "mishkat_21",
     "mishkat_22",
     "mishkat_23",
-    "mishkat_24",
-    "mishkat_25",
-    "mishkat_26",
-    "mishkat_27"
+    "mishkat_24"
    ]
   }
  ],
- "review": {
-  "cv_013": {
-   "transp": 1,
-   "at": "2026-11-22"
-  },
-  "cv_020": {
-   "transp": 1,
-   "at": "2026-11-22"
-  },
-  "cv_019": {
-   "transp": 1,
-   "at": "2026-11-22"
-  },
-  "cv_021": {
-   "transp": 1,
-   "at": "2026-11-22"
-  },
-  "cv_006": {
-   "transp": 1,
-   "at": "2026-11-22"
-  },
-  "cv_007": {
-   "transp": 1,
-   "at": "2026-11-22"
-  },
-  "cv_011": {
-   "transp": 1,
-   "at": "2026-11-22"
-  },
-  "cv_010": {
-   "transp": 1,
-   "at": "2026-11-22"
-  },
-  "cv_009": {
-   "transp": 1,
-   "at": "2026-11-22"
-  },
-  "cv_008": {
-   "transp": 1,
-   "at": "2026-11-22"
-  },
-  "cv_023": {
-   "transp": 1,
-   "at": "2026-11-22"
-  },
-  "cv_024": {
-   "transp": 1,
-   "at": "2026-11-22"
-  },
-  "cv_025": {
-   "transp": 1,
-   "at": "2026-11-22"
-  },
-  "cv_026": {
-   "transp": 1,
-   "at": "2026-11-22"
-  },
-  "cv_027": {
-   "transp": 1,
-   "at": "2026-11-22"
-  },
-  "cv_028": {
-   "transp": 1,
-   "at": "2026-11-22"
-  },
-  "cv_029": {
-   "transp": 1,
-   "at": "2026-11-22"
-  },
-  "cv_030": {
-   "transp": 1,
-   "at": "2026-11-22"
-  },
-  "cv_031": {
-   "transp": 1,
-   "at": "2026-11-22"
-  },
-  "cv_032": {
-   "transp": 1,
-   "at": "2026-11-22"
-  },
-  "cv_036": {
-   "transp": 1,
-   "at": "2026-11-22"
-  },
-  "cv_038": {
-   "transp": 1,
-   "at": "2026-11-22"
-  },
-  "cv_039": {
-   "transp": 1,
-   "at": "2026-11-22"
-  },
-  "cv_040": {
-   "transp": 1,
-   "at": "2026-11-22"
-  },
-  "cv_041": {
-   "transp": 1,
-   "at": "2026-11-22"
-  },
-  "cv_042": {
-   "transp": 1,
-   "at": "2026-11-22"
-  },
-  "cv_043": {
-   "transp": 1,
-   "at": "2026-11-22"
-  },
-  "cv_044": {
-   "transp": 1,
-   "at": "2026-11-22"
-  },
-  "cv_046": {
-   "transp": 1,
-   "at": "2026-11-22"
-  },
-  "cv_047": {
-   "transp": 1,
-   "at": "2026-11-22"
-  },
-  "cv_053": {
-   "transp": 1,
-   "at": "2026-11-22"
-  },
-  "cv_054": {
-   "transp": 1,
-   "at": "2026-11-22"
-  },
-  "cv_056": {
-   "transp": 1,
-   "at": "2026-11-22"
-  },
-  "cv_057": {
-   "transp": 1,
-   "at": "2026-11-22"
-  },
-  "gp_004": {
-   "transp": 1,
-   "at": "2026-11-22"
-  },
-  "gp_006": {
-   "transp": 1,
-   "at": "2026-11-22"
-  },
-  "gp_009": {
-   "transp": 1,
-   "at": "2026-11-22"
-  },
-  "gp_008": {
-   "transp": 1,
-   "at": "2026-11-22"
-  },
-  "gp_011": {
-   "transp": 1,
-   "at": "2026-11-22"
-  },
-  "gp_028": {
-   "transp": 1,
-   "at": "2026-11-22"
-  },
-  "gp_040": {
-   "transp": 1,
-   "at": "2026-11-22"
-  },
-  "gp_124": {
-   "transp": 1,
-   "at": "2026-11-22"
-  },
-  "gp_123": {
-   "transp": 1,
-   "at": "2026-11-22"
-  },
-  "gp_125": {
-   "transp": 1,
-   "at": "2026-11-22"
-  },
-  "gp_126": {
-   "transp": 1,
-   "at": "2026-11-22"
-  },
-  "gp_127": {
-   "transp": 1,
-   "at": "2026-11-22"
-  },
-  "gp_132": {
-   "transp": 1,
-   "at": "2026-11-22"
-  },
-  "gp_131": {
-   "transp": 1,
-   "at": "2026-11-22"
-  },
-  "gp_130": {
-   "transp": 1,
-   "at": "2026-11-22"
-  },
-  "gp_128": {
-   "transp": 1,
-   "at": "2026-11-22"
-  },
-  "gp_134": {
-   "transp": 1,
-   "at": "2026-11-22"
-  },
-  "gp_136": {
-   "transp": 1,
-   "at": "2026-11-22"
-  },
-  "gp_137": {
-   "transp": 1,
-   "at": "2026-11-22"
-  },
-  "gp_141": {
-   "transp": 1,
-   "at": "2026-11-22"
-  },
-  "gp_139": {
-   "transp": 1,
-   "at": "2026-11-22"
-  },
-  "gp_144": {
-   "transp": 1,
-   "at": "2026-11-22"
-  },
-  "gp_145": {
-   "transp": 1,
-   "at": "2026-11-22"
-  },
-  "gp_146": {
-   "transp": 1,
-   "at": "2026-11-22"
-  },
-  "gp_147": {
-   "transp": 1,
-   "at": "2026-11-22"
-  },
-  "gp_151": {
-   "transp": 1,
-   "at": "2026-11-22"
-  },
-  "gp_150": {
-   "transp": 1,
-   "at": "2026-11-22"
-  },
-  "gp_149": {
-   "transp": 1,
-   "at": "2026-11-22"
-  },
-  "gp_154": {
-   "transp": 1,
-   "at": "2026-11-22"
-  },
-  "gp_155": {
-   "transp": 1,
-   "at": "2026-11-22"
-  },
-  "gp_156": {
-   "transp": 1,
-   "at": "2026-11-22"
-  },
-  "gp_157": {
-   "transp": 1,
-   "at": "2026-11-22"
-  },
-  "gp_160": {
-   "transp": 1,
-   "at": "2026-11-22"
-  },
-  "gp_158": {
-   "transp": 1,
-   "at": "2026-11-22"
-  },
-  "gp_185": {
-   "transp": 1,
-   "at": "2026-11-22"
-  },
-  "gp_188": {
-   "transp": 1,
-   "at": "2026-11-22"
-  },
-  "gp_190": {
-   "transp": 1,
-   "at": "2026-11-22"
-  },
-  "gp_191": {
-   "transp": 1,
-   "at": "2026-11-22"
-  },
-  "gp_194": {
-   "transp": 1,
-   "at": "2026-11-22"
-  },
-  "gp_193": {
-   "transp": 1,
-   "at": "2026-11-22"
-  },
-  "gp_195": {
-   "transp": 1,
-   "at": "2026-11-22"
-  },
-  "gp_196": {
-   "transp": 1,
-   "at": "2026-11-22"
-  },
-  "hc_172": {
-   "transp": 1,
-   "bold": 1,
-   "at": "2026-11-22"
-  },
-  "hc_167": {
-   "transp": 1,
-   "bold": 1,
-   "at": "2026-11-22"
-  },
-  "hc_166": {
-   "transp": 1,
-   "bold": 1,
-   "at": "2026-11-22"
-  },
-  "hc_165": {
-   "transp": 1,
-   "bold": 1,
-   "at": "2026-11-22"
-  },
-  "hc_164": {
-   "transp": 1,
-   "bold": 1,
-   "at": "2026-11-22"
-  },
-  "hc_168": {
-   "transp": 1,
-   "bold": 1,
-   "at": "2026-11-22"
-  },
-  "hc_169": {
-   "transp": 1,
-   "bold": 1,
-   "at": "2026-11-22"
-  },
-  "hc_170": {
-   "transp": 1,
-   "bold": 1,
-   "at": "2026-11-22"
-  },
-  "hc_171": {
-   "transp": 1,
-   "bold": 1,
-   "at": "2026-11-22"
-  },
-  "hc_173": {
-   "transp": 1,
-   "bold": 1,
-   "at": "2026-11-22"
-  },
-  "hc_174": {
-   "transp": 1,
-   "bold": 1,
-   "at": "2026-11-22"
-  },
-  "hc_175": {
-   "transp": 1,
-   "bold": 1,
-   "at": "2026-11-22"
-  },
-  "hc_176": {
-   "transp": 1,
-   "bold": 1,
-   "at": "2026-11-22"
-  },
-  "hc_177": {
-   "transp": 1,
-   "bold": 1,
-   "at": "2026-11-22"
-  },
-  "hc_182": {
-   "transp": 1,
-   "bold": 1,
-   "at": "2026-11-22"
-  },
-  "hc_181": {
-   "transp": 1,
-   "bold": 1,
-   "at": "2026-11-22"
-  },
-  "hc_180": {
-   "transp": 1,
-   "bold": 1,
-   "at": "2026-11-22"
-  },
-  "hc_179": {
-   "transp": 1,
-   "bold": 1,
-   "at": "2026-11-22"
-  },
-  "hc_178": {
-   "transp": 1,
-   "bold": 1,
-   "at": "2026-11-22"
-  },
-  "hc_183": {
-   "transp": 1,
-   "bold": 1,
-   "at": "2026-11-22"
-  },
-  "hc_184": {
-   "transp": 1,
-   "bold": 1,
-   "at": "2026-11-22"
-  },
-  "hc_185": {
-   "transp": 1,
-   "bold": 1,
-   "at": "2026-11-22"
-  },
-  "hc_186": {
-   "transp": 1,
-   "bold": 1,
-   "at": "2026-11-22"
-  },
-  "hc_187": {
-   "transp": 1,
-   "bold": 1,
-   "at": "2026-11-22"
-  },
-  "hc_192": {
-   "transp": 1,
-   "bold": 1,
-   "at": "2026-11-22"
-  },
-  "hc_190": {
-   "transp": 1,
-   "bold": 1,
-   "at": "2026-11-22"
-  },
-  "hc_189": {
-   "transp": 1,
-   "bold": 1,
-   "at": "2026-11-22"
-  },
-  "hc_188": {
-   "transp": 1,
-   "bold": 1,
-   "at": "2026-11-22"
-  },
-  "hc_193": {
-   "transp": 1,
-   "bold": 1,
-   "at": "2026-11-22"
-  },
-  "hc_194": {
-   "transp": 1,
-   "bold": 1,
-   "at": "2026-11-22"
-  },
-  "hc_195": {
-   "transp": 1,
-   "bold": 1,
-   "at": "2026-11-22"
-  },
-  "hc_196": {
-   "transp": 1,
-   "bold": 1,
-   "at": "2026-11-22"
-  },
-  "hc_197": {
-   "transp": 1,
-   "bold": 1,
-   "at": "2026-11-22"
-  },
-  "hc_200": {
-   "transp": 1,
-   "bold": 1,
-   "at": "2026-11-22"
-  },
-  "hc_199": {
-   "transp": 1,
-   "bold": 1,
-   "at": "2026-11-22"
-  },
-  "hc_198": {
-   "transp": 1,
-   "bold": 1,
-   "at": "2026-11-22"
-  }
- }
+ "review": {}
 }
