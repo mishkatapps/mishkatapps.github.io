@@ -1,6 +1,6 @@
 {
- "version": "20261121T2312",
- "updated": "2026-11-21T23:12:00.304Z",
+ "version": "20261122T1904",
+ "updated": "2026-11-22T19:04:35.227320Z",
  "packs": [
   {
    "id": "mishkat_1",
@@ -331,6 +331,415 @@
    ],
    "tray": "cv_040",
    "v": 1
+  },
+  {
+   "id": "mishkat_11",
+   "name": "أحاديث نبوية ١",
+   "nameEn": "Hadith 1",
+   "ids": [
+    "hd_001",
+    "hd_002",
+    "hd_003",
+    "hd_004",
+    "hd_005",
+    "hd_006",
+    "hd_007",
+    "hd_008",
+    "hd_009",
+    "hd_010",
+    "hd_011",
+    "hd_012",
+    "hd_013",
+    "hd_014",
+    "hd_015",
+    "hd_016",
+    "hd_017",
+    "hd_018",
+    "hd_019",
+    "hd_020",
+    "hd_021",
+    "hd_022",
+    "hd_023",
+    "hd_024",
+    "hd_025",
+    "hd_026",
+    "hd_027",
+    "hd_028"
+   ],
+   "tray": "hd_001",
+   "v": 1
+  },
+  {
+   "id": "mishkat_12",
+   "name": "أحاديث نبوية ٢",
+   "nameEn": "Hadith 2",
+   "ids": [
+    "hd_029",
+    "hd_030",
+    "hd_031",
+    "hd_032",
+    "hd_033",
+    "hd_034",
+    "hd_035",
+    "hd_036",
+    "hd_037",
+    "hd_038",
+    "hd_039",
+    "hd_040",
+    "hd_041",
+    "hd_042",
+    "hd_043",
+    "hd_044",
+    "hd_045",
+    "hd_046",
+    "hd_047",
+    "hd_048",
+    "hd_049",
+    "hd_050",
+    "hd_051",
+    "hd_052",
+    "hd_053",
+    "hd_054",
+    "hd_055",
+    "hd_056"
+   ],
+   "tray": "hd_029",
+   "v": 1
+  },
+  {
+   "id": "mishkat_13",
+   "name": "أحاديث نبوية ٣",
+   "nameEn": "Hadith 3",
+   "ids": [
+    "hd_057",
+    "hd_058",
+    "hd_059",
+    "hd_060",
+    "hd_061",
+    "hd_062",
+    "hd_063",
+    "hd_064",
+    "hd_065",
+    "hd_066",
+    "hd_067",
+    "hd_068",
+    "hd_069",
+    "hd_070",
+    "hd_071",
+    "hd_072",
+    "hd_073",
+    "hd_074",
+    "hd_075",
+    "hd_076",
+    "hd_077",
+    "hd_078",
+    "hd_079",
+    "hd_080",
+    "hd_081",
+    "hd_082",
+    "hd_083"
+   ],
+   "tray": "hd_057",
+   "v": 1
+  },
+  {
+   "id": "mishkat_14",
+   "name": "من دعاء النبي ﷺ",
+   "nameEn": "Prophetic Duas",
+   "ids": [
+    "du_001",
+    "du_002",
+    "du_003",
+    "du_004",
+    "du_005",
+    "du_006",
+    "du_007",
+    "du_008",
+    "du_009",
+    "du_010",
+    "du_011",
+    "du_012",
+    "du_013",
+    "du_014",
+    "du_015",
+    "du_016"
+   ],
+   "tray": "du_001",
+   "v": 1
+  },
+  {
+   "id": "mishkat_15",
+   "name": "أذكار الصباح",
+   "nameEn": "Morning Adhkar",
+   "ids": [
+    "zk_morning_01",
+    "zk_morning_02",
+    "zk_morning_03",
+    "zk_morning_04",
+    "zk_morning_05",
+    "zk_morning_06",
+    "zk_morning_07",
+    "zk_morning_08",
+    "zk_morning_09",
+    "zk_morning_10",
+    "zk_morning_11"
+   ],
+   "tray": "zk_morning_01",
+   "v": 1
+  },
+  {
+   "id": "mishkat_16",
+   "name": "أذكار المساء",
+   "nameEn": "Evening Adhkar",
+   "ids": [
+    "zk_evening_01",
+    "zk_evening_02",
+    "zk_evening_03",
+    "zk_evening_04",
+    "zk_evening_05",
+    "zk_evening_06",
+    "zk_evening_07",
+    "zk_evening_08",
+    "zk_evening_09",
+    "zk_evening_10",
+    "zk_evening_11"
+   ],
+   "tray": "zk_evening_01",
+   "v": 1
+  },
+  {
+   "id": "mishkat_17",
+   "name": "أذكار بعد الصلاة",
+   "nameEn": "After Prayer",
+   "ids": [
+    "zk_prayer_01",
+    "zk_prayer_02",
+    "zk_prayer_03",
+    "zk_prayer_04",
+    "zk_prayer_05",
+    "zk_prayer_06",
+    "zk_prayer_07"
+   ],
+   "tray": "zk_prayer_01",
+   "v": 1
+  },
+  {
+   "id": "mishkat_18",
+   "name": "أفكار ذهبية للعشر الأواخر",
+   "nameEn": "Last Ten Nights",
+   "ids": [
+    "zk_ramadan_01",
+    "zk_ramadan_02",
+    "zk_ramadan_03",
+    "zk_ramadan_04",
+    "zk_ramadan_05"
+   ],
+   "tray": "zk_ramadan_01",
+   "v": 1
+  },
+  {
+   "id": "mishkat_19",
+   "name": "النوم والاستيقاظ",
+   "nameEn": "Sleep & Waking",
+   "ids": [
+    "zk_sleep_01",
+    "zk_sleep_02",
+    "zk_sleep_03",
+    "zk_sleep_04",
+    "zk_sleep_05"
+   ],
+   "tray": "zk_sleep_01",
+   "v": 1
+  },
+  {
+   "id": "mishkat_20",
+   "name": "الطهارة والصلاة",
+   "nameEn": "Purification & Prayer",
+   "ids": [
+    "zk_salah_01",
+    "zk_salah_02",
+    "zk_salah_03",
+    "zk_salah_04",
+    "zk_salah_05",
+    "zk_salah_06",
+    "zk_salah_07",
+    "zk_salah_08",
+    "zk_salah_09",
+    "zk_salah_10",
+    "zk_salah_11",
+    "zk_salah_12",
+    "zk_salah_13",
+    "zk_salah_14",
+    "zk_salah_15",
+    "zk_salah_16"
+   ],
+   "tray": "zk_salah_01",
+   "v": 1
+  },
+  {
+   "id": "mishkat_21",
+   "name": "المنزل والمسجد واللباس",
+   "nameEn": "Home, Mosque & Clothing",
+   "ids": [
+    "zk_home_01",
+    "zk_home_02",
+    "zk_home_03"
+   ],
+   "tray": "zk_home_01",
+   "v": 1
+  },
+  {
+   "id": "mishkat_22",
+   "name": "الطعام والشراب والصيام",
+   "nameEn": "Food, Drink & Fasting",
+   "ids": [
+    "zk_food_01",
+    "zk_food_02",
+    "zk_food_03",
+    "zk_food_04",
+    "zk_food_05",
+    "zk_food_06",
+    "zk_food_07",
+    "zk_food_08"
+   ],
+   "tray": "zk_food_01",
+   "v": 1
+  },
+  {
+   "id": "mishkat_23",
+   "name": "السفر",
+   "nameEn": "Travel",
+   "ids": [
+    "zk_travel_01",
+    "zk_travel_02",
+    "zk_travel_03",
+    "zk_travel_04",
+    "zk_travel_05"
+   ],
+   "tray": "zk_travel_01",
+   "v": 1
+  },
+  {
+   "id": "mishkat_24",
+   "name": "الكرب والهم والشدائد",
+   "nameEn": "Distress & Hardship",
+   "ids": [
+    "zk_relief_01",
+    "zk_relief_02",
+    "zk_relief_03",
+    "zk_relief_04",
+    "zk_relief_05",
+    "zk_relief_06",
+    "zk_relief_07",
+    "zk_relief_08",
+    "zk_relief_09",
+    "zk_relief_10"
+   ],
+   "tray": "zk_relief_01",
+   "v": 1
+  },
+  {
+   "id": "mishkat_25",
+   "name": "المرض والموت",
+   "nameEn": "Illness & Death",
+   "ids": [
+    "zk_health_01",
+    "zk_health_02",
+    "zk_health_03",
+    "zk_health_04",
+    "zk_health_05",
+    "zk_health_06",
+    "zk_health_07"
+   ],
+   "tray": "zk_health_01",
+   "v": 1
+  },
+  {
+   "id": "mishkat_26",
+   "name": "الأحوال والمناسبات",
+   "nameEn": "Occasions",
+   "ids": [
+    "zk_occasions_01",
+    "zk_occasions_02",
+    "zk_occasions_03",
+    "zk_occasions_04",
+    "zk_occasions_05",
+    "zk_occasions_06",
+    "zk_occasions_07",
+    "zk_occasions_08",
+    "zk_occasions_09",
+    "zk_occasions_10",
+    "zk_occasions_11",
+    "zk_occasions_12",
+    "zk_occasions_13",
+    "zk_occasions_14",
+    "zk_occasions_15",
+    "zk_occasions_16",
+    "zk_occasions_17",
+    "zk_occasions_18"
+   ],
+   "tray": "zk_occasions_01",
+   "v": 1
+  },
+  {
+   "id": "mishkat_27",
+   "name": "الحج والعمرة",
+   "nameEn": "Hajj & Umrah",
+   "ids": [
+    "zk_hajj_01",
+    "zk_hajj_02",
+    "zk_hajj_03"
+   ],
+   "tray": "zk_hajj_01",
+   "v": 1
+  },
+  {
+   "id": "mishkat_28",
+   "name": "فضل الذكر والاستغفار",
+   "nameEn": "Virtue of Dhikr",
+   "ids": [
+    "zk_virtue_01",
+    "zk_virtue_02",
+    "zk_virtue_03",
+    "zk_virtue_04",
+    "zk_virtue_05",
+    "zk_virtue_06",
+    "zk_virtue_07",
+    "zk_virtue_08",
+    "zk_virtue_09",
+    "zk_virtue_10",
+    "zk_virtue_11",
+    "zk_virtue_12",
+    "zk_virtue_13"
+   ],
+   "tray": "zk_virtue_01",
+   "v": 1
+  },
+  {
+   "id": "mishkat_29",
+   "name": "أدعية من القرآن",
+   "nameEn": "Duas from the Quran",
+   "ids": [
+    "zk_quran_01",
+    "zk_quran_02",
+    "zk_quran_03",
+    "zk_quran_04",
+    "zk_quran_05",
+    "zk_quran_06",
+    "zk_quran_07",
+    "zk_quran_08",
+    "zk_quran_09",
+    "zk_quran_10",
+    "zk_quran_11",
+    "zk_quran_12",
+    "zk_quran_13",
+    "zk_quran_14",
+    "zk_quran_15",
+    "zk_quran_16",
+    "zk_quran_17"
+   ],
+   "tray": "zk_quran_01",
+   "v": 1
   }
  ],
  "apps": [
@@ -351,6 +760,43 @@
     "mishkat_8",
     "mishkat_9",
     "mishkat_10"
+   ]
+  },
+  {
+   "id": "b",
+   "letter": "ب",
+   "name": "ملصقات مشكاة (ب)",
+   "nameEn": "Mishkat Stickers (B)",
+   "appId": "com.mishkat.stickers.b",
+   "packs": [
+    "mishkat_11",
+    "mishkat_12",
+    "mishkat_13",
+    "mishkat_14",
+    "mishkat_29",
+    "mishkat_15",
+    "mishkat_16",
+    "mishkat_17",
+    "mishkat_19",
+    "mishkat_28"
+   ]
+  },
+  {
+   "id": "c",
+   "letter": "ج",
+   "name": "ملصقات مشكاة (ج)",
+   "nameEn": "Mishkat Stickers (C)",
+   "appId": "com.mishkat.stickers.c",
+   "packs": [
+    "mishkat_18",
+    "mishkat_20",
+    "mishkat_21",
+    "mishkat_22",
+    "mishkat_23",
+    "mishkat_24",
+    "mishkat_25",
+    "mishkat_26",
+    "mishkat_27"
    ]
   }
  ],

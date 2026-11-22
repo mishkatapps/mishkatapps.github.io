@@ -1,1 +1,70 @@
-{"occasion":{"ar":"ملصقات المناسبات","en":"Occasions"},"greet":{"ar":"صباح ومساء","en":"Morning & Evening"},"salam":{"ar":"تحيات وسلام","en":"Greetings"},"thanks":{"ar":"شكر ودعوات طيبة","en":"Thanks & Good Wishes"},"congrats":{"ar":"تهاني ومباركات","en":"Congratulations"},"religious":{"ar":"رمضان والجمعة والأعياد","en":"Islamic Occasions"},"dhikr":{"ar":"أذكار وعبارات إيمانية","en":"Dhikr"},"dua":{"ar":"أدعية","en":"Duas"},"hadith":{"ar":"أحاديث نبوية","en":"Hadith"},"health":{"ar":"مرض وشفاء","en":"Get Well"},"condolence":{"ar":"تعزية ومواساة","en":"Condolences"},"love":{"ar":"محبة وود","en":"Love & Friendship"},"fun":{"ar":"ردود ومرح","en":"Reactions"},"daily":{"ar":"الحياة اليومية","en":"Daily Life"},"travel":{"ar":"سفر","en":"Travel"},"wishes":{"ar":"دعوات للأحبة","en":"Prayers for Loved Ones"}}
+{
+ "occasion": {
+  "ar": "ملصقات المناسبات",
+  "en": "Occasions"
+ },
+ "greet": {
+  "ar": "صباح ومساء",
+  "en": "Morning & Evening"
+ },
+ "salam": {
+  "ar": "تحيات وسلام",
+  "en": "Greetings"
+ },
+ "thanks": {
+  "ar": "شكر ودعوات طيبة",
+  "en": "Thanks & Good Wishes"
+ },
+ "congrats": {
+  "ar": "تهاني ومباركات",
+  "en": "Congratulations"
+ },
+ "religious": {
+  "ar": "رمضان والجمعة والأعياد",
+  "en": "Islamic Occasions"
+ },
+ "dhikr": {
+  "ar": "أذكار وعبارات إيمانية",
+  "en": "Dhikr"
+ },
+ "dua": {
+  "ar": "أدعية",
+  "en": "Duas"
+ },
+ "hadith": {
+  "ar": "أحاديث نبوية",
+  "en": "Hadith"
+ },
+ "health": {
+  "ar": "مرض وشفاء",
+  "en": "Get Well"
+ },
+ "condolence": {
+  "ar": "تعزية ومواساة",
+  "en": "Condolences"
+ },
+ "love": {
+  "ar": "محبة وود",
+  "en": "Love & Friendship"
+ },
+ "fun": {
+  "ar": "ردود ومرح",
+  "en": "Reactions"
+ },
+ "daily": {
+  "ar": "الحياة اليومية",
+  "en": "Daily Life"
+ },
+ "travel": {
+  "ar": "سفر",
+  "en": "Travel"
+ },
+ "wishes": {
+  "ar": "دعوات للأحبة",
+  "en": "Prayers for Loved Ones"
+ },
+ "quran": {
+  "ar": "أدعية من القرآن",
+  "en": "Quranic Duas"
+ }
+}
