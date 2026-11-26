@@ -112,7 +112,8 @@
   window.addEventListener('hashchange', () => { if (S.content) route(); });
   $('#homeBtn').onclick = () => { location.hash = '#/'; };
   $('#outBtn').onclick = async () => {
-    log('logout');
+    // ننتظر تسجيل «خروج» في السجل قبل إنهاء الجلسة، وإلا يُرفض لأن الجلسة انتهت
+    try { await rpc('portal_log', { p_action: 'logout', p_item: null, p_detail: null }); } catch (e) {}
     try { await client().auth.signOut(); } catch (e) {}
     S.name = ''; S.content = null; location.hash = ''; renderGate();
   };
