@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>بوابة البرامج — مشكاة</title>
+<link rel="icon" type="image/png" href="../img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&family=Amiri:wght@700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.119.0/dist/umd/supabase.js"></script>
+<link rel="stylesheet" href="portal.css?v=1">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../"><img src="../img/mishkat.svg" alt=""><span>مشكاة</span></a>
+  <div class="ttl"><h1>بوابة البرامج</h1><small>برامج الدراسات العليا — معهد الدراسات والبحوث البيئية</small></div>
+  <div class="sp"></div>
+  <span class="who" id="who" hidden></span>
+  <button class="btn ghost sm" id="homeBtn" hidden>⌂ الرئيسية</button>
+  <button class="btn ghost sm" id="outBtn" hidden>⎋ خروج</button>
+</header>
+<main id="app"><div class="loading"><div class="spin"></div>جارٍ التحميل…</div></main>
+<div class="modal" id="modal" hidden><div class="mbox" role="dialog" aria-modal="true"><button class="x" id="mClose" aria-label="إغلاق">×</button><div id="mBody"></div></div></div>
+<div class="toast" id="toast"></div>
+<footer>مشكاة · بوابة البرامج — المحتوى متاح للمصرّح لهم فقط، ويُسجَّل الدخول والنشاط.</footer>
+<script src="portal.js?v=1"></script>
+</body>
+</html>
