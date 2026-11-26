@@ -48,7 +48,11 @@
         if (me && me.ok) { S.name = me.name; return afterLogin(); }
       }
       renderGate();
-    } catch (e) { renderError(e); }
+    } catch (e) {
+      // قبل إعداد قاعدة البيانات (أو أي تعذر في معرفة الحالة) تُعرض البوابة كأنها مغلقة
+      if (/portal_status|schema cache|does not exist/i.test(e.message || '')) return renderClosed();
+      renderError(e);
+    }
   }
 
   function renderClosed() {
