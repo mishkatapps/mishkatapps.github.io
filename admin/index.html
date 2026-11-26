@@ -187,16 +187,16 @@ footer{text-align:center;color:var(--mut);font-size:12.5px;padding:16px}
 </header>
 
 <div class="tabs">
-  <button class="tab on" data-tab="r">⭐ التقييمات <span class="badge" id="bR">…</span></button>
+  <button class="tab" data-tab="r">⭐ التقييمات <span class="badge" id="bR">…</span></button>
   <button class="tab" data-tab="m">✉️ البريد <span class="badge" id="bM">…</span></button>
   <button class="tab" data-tab="h">📜 مشكاة النبوة</button>
   <button class="tab" data-tab="s">🎨 الملصقات</button>
   <button class="tab" data-tab="p">💰 سعر ميزانية البيت</button>
-  <button class="tab" data-tab="g">📚 بوابة البرامج</button>
+  <button class="tab on" data-tab="g">📚 بوابة البرامج</button>
 </div>
 
 <main>
-  <section class="panel" id="pR">
+  <section class="panel" id="pR" hidden>
     <div id="rBody"><div class="loading"><div class="spin"></div>جارٍ تحميل التقييمات…</div></div>
   </section>
   <section class="panel" id="pM" hidden>
@@ -224,7 +224,7 @@ footer{text-align:center;color:var(--mut);font-size:12.5px;padding:16px}
   <section class="panel" id="pP" hidden>
     <div id="pBody"><div class="empty-st">افتح هذا التبويب لعرض السعر</div></div>
   </section>
-  <section class="panel" id="pG" hidden>
+  <section class="panel" id="pG">
     <div id="gBody"><div class="empty-st">افتح هذا التبويب لإدارة بوابة البرامج</div></div>
   </section>
 </main>
@@ -731,6 +731,6 @@ initGoogle();
 
 <link rel="stylesheet" href="stickers.css?v=2">
 <script src="stickers.js?v=2"></script>
-<script src="portal-admin.js?v=2"></script>
+<script src="portal-admin.js?v=3"></script>
 </body>
 </html>

@@ -127,7 +127,8 @@
       '<select id="fU"><option value="">كل المستخدمين</option>' + (data.users || []).map(u => '<option value="' + e(u.id) + '">' + e(u.name) + '</option>').join('') + '</select>' +
       '<select id="fA"><option value="">كل الأنشطة</option>' + Object.entries(ACTIONS).map(([k, v]) => '<option value="' + k + '">' + v + '</option>').join('') + '</select>' +
       '<label style="font-size:13px">من <input type="date" id="fF"></label><label style="font-size:13px">إلى <input type="date" id="fT"></label>' +
-      '<button class="btn sm" id="fGo">عرض</button><button class="btn ghost sm" id="fCsv">⬇ تصدير CSV</button></div><div id="gLog"><div class="loading"><div class="spin"></div>جارٍ تحميل السجل…</div></div></div>' +
+      '<button class="btn sm" id="fGo">عرض</button><button class="btn ghost sm" id="fCsv">⬇ تصدير CSV</button>' +
+      '<span style="flex:1"></span><button class="btn ghost sm" id="fMode"></button><button class="btn ghost sm" id="fOpen">⊞ فرد الكل</button><button class="btn ghost sm" id="fClose">⊟ دمج الكل</button></div><div id="gLog"><div class="loading"><div class="spin"></div>جارٍ تحميل السجل…</div></div></div>' +
       '<p style="color:var(--mut);font-size:13px;margin-top:10px">متصل باسم <span dir="ltr">' + e(email) + '</span></p>';
 
     q('#gGen').onclick = () => { q('#gCode').value = genCode(); };
@@ -145,6 +146,9 @@
     q('#gXlsTpl').onclick = () => writeXlsx([['الاسم', 'رمز الدخول', 'ملاحظة']], 'نموذج المسموح لهم بالدخول.xlsx');
     q('#gXlsOut').onclick = () => writeXlsx([['الاسم', 'رمز الدخول', 'ملاحظة', 'الحالة', 'آخر دخول']].concat((data.users || []).map(u => [u.name, u.code, u.note || '', u.active ? 'مفعّل' : 'موقوف', u.last_login ? fmt(u.last_login) : ''])), 'المسموح لهم بالدخول.xlsx');
     q('#fGo').onclick = loadLog; q('#fCsv').onclick = csv;
+    q('#fMode').onclick = () => { logMode = logMode === 'group' ? 'flat' : 'group'; try { localStorage.setItem('mk-portal-logmode', logMode); } catch (x) {} drawLog(); };
+    q('#fOpen').onclick = () => { rows.forEach(r => openGroups.add(gid(r))); drawLog(); };
+    q('#fClose').onclick = () => { openGroups.clear(); drawLog(); };
     loadLog();
   }
 
@@ -262,16 +266,47 @@
   }
 
   let rows = [];
+  // عرض السجل: مجمّع لكل مستخدم (قابل للفرد والدمج) أو زمني
+  let logMode = 'group'; try { logMode = localStorage.getItem('mk-portal-logmode') || 'group'; } catch (x) {}
+  const openGroups = new Set();
+  const gid = r => r.user_id || ('anon:' + (r.user_name || ''));
   async function loadLog() {
     const el = q('#gLog'); el.innerHTML = '<div class="loading"><div class="spin"></div>جارٍ تحميل السجل…</div>';
     try {
       const f = q('#fF').value, t = q('#fT').value;
-      rows = await rpc('portal_events_list', { p_from: f ? f + 'T00:00:00' : null, p_to: t ? t + 'T23:59:59' : null, p_user: q('#fU').value || null, p_action: q('#fA').value || null, p_limit: 1000 }) || [];
-      el.innerHTML = rows.length ? '<div style="overflow-x:auto;max-height:520px"><table class="gt"><thead><tr><th>الوقت</th><th>المستخدم</th><th>النشاط</th><th>العنصر</th><th>الجهاز</th></tr></thead><tbody>' +
-        rows.map(r => '<tr><td style="white-space:nowrap">' + fmt(r.at) + '</td><td>' + e(r.user_name || '—') + '</td><td>' + e(ACTIONS[r.action] || r.action) + '</td>' +
-          '<td>' + e(itemName(r.item)) + '</td><td style="font-size:12px;color:var(--mut)">' + e(device(r.user_agent)) + '</td></tr>').join('') +
-        '</tbody></table></div><p style="font-size:13px;color:var(--mut)">' + rows.length + ' سجلاً (أحدث 1000 بحد أقصى)</p>' : '<div class="empty-st">لا يوجد نشاط بعد</div>';
+      rows = await rpc('portal_events_list', { p_from: f ? f + 'T00:00:00' : null, p_to: t ? t + 'T23:59:59' : null, p_user: q('#fU').value || null, p_action: q('#fA').value || null, p_limit: 5000 }) || [];
+      if (q('#fU').value) openGroups.add(q('#fU').value);
+      drawLog();
     } catch (x) { el.innerHTML = '<div class="err">' + e(x.message) + '</div>'; }
+  }
+  const evRow = (r, withUser) => '<tr' + (r.action === 'login' ? ' style="font-weight:700"' : r.action === 'login_failed' ? ' style="color:#b42626"' : '') + '><td style="white-space:nowrap">' + fmt(r.at) + '</td>' +
+    (withUser ? '<td>' + e(r.user_name || '—') + '</td>' : '') + '<td>' + e(ACTIONS[r.action] || r.action) + '</td>' +
+    '<td>' + e(itemName(r.item)) + '</td><td style="font-size:12px;color:var(--mut)">' + e(device(r.user_agent)) + '</td></tr>';
+  function drawLog() {
+    const el = q('#gLog'), mb = q('#fMode');
+    if (mb) mb.textContent = logMode === 'group' ? '☰ عرض زمني' : '👤 عرض لكل مستخدم';
+    if (q('#fOpen')) { q('#fOpen').hidden = logMode !== 'group'; q('#fClose').hidden = logMode !== 'group'; }
+    if (!rows.length) { el.innerHTML = '<div class="empty-st">لا يوجد نشاط بعد</div>'; return; }
+    const foot = '<p style="font-size:13px;color:var(--mut)">' + rows.length + ' سجلاً</p>';
+    if (logMode === 'flat') {
+      el.innerHTML = '<div style="overflow-x:auto;max-height:560px"><table class="gt"><thead><tr><th>الوقت</th><th>المستخدم</th><th>النشاط</th><th>العنصر</th><th>الجهاز</th></tr></thead><tbody>' +
+        rows.map(r => evRow(r, true)).join('') + '</tbody></table></div>' + foot;
+      return;
+    }
+    const groups = new Map();
+    rows.forEach(r => { const k = gid(r); if (!groups.has(k)) groups.set(k, { name: r.user_name || 'محاولات دخول بدون اسم', anon: !r.user_id, list: [] }); groups.get(k).list.push(r); });
+    const cnt = (l, a) => l.filter(r => r.action === a).length;
+    el.innerHTML = '<div style="overflow-x:auto"><table class="gt"><thead><tr><th style="width:34px"></th><th>المستخدم</th><th>آخر نشاط</th><th>دخول</th><th>مشاهدات</th><th>مقررات</th><th>تنزيلات</th><th>كل الأنشطة</th></tr></thead><tbody>' +
+      [...groups.entries()].map(([k, g]) => {
+        const op = openGroups.has(k), l = g.list;
+        return '<tr class="lgH" data-g="' + e(k) + '" style="cursor:pointer;background:' + (op ? '#f6efd9' : '') + '"><td style="font-size:18px;color:var(--navy)">' + (op ? '▾' : '▸') + '</td>' +
+          '<td><b' + (g.anon ? ' style="color:#b42626"' : '') + '>' + e(g.name) + '</b></td><td style="white-space:nowrap">' + fmt(l[0].at) + '</td>' +
+          '<td>' + (g.anon ? cnt(l, 'login_failed') + ' فاشلة' : cnt(l, 'login')) + '</td><td>' + (cnt(l, 'view') + cnt(l, 'view_presentation')) + '</td><td>' + cnt(l, 'open_course') + '</td>' +
+          '<td>' + (cnt(l, 'download') + cnt(l, 'open_file')) + '</td><td>' + l.length + '</td></tr>' +
+          (op ? '<tr><td></td><td colspan="7" style="padding:4px 0 12px"><table class="gt" style="font-size:13.5px"><thead><tr><th>الوقت</th><th>النشاط</th><th>العنصر</th><th>الجهاز</th></tr></thead><tbody>' +
+            l.map(r => evRow(r, false)).join('') + '</tbody></table></td></tr>' : '');
+      }).join('') + '</tbody></table></div>' + foot + '<p style="font-size:12.5px;color:var(--mut)">اضغط على اسم المستخدم لفرد نشاطه أو دمجه.</p>';
+    el.querySelectorAll('tr.lgH').forEach(tr => tr.onclick = () => { const k = tr.dataset.g; openGroups.has(k) ? openGroups.delete(k) : openGroups.add(k); drawLog(); });
   }
   const device = ua => !ua ? '' : /iPhone|Android/i.test(ua) ? 'هاتف' : /iPad|Tablet/i.test(ua) ? 'جهاز لوحي' : 'حاسب';
   function csv() {
@@ -308,9 +343,14 @@
   function mockClient() {
     const users = [{ id: 'u1', name: 'د. أحمد محمد', code: 'AB7K-Q2XM', active: true, note: 'عضو لجنة', created_at: new Date().toISOString(), last_login: new Date().toISOString(), logins: 3, downloads: 5 }];
     let visible = false;
-    const ev = [{ at: new Date().toISOString(), user_name: 'د. أحمد محمد', action: 'download', item: 'agri/courses/master/MC01.pdf', user_agent: 'Mozilla Windows' },
-                { at: new Date(Date.now() - 3600e3).toISOString(), user_name: 'د. أحمد محمد', action: 'login', item: null, user_agent: 'Mozilla Android' },
-                { at: new Date(Date.now() - 7200e3).toISOString(), user_name: null, action: 'login_failed', item: null, user_agent: 'Mozilla iPhone' }];
+    const t = m => new Date(Date.now() - m * 60e3).toISOString();
+    const ev = [{ at: t(1), user_id: 'u1', user_name: 'د. أحمد محمد', action: 'download', item: 'agri/courses/master/MC01.pdf' },
+                { at: t(3), user_id: 'u2', user_name: 'م. سارة علي', action: 'view_presentation', item: 'proj/deck.pdf' },
+                { at: t(4), user_id: 'u2', user_name: 'م. سارة علي', action: 'login', item: null, user_agent: 'Mozilla Android' },
+                { at: t(9), user_id: 'u1', user_name: 'د. أحمد محمد', action: 'open_course', item: 'agri/MC01' },
+                { at: t(10), user_id: 'u1', user_name: 'د. أحمد محمد', action: 'view', item: 'agri/courses' },
+                { at: t(11), user_id: 'u1', user_name: 'د. أحمد محمد', action: 'login', item: null, user_agent: 'Mozilla Windows' },
+                { at: t(30), user_id: null, user_name: null, action: 'login_failed', item: null, user_agent: 'Mozilla iPhone' }];
     const api = {
       is_app_owner: () => true,
       portal_admin_get: () => ({ visible, users, stats: { logins_today: 1, downloads_total: 5, failed_today: 1, active_sessions: 1 } }),
@@ -325,6 +365,8 @@
   }
 
   window.mkPortal = { open, reload: open };
+  // التبويب الافتراضي للوحة هو «بوابة البرامج»
+  if (!q('#pG').hidden) setTimeout(open, 0);
   let back = false; try { back = sessionStorage.getItem(FLAG) === '1'; sessionStorage.removeItem(FLAG); } catch (x) {}
   // بعد العودة من Google يتولى تبويب السعر استلام الجلسة أولاً، ثم نفتح تبويب البوابة
   if (back) { const t = document.querySelector('.tab[data-tab="g"]'); if (t) setTimeout(() => t.click(), 1500); }
