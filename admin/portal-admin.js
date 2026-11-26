@@ -104,9 +104,14 @@
 
       '<div class="box" style="margin-bottom:16px"><h3>المسموح لهم بالدخول</h3>' +
       '<form id="gAdd" class="pf"><label>الاسم<input id="gName" required maxlength="120" placeholder="مثال: د. أحمد محمد"></label>' +
-      '<label>رمز الدخول<input id="gCode" required minlength="4" maxlength="40" dir="ltr" value="' + genCode() + '"></label>' +
+      '<label>رمز الدخول<input id="gCode" required minlength="4" maxlength="40" dir="ltr" placeholder="اكتب الرمز (4 أحرف على الأقل)"></label>' +
       '<label>ملاحظة (اختياري)<input id="gNote" maxlength="200" placeholder="الجهة أو الصفة"></label>' +
-      '<div class="ra"><button type="button" class="btn ghost sm" id="gGen">رمز جديد</button><button class="btn sm">إضافة</button></div></form>' +
+      '<div class="ra"><button type="button" class="btn ghost sm" id="gGen" title="يملأ خانة الرمز برمز عشوائي يمكنك تعديله">اقتراح رمز</button><button class="btn sm">إضافة</button></div></form>' +
+      '<div class="box" style="margin:12px 0;background:#fff"><h3>📥 استيراد من ملف Excel</h3>' +
+      '<p style="font-size:14px;margin:0 0 8px">ملف فيه ثلاثة أعمدة بعناوين: <b>الاسم</b> · <b>رمز الدخول</b> · <b>ملاحظة</b> (اختيارية). الاسم الموجود مسبقاً يُحدَّث رمزه وملاحظته، والجديد يُضاف. تُعرض معاينة قبل الحفظ.</p>' +
+      '<input type="file" id="gXls" accept=".xlsx,.xls,.csv" hidden><div class="ra"><button type="button" class="btn sm" id="gXlsPick">📂 اختيار ملف Excel</button>' +
+      '<button type="button" class="btn ghost sm" id="gXlsTpl">⬇ نموذج فارغ</button><button type="button" class="btn ghost sm" id="gXlsOut">⬇ تصدير القائمة الحالية</button></div>' +
+      '<div id="gImp"></div></div>' +
       '<div style="overflow-x:auto"><table class="gt"><thead><tr><th>الاسم</th><th>الرمز</th><th>الحالة</th><th>آخر دخول</th><th>دخول</th><th>تنزيلات</th><th></th></tr></thead><tbody>' +
       (data.users || []).map(u => '<tr data-id="' + e(u.id) + '"><td><b>' + e(u.name) + '</b>' + (u.note ? '<div style="font-size:12.5px;color:var(--mut)">' + e(u.note) + '</div>' : '') + '</td>' +
         '<td dir="ltr" style="font-family:monospace;font-weight:700">' + e(u.code) + '</td>' +
@@ -114,7 +119,7 @@
         '<td>' + fmt(u.last_login) + '</td><td>' + (u.logins || 0) + '</td><td>' + (u.downloads || 0) + '</td>' +
         '<td style="white-space:nowrap"><button class="btn ghost sm" data-a="copy">نسخ الدعوة</button> <button class="btn ghost sm" data-a="edit">تعديل</button> ' +
         '<button class="btn ghost sm" data-a="toggle">' + (u.active ? 'إيقاف' : 'تفعيل') + '</button> <button class="btn ghost sm" data-a="log">النشاط</button> <button class="btn ghost sm" data-a="del">حذف</button></td></tr>').join('') +
-      ((data.users || []).length ? '' : '<tr><td colspan="7" style="text-align:center;color:var(--mut)">لا يوجد مستخدمون بعد — أضف أول اسم ورمز أعلاه.</td></tr>') +
+      ((data.users || []).length ? '' : '<tr><td colspan="7" style="text-align:center;color:var(--mut)">لا يوجد مستخدمون بعد — أضف اسماً ورمزاً أعلاه أو استورد ملف Excel.</td></tr>') +
       '</tbody></table></div></div>' +
 
       '<div class="box"><h3>سجل الدخول والنشاط</h3>' +
@@ -135,8 +140,104 @@
     body().querySelectorAll('tr[data-id] button').forEach(b => b.onclick = () => userAction(b.dataset.a, (data.users || []).find(u => u.id === b.closest('tr').dataset.id)));
     q('#gPick').onclick = () => q('#gDir').click();
     q('#gDir').onchange = ev => upload([...ev.target.files]);
+    q('#gXlsPick').onclick = () => q('#gXls').click();
+    q('#gXls').onchange = ev => { const f = ev.target.files[0]; ev.target.value = ''; if (f) importFile(f); };
+    q('#gXlsTpl').onclick = () => writeXlsx([['الاسم', 'رمز الدخول', 'ملاحظة']], 'نموذج المسموح لهم بالدخول.xlsx');
+    q('#gXlsOut').onclick = () => writeXlsx([['الاسم', 'رمز الدخول', 'ملاحظة', 'الحالة', 'آخر دخول']].concat((data.users || []).map(u => [u.name, u.code, u.note || '', u.active ? 'مفعّل' : 'موقوف', u.last_login ? fmt(u.last_login) : ''])), 'المسموح لهم بالدخول.xlsx');
     q('#fGo').onclick = loadLog; q('#fCsv').onclick = csv;
     loadLog();
+  }
+
+  /* ---------- الاستيراد من Excel ---------- */
+  let xlsxLib = null;
+  function loadXlsx() {
+    if (window.XLSX) return Promise.resolve(window.XLSX);
+    if (xlsxLib) return xlsxLib;
+    xlsxLib = new Promise((ok, no) => {
+      const s = document.createElement('script');
+      s.src = 'https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js';
+      s.onload = () => ok(window.XLSX); s.onerror = () => { xlsxLib = null; no(new Error('تعذر تحميل قارئ ملفات Excel. تحقق من الإنترنت.')); };
+      document.head.appendChild(s);
+    });
+    return xlsxLib;
+  }
+  async function writeXlsx(rows, name) {
+    try {
+      const X = await loadXlsx();
+      const ws = X.utils.aoa_to_sheet(rows); ws['!cols'] = rows[0].map((h, i) => ({ wch: i === 0 ? 30 : i === 2 ? 30 : 18 }));
+      ws['!views'] = [{ RTL: true }];
+      const wb = X.utils.book_new(); wb.Workbook = { Views: [{ RTL: true }] };
+      X.utils.book_append_sheet(wb, ws, 'المسموح لهم');
+      X.writeFile(wb, name);
+    } catch (x) { say(x.message); }
+  }
+  const norm = s => String(s == null ? '' : s).replace(/[‏‎ ]/g, ' ').replace(/\s+/g, ' ').trim();
+  const nkey = s => norm(s).replace(/[أإآ]/g, 'ا').replace(/ة/g, 'ه').replace(/ى/g, 'ي').toLowerCase();
+  async function importFile(file) {
+    const box = q('#gImp');
+    box.innerHTML = '<div class="loading"><div class="spin"></div>جارٍ قراءة الملف…</div>';
+    try {
+      const X = await loadXlsx();
+      const wb = X.read(await file.arrayBuffer(), { type: 'array' });
+      const sheet = wb.Sheets[wb.SheetNames[0]];
+      const grid = X.utils.sheet_to_json(sheet, { header: 1, raw: false, defval: '' }).filter(r => r.some(c => norm(c)));
+      if (!grid.length) throw new Error('الملف فارغ.');
+      // تحديد الأعمدة من صف العناوين (أو أ=الاسم، ب=الرمز، ج=ملاحظة إن لم توجد عناوين)
+      const head = grid[0].map(nkey);
+      const find = re => head.findIndex(h => re.test(h));
+      let cN = find(/^(الاسم|اسم|الاسم الكامل|name)$/), cC = find(/(رمز|الرمز|كود|code)/), cT = find(/(ملاحظ|note|الجهه|الصفه)/);
+      let rows = grid;
+      if (cN >= 0 && cC >= 0) rows = grid.slice(1); else { cN = 0; cC = 1; cT = 2; }
+      const existing = data.users || [];
+      const byName = new Map(existing.map(u => [nkey(u.name), u]));
+      const byCode = new Map(existing.map(u => [norm(u.code), u]));
+      const seenCode = new Map(), seenName = new Set();
+      const plan = rows.map((r, i) => {
+        const name = norm(r[cN]), code = norm(r[cC]), note = cT >= 0 ? norm(r[cT]) : '';
+        const it = { line: i + (rows === grid ? 1 : 2), name, code, note };
+        if (!name) return Object.assign(it, { st: 'err', msg: 'الاسم فارغ' });
+        if (name.length > 120) return Object.assign(it, { st: 'err', msg: 'الاسم أطول من 120 حرفاً' });
+        if (!code) return Object.assign(it, { st: 'err', msg: 'رمز الدخول فارغ' });
+        if (code.length < 4 || code.length > 40) return Object.assign(it, { st: 'err', msg: 'الرمز يجب أن يكون من 4 إلى 40 حرفاً' });
+        if (seenName.has(nkey(name))) return Object.assign(it, { st: 'err', msg: 'الاسم مكرر في الملف' });
+        if (seenCode.has(code)) return Object.assign(it, { st: 'err', msg: 'الرمز مكرر في الملف (السطر ' + seenCode.get(code) + ')' });
+        seenName.add(nkey(name)); seenCode.set(code, it.line);
+        const old = byName.get(nkey(name)), owner = byCode.get(code);
+        if (owner && (!old || owner.id !== old.id)) return Object.assign(it, { st: 'err', msg: 'الرمز مستخدم لـ «' + owner.name + '»' });
+        if (old) {
+          if (norm(old.code) === code && norm(old.note) === note) return Object.assign(it, { st: 'same', msg: 'بدون تغيير', user: old });
+          return Object.assign(it, { st: 'upd', msg: 'تحديث' + (norm(old.code) !== code ? ' الرمز' : '') + (norm(old.note) !== note ? ' والملاحظة' : ''), user: old });
+        }
+        return Object.assign(it, { st: 'new', msg: 'إضافة' });
+      });
+      showPlan(plan, file.name);
+    } catch (x) { box.innerHTML = '<div class="err">تعذرت قراءة الملف: ' + e(x.message) + '</div>'; }
+  }
+  function showPlan(plan, fname) {
+    const n = k => plan.filter(p => p.st === k).length, todo = plan.filter(p => p.st === 'new' || p.st === 'upd');
+    const col = { new: '#15803d', upd: '#a16207', same: '#64748b', err: '#b42626' };
+    q('#gImp').innerHTML = '<p style="margin:10px 0 6px"><b>' + e(fname) + '</b>: ' + plan.length + ' سطراً — ' +
+      '<span style="color:' + col.new + '">إضافة ' + n('new') + '</span> · <span style="color:' + col.upd + '">تحديث ' + n('upd') + '</span> · ' +
+      '<span style="color:' + col.same + '">بدون تغيير ' + n('same') + '</span> · <span style="color:' + col.err + '">أخطاء ' + n('err') + '</span></p>' +
+      '<div style="overflow-x:auto;max-height:340px"><table class="gt"><thead><tr><th>السطر</th><th>الاسم</th><th>رمز الدخول</th><th>ملاحظة</th><th>الإجراء</th></tr></thead><tbody>' +
+      plan.map(p => '<tr><td>' + p.line + '</td><td>' + e(p.name) + '</td><td dir="ltr" style="font-family:monospace">' + e(p.code) + '</td><td>' + e(p.note) + '</td>' +
+        '<td style="color:' + col[p.st] + ';font-weight:700">' + e(p.msg) + '</td></tr>').join('') + '</tbody></table></div>' +
+      (n('err') ? '<p style="font-size:13px;color:#b42626">السطور التي بها أخطاء لن تُحفظ. صحّحها في الملف ثم اختره مرة أخرى، أو نفّذ الباقي.</p>' : '') +
+      '<div class="ra" style="margin-top:8px"><button class="btn sm" id="gImpGo"' + (todo.length ? '' : ' disabled') + '>حفظ (' + todo.length + ')</button>' +
+      '<button class="btn ghost sm" id="gImpNo">إلغاء</button><span id="gImpSt" style="font-size:13px;color:var(--mut)"></span></div>';
+    q('#gImpNo').onclick = () => { q('#gImp').innerHTML = ''; };
+    q('#gImpGo').onclick = async () => {
+      const b = q('#gImpGo'); b.disabled = true; let ok = 0; const bad = [];
+      for (const p of todo) {
+        try {
+          await rpc('portal_user_save', { p_id: p.user ? p.user.id : null, p_name: p.name, p_code: p.code, p_active: p.user ? p.user.active : true, p_note: p.note || null });
+          ok++; q('#gImpSt').textContent = ok + ' / ' + todo.length;
+        } catch (x) { bad.push('السطر ' + p.line + ': ' + (/duplicate|unique/i.test(x.message) ? 'الرمز مستخدم لشخص آخر' : x.message)); }
+      }
+      say('حُفظ ' + ok + ' من ' + todo.length);
+      if (bad.length) alert('لم تُحفظ هذه السطور:\n' + bad.join('\n'));
+      open();
+    };
   }
 
   async function userAction(a, u) {
